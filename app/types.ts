@@ -1,24 +1,22 @@
-export type fiszki = [
-  {
-    [key: string]: {
-      polski: string;
-      angielski: string;
-      konteks: string;
-    }[];
-  },
-];
+import { StackNavigationProp } from "@react-navigation/stack";
+
+export type fiszki = {
+  [key: string]: {
+    polski: string;
+    angielski: string;
+    konteks: string;
+  };
+}[];
 
 export type setFiszki = React.Dispatch<
   React.SetStateAction<
-    [
-      {
-        [key: string]: {
-          polski: string;
-          angielski: string;
-          konteks: string;
-        }[];
-      },
-    ]
+    {
+      [key: string]: {
+        polski: string;
+        angielski: string;
+        konteks: string;
+      };
+    }[]
   >
 >;
 
@@ -26,3 +24,8 @@ export type propFiszkiEdycja = {
   fiszki: fiszki;
   setFiszki: setFiszki;
 };
+
+export type EdycjaScreenNavigationProp = StackNavigationProp<{
+  main: undefined;
+  edycja: undefined;
+}>;
