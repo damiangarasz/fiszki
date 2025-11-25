@@ -1,11 +1,9 @@
-import { useNavigation } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { Pressable, Text, View } from "react-native";
-import { EdycjaScreenNavigationProp, propFiszkiEdycja } from "../types.ts";
+import { propFiszkiEdycja } from "../types.ts";
 import Edycja from "./Edycja.tsx";
 
 export default function FiszkiEdycja({ fiszki, setFiszki }: propFiszkiEdycja) {
-  const navigation = useNavigation<EdycjaScreenNavigationProp>();
   const Stack = createStackNavigator();
 
   function edycja() {
