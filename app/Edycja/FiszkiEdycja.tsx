@@ -1,6 +1,6 @@
 import { createStackNavigator } from "@react-navigation/stack";
 import { Pressable, Text, View } from "react-native";
-import { propFiszkiEdycja } from "../types.ts";
+import { MainScreenNavigationProp, propFiszkiEdycja } from "../types.ts";
 import Edycja from "./Edycja.tsx";
 
 export default function FiszkiEdycja({ fiszki, setFiszki }: propFiszkiEdycja) {
@@ -9,7 +9,7 @@ export default function FiszkiEdycja({ fiszki, setFiszki }: propFiszkiEdycja) {
   function edycja() {
     return <Edycja />;
   }
-  function main({ navigation }) {
+  function main({ navigation }: { navigation: MainScreenNavigationProp }) {
     return (
       <View className="w-[100%] h-[100%]">
         {fiszki.map((element, index) => {

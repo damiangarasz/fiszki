@@ -1,3 +1,5 @@
+import { StackNavigationProp } from "@react-navigation/stack";
+
 export type fiszki = {
   [key: string]: {
     polski: string;
@@ -22,3 +24,10 @@ export type propFiszkiEdycja = {
   fiszki: fiszki;
   setFiszki: setFiszki;
 };
+
+type StackParamList = {
+  main: undefined;
+  edycja: undefined;
+};
+
+export type MainScreenNavigationProp = StackNavigationProp<StackParamList, "main">;
