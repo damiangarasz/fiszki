@@ -1,5 +1,10 @@
-import { View } from "react-native";
+import { Text, View } from "react-native";
+import { propEdycja } from "../types.ts";
 
-export default function Edycja() {
-  return <View></View>;
+export default function Edycja({ fiszki, setFiszki, fiszkaDoEdycji }: propEdycja) {
+  return (
+    <View>
+      <Text>{fiszkaDoEdycji}</Text>
+    </View>
+  );
 }

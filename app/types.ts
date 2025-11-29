@@ -5,7 +5,7 @@ export type fiszki = {
     polski: string;
     angielski: string;
     konteks: string;
-  };
+  }[];
 }[];
 
 export type setFiszki = React.Dispatch<
@@ -15,7 +15,7 @@ export type setFiszki = React.Dispatch<
         polski: string;
         angielski: string;
         konteks: string;
-      };
+      }[];
     }[]
   >
 >;
@@ -23,6 +23,12 @@ export type setFiszki = React.Dispatch<
 export type propFiszkiEdycja = {
   fiszki: fiszki;
   setFiszki: setFiszki;
+};
+
+export type propEdycja = {
+  fiszki: fiszki;
+  setFiszki: setFiszki;
+  fiszkaDoEdycji: string;
 };
 
 type StackParamList = {

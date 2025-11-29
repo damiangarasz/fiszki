@@ -11,10 +11,14 @@ export default function Index() {
 
   //zapisane fiszki
   const [fiszki, setFiszki] = useState<fiszki>([
-    { test: { polski: "string", angielski: "string", konteks: "string" } },
-    { lol: { polski: "string", angielski: "string", konteks: "string" } },
-    { cos: { polski: "string", angielski: "string", konteks: "string" } },
-    { niewiem: { polski: "string", angielski: "string", konteks: "string" } },
+    {
+      test: [
+        { polski: "latać", angielski: "fly", konteks: "" },
+        { polski: "biegać", angielski: "run", konteks: "" },
+        { polski: "żaba", angielski: "frog", konteks: "" },
+      ],
+    },
+    { niewiem: [{ polski: "string", angielski: "string", konteks: "string" }] },
   ]);
 
   const [isLoaded, setIsLoaded] = useState(false);

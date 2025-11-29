@@ -1,4 +1,5 @@
 import { createStackNavigator } from "@react-navigation/stack";
+import { useState } from "react";
 import { Pressable, Text, View } from "react-native";
 import { MainScreenNavigationProp, propFiszkiEdycja } from "../types.ts";
 import Edycja from "./Edycja.tsx";
@@ -6,8 +7,10 @@ import Edycja from "./Edycja.tsx";
 export default function FiszkiEdycja({ fiszki, setFiszki }: propFiszkiEdycja) {
   const Stack = createStackNavigator();
 
+  const [fiszkaDoEdycji, setFiszkaDoEdycji] = useState("");
+
   function edycja() {
-    return <Edycja />;
+    return <Edycja fiszki={fiszki} setFiszki={setFiszki} fiszkaDoEdycji={fiszkaDoEdycji} />;
   }
   function main({ navigation }: { navigation: MainScreenNavigationProp }) {
     return (
@@ -16,7 +19,12 @@ export default function FiszkiEdycja({ fiszki, setFiszki }: propFiszkiEdycja) {
           const key = Object.keys(element)[0] + index;
           return (
             <View key={key}>
-              <Pressable onPress={() => navigation.navigate("edycja")}>
+              <Pressable
+                onPress={() => {
+                  navigation.navigate("edycja");
+                  setFiszkaDoEdycji(Object.keys(element)[0]);
+                }}
+              >
                 <Text>{Object.keys(element)}</Text>
               </Pressable>
             </View>
