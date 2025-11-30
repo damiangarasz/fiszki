@@ -28,7 +28,7 @@ export type propFiszkiEdycja = {
 export type propEdycja = {
   fiszki: fiszki;
   setFiszki: setFiszki;
-  fiszkaDoEdycji: string;
+  fiszkaDoEdycji: number;
 };
 
 type StackParamList = {

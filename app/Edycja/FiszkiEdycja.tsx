@@ -7,7 +7,7 @@ import Edycja from "./Edycja.tsx";
 export default function FiszkiEdycja({ fiszki, setFiszki }: propFiszkiEdycja) {
   const Stack = createStackNavigator();
 
-  const [fiszkaDoEdycji, setFiszkaDoEdycji] = useState("");
+  const [fiszkaDoEdycji, setFiszkaDoEdycji] = useState<number>(0);
 
   function edycja() {
     return <Edycja fiszki={fiszki} setFiszki={setFiszki} fiszkaDoEdycji={fiszkaDoEdycji} />;
@@ -15,6 +15,9 @@ export default function FiszkiEdycja({ fiszki, setFiszki }: propFiszkiEdycja) {
   function main({ navigation }: { navigation: MainScreenNavigationProp }) {
     return (
       <View className="w-[100%] h-[100%]">
+        <Pressable>
+          <Text>Dodaj nowe</Text>
+        </Pressable>
         {fiszki.map((element, index) => {
           const key = Object.keys(element)[0] + index;
           return (
@@ -22,7 +25,7 @@ export default function FiszkiEdycja({ fiszki, setFiszki }: propFiszkiEdycja) {
               <Pressable
                 onPress={() => {
                   navigation.navigate("edycja");
-                  setFiszkaDoEdycji(Object.keys(element)[0]);
+                  setFiszkaDoEdycji(index);
                 }}
               >
                 <Text>{Object.keys(element)}</Text>
