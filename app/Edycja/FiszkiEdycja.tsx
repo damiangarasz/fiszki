@@ -7,7 +7,7 @@ import Edycja from "./Edycja.tsx";
 export default function FiszkiEdycja({ fiszki, setFiszki }: propFiszkiEdycja) {
   const Stack = createStackNavigator();
 
-  const [fiszkaDoEdycji, setFiszkaDoEdycji] = useState<number>(0);
+  const [fiszkaDoEdycji, setFiszkaDoEdycji] = useState<number>(-1);
 
   function edycja() {
     return <Edycja fiszki={fiszki} setFiszki={setFiszki} fiszkaDoEdycji={fiszkaDoEdycji} />;

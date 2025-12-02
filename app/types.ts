@@ -4,7 +4,7 @@ export type fiszki = {
   [key: string]: {
     polski: string;
     angielski: string;
-    konteks: string;
+    kontekst: string;
   }[];
 }[];
 
@@ -14,7 +14,7 @@ export type setFiszki = React.Dispatch<
       [key: string]: {
         polski: string;
         angielski: string;
-        konteks: string;
+        kontekst: string;
       }[];
     }[]
   >
