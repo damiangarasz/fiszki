@@ -22,7 +22,7 @@ export type propFiszkiEdycja = {
 export type propEdycja = {
   fiszki: fiszki;
   setFiszki: setFiszki;
-  fiszkaDoEdycji: number;
+  fiszkaDoEdycji: string;
 };
 
 type StackParamList = {
@@ -31,3 +31,9 @@ type StackParamList = {
 };
 
 export type MainScreenNavigationProp = StackNavigationProp<StackParamList, "main">;
+
+export interface MainScreenProps {
+  navigation: MainScreenNavigationProp;
+  fiszki: fiszki;
+  setFiszki: setFiszki;
+}

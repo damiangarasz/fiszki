@@ -1,23 +1,39 @@
 import { createStackNavigator } from "@react-navigation/stack";
 import { useState } from "react";
 import { Pressable, Text, View } from "react-native";
-import { MainScreenNavigationProp, propFiszkiEdycja } from "../types.ts";
-import Edycja from "./Edycja.tsx";
+import { TextInput } from "react-native-gesture-handler";
+import { MainScreenProps, propFiszkiEdycja } from "../types.ts";
 
 export default function FiszkiEdycja({ fiszki, setFiszki }: propFiszkiEdycja) {
   const Stack = createStackNavigator();
 
-  const [fiszkaDoEdycji, setFiszkaDoEdycji] = useState<number>(-1);
+  const [fiszkaDoEdycji, setFiszkaDoEdycji] = useState<string>("");
+  const [dadajGrupeFiszek, setDodajGrupeFiszek] = useState(false);
 
-  function edycja() {
+  function Edycja() {
     return <Edycja fiszki={fiszki} setFiszki={setFiszki} fiszkaDoEdycji={fiszkaDoEdycji} />;
   }
-  function main({ navigation }: { navigation: MainScreenNavigationProp }) {
+
+  function DodajGrupeFiszekEkran() {
+    return (
+      <View className="w-[75%] h-[75%] m-auto border shadow-xl border-black bg-red-500">
+        <Text className="text-white">Nazwa lolas</Text>
+        <TextInput className="border" />
+      </View>
+    );
+  }
+
+  function MainScreen({ navigation, fiszki, setFiszki }: MainScreenProps) {
     return (
       <View className="w-[100%] h-[100%]">
-        <Pressable>
+        <Pressable
+          onPress={() => {
+            setDodajGrupeFiszek(true);
+          }}
+        >
           <Text>Dodaj nowe</Text>
         </Pressable>
+        {dadajGrupeFiszek ? <DodajGrupeFiszekEkran /> : <></>}
         {fiszki.map((element, index) => {
           const key = Object.keys(element)[0] + index;
           return (
@@ -25,10 +41,10 @@ export default function FiszkiEdycja({ fiszki, setFiszki }: propFiszkiEdycja) {
               <Pressable
                 onPress={() => {
                   navigation.navigate("edycja");
-                  setFiszkaDoEdycji(index);
+                  setFiszkaDoEdycji(element.key);
                 }}
               >
-                <Text>{Object.keys(element)}</Text>
+                <Text>{element.key}</Text>
               </Pressable>
             </View>
           );
@@ -39,36 +55,10 @@ export default function FiszkiEdycja({ fiszki, setFiszki }: propFiszkiEdycja) {
 
   return (
     <Stack.Navigator screenOptions={{}} initialRouteName="main">
-      <Stack.Screen
-        name="main"
-        component={main}
-        options={{
-          title: "main",
-          headerTitleAlign: "center",
-          headerStyle: {
-            backgroundColor: "#f4511e",
-          },
-          headerTintColor: "#fff",
-          headerTitleStyle: {
-            fontWeight: "bold",
-          },
-        }}
-      />
-      <Stack.Screen
-        name="edycja"
-        component={edycja}
-        options={{
-          title: "edycja",
-          headerTitleAlign: "center",
-          headerStyle: {
-            backgroundColor: "#f4511e",
-          },
-          headerTintColor: "#fff",
-          headerTitleStyle: {
-            fontWeight: "bold",
-          },
-        }}
-      />
+      <Stack.Screen name="main">
+        {(props) => <MainScreen {...props} fiszki={fiszki} setFiszki={setFiszki} />}
+      </Stack.Screen>
+      <Stack.Screen name="edycja">{(prop) => <Edycja />}</Stack.Screen>
     </Stack.Navigator>
   );
 }
