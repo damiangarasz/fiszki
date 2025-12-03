@@ -12,13 +12,14 @@ export default function Index() {
   //zapisane fiszki
   const [fiszki, setFiszki] = useState<fiszki>([
     {
-      test: [
+      key: "test",
+      lista: [
         { polski: "latać", angielski: "fly", kontekst: "" },
         { polski: "biegać", angielski: "run", kontekst: "" },
         { polski: "żaba", angielski: "frog", kontekst: "" },
       ],
     },
-    { niewiem: [{ polski: "string", angielski: "string", kontekst: "string" }] },
+    { key: "test2", lista: [{ polski: "string", angielski: "string", kontekst: "string" }] },
   ]);
 
   const [isLoaded, setIsLoaded] = useState(false);

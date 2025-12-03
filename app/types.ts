@@ -1,21 +1,15 @@
 import { StackNavigationProp } from "@react-navigation/stack";
 
 export type fiszki = {
-  [key: string]: {
-    polski: string;
-    angielski: string;
-    kontekst: string;
-  }[];
+  key: string;
+  lista: { polski: string; angielski: string; kontekst: string }[];
 }[];
 
 export type setFiszki = React.Dispatch<
   React.SetStateAction<
     {
-      [key: string]: {
-        polski: string;
-        angielski: string;
-        kontekst: string;
-      }[];
+      key: string;
+      lista: { polski: string; angielski: string; kontekst: string }[];
     }[]
   >
 >;
