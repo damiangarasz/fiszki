@@ -37,3 +37,8 @@ export interface MainScreenProps {
   fiszki: fiszki;
   setFiszki: setFiszki;
 }
+
+export type DodajGrupeFiszekProp = {
+  setFiszki: setFiszki;
+  setDodajGrupeFiszek: React.Dispatch<boolean>;
+};

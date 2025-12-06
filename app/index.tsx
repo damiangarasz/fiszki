@@ -10,17 +10,7 @@ export default function Index() {
   const Tab = createBottomTabNavigator();
 
   //zapisane fiszki
-  const [fiszki, setFiszki] = useState<fiszki>([
-    {
-      key: "test",
-      lista: [
-        { polski: "latać", angielski: "fly", kontekst: "" },
-        { polski: "biegać", angielski: "run", kontekst: "" },
-        { polski: "żaba", angielski: "frog", kontekst: "" },
-      ],
-    },
-    { key: "test2", lista: [{ polski: "string", angielski: "string", kontekst: "string" }] },
-  ]);
+  const [fiszki, setFiszki] = useState<fiszki>([]);
 
   const [isLoaded, setIsLoaded] = useState(false);
 

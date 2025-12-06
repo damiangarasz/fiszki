@@ -17,7 +17,7 @@ export default function FiszkiEdycja({ fiszki, setFiszki }: propFiszkiEdycja) {
   }
 
   function DodajGrupeFiszekEkran() {
-    return <DodajGrupeFiszek />
+    return <DodajGrupeFiszek setFiszki={setFiszki} setDodajGrupeFiszek={setDodajGrupeFiszek} />;
   }
 
   function MainScreen({ navigation, fiszki, setFiszki }: MainScreenProps) {
