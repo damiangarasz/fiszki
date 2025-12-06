@@ -3,6 +3,8 @@ import { useState } from "react";
 import { Pressable, Text, View } from "react-native";
 import { TextInput } from "react-native-gesture-handler";
 import { MainScreenProps, propFiszkiEdycja } from "../types.ts";
+import Edycja from "./Edycja.tsx";
+import DodajGrupeFiszek from "./DodajGrupeFiszek.tsx"
 
 export default function FiszkiEdycja({ fiszki, setFiszki }: propFiszkiEdycja) {
   const Stack = createStackNavigator();
@@ -10,17 +12,12 @@ export default function FiszkiEdycja({ fiszki, setFiszki }: propFiszkiEdycja) {
   const [fiszkaDoEdycji, setFiszkaDoEdycji] = useState<string>("");
   const [dadajGrupeFiszek, setDodajGrupeFiszek] = useState(false);
 
-  function Edycja() {
+  function EdycjaEkran() {
     return <Edycja fiszki={fiszki} setFiszki={setFiszki} fiszkaDoEdycji={fiszkaDoEdycji} />;
   }
 
   function DodajGrupeFiszekEkran() {
-    return (
-      <View className="w-[75%] h-[75%] m-auto border shadow-xl border-black bg-red-500">
-        <Text className="text-white">Nazwa lolas</Text>
-        <TextInput className="border" />
-      </View>
-    );
+    return <DodajGrupeFiszek />
   }
 
   function MainScreen({ navigation, fiszki, setFiszki }: MainScreenProps) {
@@ -58,7 +55,7 @@ export default function FiszkiEdycja({ fiszki, setFiszki }: propFiszkiEdycja) {
       <Stack.Screen name="main">
         {(props) => <MainScreen {...props} fiszki={fiszki} setFiszki={setFiszki} />}
       </Stack.Screen>
-      <Stack.Screen name="edycja">{(prop) => <Edycja />}</Stack.Screen>
+      <Stack.Screen name="edycja">{() => EdycjaEkran()}</Stack.Screen>
     </Stack.Navigator>
   );
 }
