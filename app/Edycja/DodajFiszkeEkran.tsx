@@ -2,15 +2,22 @@ import { useState } from "react";
 import { Pressable, Text, TextInput, View } from "react-native";
 import { DodajFiszkeEkranProp } from "../types.ts";
 
-export default function DodajFiszkeEkran({ setDodajFiszke, setFiszki, fiszkaDoEdycji }: DodajFiszkeEkranProp) {
-  const [polski, setPolski] = useState("");
-  const [angielski, setAngielski] = useState("");
-  const [kontekst, setKontekst] = useState("");
+export default function DodajFiszkeEkran({
+  setDodajFiszke,
+  setFiszki,
+  fiszkaDoEdycji,
+}: DodajFiszkeEkranProp) {
+  const [polskiText, setPolskiText] = useState("");
+  const [angielskiText, setAngielskiText] = useState("");
+  const [kontekstText, setKontekstText] = useState("");
 
   function dodawanieFiszki() {
-    setFiszki((prev)=>{
-        const newArr = [...prev, ]
-    })
+    setFiszki((prev) => {
+      const edycja = [...prev];
+      const nowaFiszka = { polski: polskiText, angielski: angielskiText, kontekst: kontekstText };
+      edycja[fiszkaDoEdycji].lista.push(nowaFiszka);
+      return edycja;
+    });
   }
 
   return (
@@ -18,18 +25,18 @@ export default function DodajFiszkeEkran({ setDodajFiszke, setFiszki, fiszkaDoEd
       <TextInput
         placeholder="polski"
         className="shadow-xl h-10 w-[75%] m-auto"
-        onChangeText={setPolski}
+        onChangeText={setPolskiText}
         maxLength={25}
       />
       <TextInput
         placeholder="angielski"
         className="shadow-xl h-10 w-[75%] m-auto"
-        onChangeText={setAngielski}
+        onChangeText={setAngielskiText}
         maxLength={25}
       />
       <TextInput
         placeholder="kontekst"
-        onChangeText={setKontekst}
+        onChangeText={setKontekstText}
         maxLength={200}
         multiline={true}
         className="shadow-xl h-28 w-[75%] m-auto"

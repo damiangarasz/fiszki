@@ -20,7 +20,6 @@ export default function FiszkiEdycja({ fiszki, setFiszki }: propFiszkiEdycja) {
       <DodajGrupeFiszek
         setFiszki={setFiszki}
         setDodajGrupeFiszek={setDodajGrupeFiszek}
-        fiszkaDoEdycji={fiszkaDoEdycji}
       />
     );
   }

@@ -24,7 +24,29 @@ export default function Edycja({ fiszki, setFiszki, fiszkaDoEdycji }: propEdycja
         </Pressable>
       </View>
       {dodajFiszke ? (
-        <DodajFiszkeEkran setDodajFiszke={setDodajFiszke} setFiszki={setFiszki} />
+        <DodajFiszkeEkran
+          setDodajFiszke={setDodajFiszke}
+          setFiszki={setFiszki}
+          fiszkaDoEdycji={fiszkaDoEdycji}
+        />
+      ) : (
+        <></>
+      )}
+
+      {/* nie pokazuje odrazu jebanych fiszek tylko jak odświeze */}
+
+      {fiszki[fiszkaDoEdycji].lista ? (
+        fiszki[fiszkaDoEdycji].lista.map((param, index) => {
+          return (
+            <View key={index}>
+              <Pressable>
+                <Text>{param.polski}</Text>
+                <Text>{param.angielski}</Text>
+                <Text>{param.kontekst}</Text>
+              </Pressable>
+            </View>
+          );
+        })
       ) : (
         <></>
       )}
