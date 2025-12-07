@@ -22,7 +22,7 @@ export type propFiszkiEdycja = {
 export type propEdycja = {
   fiszki: fiszki;
   setFiszki: setFiszki;
-  fiszkaDoEdycji: string;
+  fiszkaDoEdycji: number;
 };
 
 type StackParamList = {
@@ -41,4 +41,10 @@ export interface MainScreenProps {
 export type DodajGrupeFiszekProp = {
   setFiszki: setFiszki;
   setDodajGrupeFiszek: React.Dispatch<boolean>;
+};
+
+export type DodajFiszkeEkranProp = {
+  setDodajFiszke: React.Dispatch<boolean>;
+  setFiszki: setFiszki;
+  fiszkaDoEdycji: number;
 };

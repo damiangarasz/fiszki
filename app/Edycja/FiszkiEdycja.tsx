@@ -1,15 +1,14 @@
 import { createStackNavigator } from "@react-navigation/stack";
 import { useState } from "react";
 import { Pressable, Text, View } from "react-native";
-import { TextInput } from "react-native-gesture-handler";
 import { MainScreenProps, propFiszkiEdycja } from "../types.ts";
+import DodajGrupeFiszek from "./DodajGrupeFiszek.tsx";
 import Edycja from "./Edycja.tsx";
-import DodajGrupeFiszek from "./DodajGrupeFiszek.tsx"
 
 export default function FiszkiEdycja({ fiszki, setFiszki }: propFiszkiEdycja) {
   const Stack = createStackNavigator();
 
-  const [fiszkaDoEdycji, setFiszkaDoEdycji] = useState<string>("");
+  const [fiszkaDoEdycji, setFiszkaDoEdycji] = useState<number>(0);
   const [dadajGrupeFiszek, setDodajGrupeFiszek] = useState(false);
 
   function EdycjaEkran() {
@@ -17,7 +16,13 @@ export default function FiszkiEdycja({ fiszki, setFiszki }: propFiszkiEdycja) {
   }
 
   function DodajGrupeFiszekEkran() {
-    return <DodajGrupeFiszek setFiszki={setFiszki} setDodajGrupeFiszek={setDodajGrupeFiszek} />;
+    return (
+      <DodajGrupeFiszek
+        setFiszki={setFiszki}
+        setDodajGrupeFiszek={setDodajGrupeFiszek}
+        fiszkaDoEdycji={fiszkaDoEdycji}
+      />
+    );
   }
 
   function MainScreen({ navigation, fiszki, setFiszki }: MainScreenProps) {
@@ -38,7 +43,7 @@ export default function FiszkiEdycja({ fiszki, setFiszki }: propFiszkiEdycja) {
               <Pressable
                 onPress={() => {
                   navigation.navigate("edycja");
-                  setFiszkaDoEdycji(element.key);
+                  setFiszkaDoEdycji(index);
                 }}
               >
                 <Text>{element.key}</Text>
