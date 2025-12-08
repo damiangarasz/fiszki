@@ -10,7 +10,7 @@ export default function DodajFiszkeEkran({
   const [polskiText, setPolskiText] = useState("");
   const [angielskiText, setAngielskiText] = useState("");
   const [kontekstText, setKontekstText] = useState("");
-
+  
   function dodawanieFiszki() {
     setFiszki((prev) => {
       const edycja = [...prev];

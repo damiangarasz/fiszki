@@ -12,16 +12,18 @@ export default function FiszkiEdycja({ fiszki, setFiszki }: propFiszkiEdycja) {
   const [dadajGrupeFiszek, setDodajGrupeFiszek] = useState(false);
 
   function EdycjaEkran() {
-    return <Edycja fiszki={fiszki} setFiszki={setFiszki} fiszkaDoEdycji={fiszkaDoEdycji} />;
+    return (
+      <Edycja
+        navigation={navigation}
+        fiszki={fiszki}
+        setFiszki={setFiszki}
+        fiszkaDoEdycji={fiszkaDoEdycji}
+      />
+    );
   }
 
   function DodajGrupeFiszekEkran() {
-    return (
-      <DodajGrupeFiszek
-        setFiszki={setFiszki}
-        setDodajGrupeFiszek={setDodajGrupeFiszek}
-      />
-    );
+    return <DodajGrupeFiszek setFiszki={setFiszki} setDodajGrupeFiszek={setDodajGrupeFiszek} />;
   }
 
   function MainScreen({ navigation, fiszki, setFiszki }: MainScreenProps) {
@@ -59,7 +61,8 @@ export default function FiszkiEdycja({ fiszki, setFiszki }: propFiszkiEdycja) {
       <Stack.Screen name="main">
         {(props) => <MainScreen {...props} fiszki={fiszki} setFiszki={setFiszki} />}
       </Stack.Screen>
-      <Stack.Screen name="edycja">{() => EdycjaEkran()}</Stack.Screen>
+      {/* TUTAJ DODAC navigation LOLOLOL */}
+      <Stack.Screen name="edycja">{(navigation) => EdycjaEkran()}</Stack.Screen>
     </Stack.Navigator>
   );
 }

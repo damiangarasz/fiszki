@@ -3,7 +3,7 @@ import { Pressable, Text, View } from "react-native";
 import { propEdycja } from "../types.ts";
 import DodajFiszkeEkran from "./DodajFiszkeEkran.tsx";
 
-export default function Edycja({ fiszki, setFiszki, fiszkaDoEdycji }: propEdycja) {
+export default function Edycja({navigation, fiszki, setFiszki, fiszkaDoEdycji }: propEdycja) {
   const [zapisNowejFiszki, setZapisNowejFiszki] = useState(false);
 
   const [dodajFiszke, setDodajFiszke] = useState(false);
@@ -19,7 +19,12 @@ export default function Edycja({ fiszki, setFiszki, fiszkaDoEdycji }: propEdycja
         >
           <Text className="text-center m-auto text-5xl">Dodaj fiszkę</Text>
         </Pressable>
-        <Pressable className="w-[50%] h-16 bg-red-700">
+        <Pressable
+          className="w-[50%] h-16 bg-red-700"
+          onPress={() => {
+            navigation.navigate("edycja");
+          }}
+        >
           <Text className="text-center m-auto text-5xl">Usuń wszystkie</Text>
         </Pressable>
       </View>

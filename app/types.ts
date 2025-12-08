@@ -20,6 +20,7 @@ export type propFiszkiEdycja = {
 };
 
 export type propEdycja = {
+  navigation: MainScreenNavigationProp;
   fiszki: fiszki;
   setFiszki: setFiszki;
   fiszkaDoEdycji: number;
