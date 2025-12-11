@@ -9,7 +9,7 @@ export default function Edycja({ navigation, fiszki, setFiszki, fiszkaDoEdycji }
   const [dodajFiszke, setDodajFiszke] = useState(false);
 
   return (
-    <View className="h-[100%]">
+    <View className="h-[100%] w-[100%]">
       <View className="flex flex-row w-[100%]">
         <Pressable
           className="w-[50%] h-16 bg-green-600"
@@ -24,7 +24,6 @@ export default function Edycja({ navigation, fiszki, setFiszki, fiszkaDoEdycji }
           onPress={() => {
             setFiszki((prev) => {
               const newArr = [...prev];
-              console.log(newArr);
               newArr.splice(fiszkaDoEdycji, 1);
               return newArr;
             });
@@ -44,24 +43,28 @@ export default function Edycja({ navigation, fiszki, setFiszki, fiszkaDoEdycji }
       ) : (
         <></>
       )}
-
-      {/* nie pokazuje odrazu jebanych fiszek tylko jak odświeze */}
-
-      {fiszki[fiszkaDoEdycji].lista ? (
-        fiszki[fiszkaDoEdycji].lista.map((param, index) => {
-          return (
-            <View key={index}>
-              <Pressable>
-                <Text>{param.polski}</Text>
-                <Text>{param.angielski}</Text>
-                <Text>{param.kontekst}</Text>
-              </Pressable>
-            </View>
-          );
-        })
-      ) : (
-        <></>
-      )}
+      <View className="w-[75%] h-[40] m-auto ">
+        <Text className="text-center text-3xl">{fiszki[fiszkaDoEdycji]?.key}</Text>
+      </View>
+      <View className="w-[75%] h-[75%] m-auto shadow-2xl">
+        {fiszki[fiszkaDoEdycji]?.lista ? (
+          fiszki[fiszkaDoEdycji].lista.map((param, index) => {
+            return (
+              <View key={index} className="border-b border-gray-400 border-dotted">
+                <Pressable className="flex flex-row justify-around h-8">
+                  <Text className="w-[50%] text-center m-auto">{param.polski}</Text>
+                  <Text className="w-[50%] text-center m-auto">{param.angielski}</Text>
+                </Pressable>
+                <Pressable>
+                  <Text className="text-center">{param.kontekst}</Text>
+                </Pressable>
+              </View>
+            );
+          })
+        ) : (
+          <></>
+        )}
+      </View>
     </View>
   );
 }

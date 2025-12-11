@@ -59,3 +59,7 @@ export type EdycjaScreenProps = {
   setFiszki: setFiszki;
   fiszkaDoEdycji: number;
 };
+
+export type FiszkiWyswietlanieProp = {
+  fiszki: fiszki;
+};

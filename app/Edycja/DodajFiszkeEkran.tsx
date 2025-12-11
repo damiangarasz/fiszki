@@ -14,7 +14,6 @@ export default function DodajFiszkeEkran({
 
   function dodawanieFiszki() {
     setFiszki((prev) => {
-      console.log("prev:", prev, "fiszka Do EdyCji:", fiszkaDoEdycji, "fiszki", fiszki);
       const edycja = [...prev];
       const nowaFiszka = { polski: polskiText, angielski: angielskiText, kontekst: kontekstText };
       edycja[fiszkaDoEdycji].lista.push(nowaFiszka);

@@ -1,5 +1,5 @@
 import { createStackNavigator } from "@react-navigation/stack";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Pressable, Text, View } from "react-native";
 import { EdycjaScreenProps, MainScreenProps, propFiszkiEdycja } from "../types.ts";
 import DodajGrupeFiszek from "./DodajGrupeFiszek.tsx";
@@ -14,15 +14,6 @@ export default function FiszkiEdycja({
   const Stack = createStackNavigator();
 
   const [dadajGrupeFiszek, setDodajGrupeFiszek] = useState(false);
-
-  // DEBUGOWANIE
-  useEffect(() => {
-    console.log("fiszka do edycji:", fiszkaDoEdycji);
-  }, [fiszki]);
-  useEffect(() => {
-    console.log("fiszkafiszka", fiszkaDoEdycji);
-  }, [fiszkaDoEdycji]);
-  //KONICE DEBUGOWANIA
 
   function EdycjaEkran({ navigation, fiszki, setFiszki, fiszkaDoEdycji }: EdycjaScreenProps) {
     return (
@@ -43,28 +34,32 @@ export default function FiszkiEdycja({
     return (
       <View className="w-[100%] h-[100%]">
         <Pressable
+          className="w-[100%] h-16 bg-green-600"
           onPress={() => {
             setDodajGrupeFiszek(true);
           }}
         >
-          <Text>Dodaj nowe</Text>
+          <Text className="text-center m-auto text-5xl">Dodaj nowe</Text>
         </Pressable>
         {dadajGrupeFiszek ? <DodajGrupeFiszekEkran /> : <></>}
-        {fiszki.map((element, index) => {
-          const key = Object.keys(element)[0] + index;
-          return (
-            <View key={key}>
-              <Pressable
-                onPress={() => {
-                  navigation.navigate("edycja");
-                  setFiszkaDoEdycji(index);
-                }}
-              >
-                <Text>{element.key}</Text>
-              </Pressable>
-            </View>
-          );
-        })}
+        <View className="w-[75%] h-[75%] shadow-2xl m-auto">
+          {fiszki.map((element, index) => {
+            const key = Object.keys(element)[0] + index;
+            return (
+              <View key={key} className="border-b border-gray-400 border-dotted">
+                <Pressable
+                  className="flex flex-row justify-around h-8"
+                  onPress={() => {
+                    navigation.navigate("edycja");
+                    setFiszkaDoEdycji(index);
+                  }}
+                >
+                  <Text className="w-[50%] text-center m-auto text-2xl">{element.key}</Text>
+                </Pressable>
+              </View>
+            );
+          })}
+        </View>
       </View>
     );
   }

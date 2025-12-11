@@ -21,6 +21,7 @@ export default function DodajGrupeFiszek({ setFiszki, setDodajGrupeFiszek }: Dod
         className="shadow-xl h-10 w-[75%] m-auto"
         placeholder="Twoja nazwa"
         onChangeText={setNazwaFiszki}
+        maxLength={25}
       />
       <View className="flex-row justify-around">
         <Pressable

@@ -48,7 +48,7 @@ export default function Index() {
   }, [fiszki]);
 
   const MojeFiszki = () => {
-    return <FiszkiWyswietlanie />;
+    return <FiszkiWyswietlanie fiszki={fiszki} />;
   };
 
   const Edycja = () => {
