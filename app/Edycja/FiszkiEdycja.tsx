@@ -1,7 +1,7 @@
 import { createStackNavigator } from "@react-navigation/stack";
 import { useState } from "react";
 import { Pressable, Text, View } from "react-native";
-import { MainScreenProps, propFiszkiEdycja } from "../types.ts";
+import { EdycjaScreenProps, MainScreenProps, propFiszkiEdycja } from "../types.ts";
 import DodajGrupeFiszek from "./DodajGrupeFiszek.tsx";
 import Edycja from "./Edycja.tsx";
 
@@ -11,7 +11,7 @@ export default function FiszkiEdycja({ fiszki, setFiszki }: propFiszkiEdycja) {
   const [fiszkaDoEdycji, setFiszkaDoEdycji] = useState<number>(0);
   const [dadajGrupeFiszek, setDodajGrupeFiszek] = useState(false);
 
-  function EdycjaEkran() {
+  function EdycjaEkran({ navigation, fiszki, setFiszki, fiszkaDoEdycji }: EdycjaScreenProps) {
     return (
       <Edycja
         navigation={navigation}
@@ -61,8 +61,16 @@ export default function FiszkiEdycja({ fiszki, setFiszki }: propFiszkiEdycja) {
       <Stack.Screen name="main">
         {(props) => <MainScreen {...props} fiszki={fiszki} setFiszki={setFiszki} />}
       </Stack.Screen>
-      {/* TUTAJ DODAC navigation LOLOLOL */}
-      <Stack.Screen name="edycja">{(navigation) => EdycjaEkran()}</Stack.Screen>
+      <Stack.Screen name="edycja">
+        {(props) => (
+          <EdycjaEkran
+            {...props}
+            fiszki={fiszki}
+            setFiszki={setFiszki}
+            fiszkaDoEdycji={fiszkaDoEdycji}
+          />
+        )}
+      </Stack.Screen>
     </Stack.Navigator>
   );
 }

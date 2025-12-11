@@ -49,3 +49,10 @@ export type DodajFiszkeEkranProp = {
   setFiszki: setFiszki;
   fiszkaDoEdycji: number;
 };
+
+export type EdycjaScreenProps = {
+  navigation: MainScreenNavigationProp;
+  fiszki: fiszki;
+  setFiszki: setFiszki;
+  fiszkaDoEdycji: number;
+};
