@@ -1,15 +1,28 @@
 import { createStackNavigator } from "@react-navigation/stack";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Pressable, Text, View } from "react-native";
 import { EdycjaScreenProps, MainScreenProps, propFiszkiEdycja } from "../types.ts";
 import DodajGrupeFiszek from "./DodajGrupeFiszek.tsx";
 import Edycja from "./Edycja.tsx";
 
-export default function FiszkiEdycja({ fiszki, setFiszki }: propFiszkiEdycja) {
+export default function FiszkiEdycja({
+  fiszki,
+  setFiszki,
+  setFiszkaDoEdycji,
+  fiszkaDoEdycji,
+}: propFiszkiEdycja) {
   const Stack = createStackNavigator();
 
-  const [fiszkaDoEdycji, setFiszkaDoEdycji] = useState<number>(0);
   const [dadajGrupeFiszek, setDodajGrupeFiszek] = useState(false);
+
+  // DEBUGOWANIE
+  useEffect(() => {
+    console.log("fiszka do edycji:", fiszkaDoEdycji);
+  }, [fiszki]);
+  useEffect(() => {
+    console.log("fiszkafiszka", fiszkaDoEdycji);
+  }, [fiszkaDoEdycji]);
+  //KONICE DEBUGOWANIA
 
   function EdycjaEkran({ navigation, fiszki, setFiszki, fiszkaDoEdycji }: EdycjaScreenProps) {
     return (

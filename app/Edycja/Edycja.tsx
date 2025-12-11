@@ -38,6 +38,7 @@ export default function Edycja({ navigation, fiszki, setFiszki, fiszkaDoEdycji }
         <DodajFiszkeEkran
           setDodajFiszke={setDodajFiszke}
           setFiszki={setFiszki}
+          fiszki={fiszki}
           fiszkaDoEdycji={fiszkaDoEdycji}
         />
       ) : (

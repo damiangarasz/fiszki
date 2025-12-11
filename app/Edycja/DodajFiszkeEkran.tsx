@@ -5,14 +5,16 @@ import { DodajFiszkeEkranProp } from "../types.ts";
 export default function DodajFiszkeEkran({
   setDodajFiszke,
   setFiszki,
+  fiszki,
   fiszkaDoEdycji,
 }: DodajFiszkeEkranProp) {
   const [polskiText, setPolskiText] = useState("");
   const [angielskiText, setAngielskiText] = useState("");
   const [kontekstText, setKontekstText] = useState("");
-  
+
   function dodawanieFiszki() {
     setFiszki((prev) => {
+      console.log("prev:", prev, "fiszka Do EdyCji:", fiszkaDoEdycji, "fiszki", fiszki);
       const edycja = [...prev];
       const nowaFiszka = { polski: polskiText, angielski: angielskiText, kontekst: kontekstText };
       edycja[fiszkaDoEdycji].lista.push(nowaFiszka);

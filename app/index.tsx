@@ -11,10 +11,10 @@ export default function Index() {
 
   //zapisane fiszki
   const [fiszki, setFiszki] = useState<fiszki>([]);
-
+  const [fiszkaDoEdycji, setFiszkaDoEdycji] = useState<number>(0);
   const [isLoaded, setIsLoaded] = useState(false);
 
-  //odczyt fiszek z perm memory i zaps w setFiszki
+  // odczyt fiszek z perm memory i zaps w setFiszki
   useEffect(() => {
     const getData = async () => {
       try {
@@ -52,7 +52,14 @@ export default function Index() {
   };
 
   const Edycja = () => {
-    return <FiszkiEdycja fiszki={fiszki} setFiszki={setFiszki} />;
+    return (
+      <FiszkiEdycja
+        fiszki={fiszki}
+        setFiszki={setFiszki}
+        setFiszkaDoEdycji={setFiszkaDoEdycji}
+        fiszkaDoEdycji={fiszkaDoEdycji}
+      />
+    );
   };
 
   const Logowanie = () => {

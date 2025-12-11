@@ -17,6 +17,8 @@ export type setFiszki = React.Dispatch<
 export type propFiszkiEdycja = {
   fiszki: fiszki;
   setFiszki: setFiszki;
+  setFiszkaDoEdycji: React.Dispatch<number>;
+  fiszkaDoEdycji: number;
 };
 
 export type propEdycja = {
@@ -47,6 +49,7 @@ export type DodajGrupeFiszekProp = {
 export type DodajFiszkeEkranProp = {
   setDodajFiszke: React.Dispatch<boolean>;
   setFiszki: setFiszki;
+  fiszki: fiszki;
   fiszkaDoEdycji: number;
 };
 
