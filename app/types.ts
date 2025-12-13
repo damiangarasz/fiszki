@@ -32,8 +32,13 @@ type StackParamList = {
   main: undefined;
   edycja: undefined;
 };
+type StackParamListMojeFiszki = {
+  main: undefined;
+  wyswietlanie: undefined;
+};
 
 export type MainScreenNavigationProp = StackNavigationProp<StackParamList, "main">;
+export type MojeFiszkiEkranProp = StackNavigationProp<StackParamListMojeFiszki, "wyswietlanie">;
 
 export interface MainScreenProps {
   navigation: MainScreenNavigationProp;
@@ -63,3 +68,5 @@ export type EdycjaScreenProps = {
 export type FiszkiWyswietlanieProp = {
   fiszki: fiszki;
 };
+
+export type MojeFiszkiEkranMainProp = { navigation: MojeFiszkiEkranProp };

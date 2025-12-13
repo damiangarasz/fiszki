@@ -3,7 +3,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { useEffect, useState } from "react";
 import FiszkiEdycja from "./Edycja/FiszkiEdycja";
 import FiszkiLogowanie from "./Logowanie/FiszkiLogowanie";
-import FiszkiWyswietlanie from "./UI/FiszkiWyswietlanie";
+import MojeFiszkiEkran from "./UI/MojeFiszkiEkran.tsx";
 import { fiszki } from "./types.ts";
 
 export default function Index() {
@@ -48,7 +48,7 @@ export default function Index() {
   }, [fiszki]);
 
   const MojeFiszki = () => {
-    return <FiszkiWyswietlanie fiszki={fiszki} />;
+    return <MojeFiszkiEkran fiszki={fiszki} />;
   };
 
   const Edycja = () => {
