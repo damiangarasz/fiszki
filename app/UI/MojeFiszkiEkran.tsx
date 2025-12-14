@@ -1,6 +1,7 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { useEffect, useState } from "react";
 import { Image, Pressable, Text, View } from "react-native";
+import Animated, { useAnimatedStyle, useSharedValue, withTiming } from "react-native-reanimated";
 import { FiszkiWyswietlanieProp, MojeFiszkiEkranMainProp } from "../types.ts";
 
 export default function FiszkiWyswietlanie({ fiszki }: FiszkiWyswietlanieProp) {
@@ -8,6 +9,51 @@ export default function FiszkiWyswietlanie({ fiszki }: FiszkiWyswietlanieProp) {
   const [jakiZestawDoWyswietlenia, setJakiZestawDoWyswietlenia] = useState("");
   const [indexFiszek, setIndexFiszek] = useState(0);
   const [wybranaFiszka, setWybranaFiszka] = useState({ polski: "", angielski: "", kontekst: "" });
+
+  //rotowanie kart
+  const rotation = useSharedValue(0);
+  const [flipped, setFlipped] = useState(false);
+
+  const frontStyle = useAnimatedStyle(() => ({
+    transform: [{ perspective: 1000 }, { rotateY: `${rotation.value}deg` }],
+    backgroundColor: "#84cc16", // lime-600
+    borderWidth: 1,
+    borderColor: "#4b5563", // gray-400
+    borderRadius: 16,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 4,
+    elevation: 5, // dla Androida
+    width: "100%",
+    height: "100%",
+    position: "absolute",
+  }));
+
+  const backStyle = useAnimatedStyle(() => ({
+    transform: [{ perspective: 1000 }, { rotateY: `${rotation.value - 90}deg` }],
+    backgroundColor: "#84d382", // lime-500
+    borderWidth: 1,
+    borderColor: "#4b5563",
+    borderRadius: 16,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 4,
+    elevation: 5,
+    width: "100%",
+    height: "100%",
+    position: "absolute",
+  }));
+
+  const onFlip = () => {
+    setFlipped(!flipped);
+    rotation.value = withTiming(flipped ? 0 : 90, {
+      duration: 300,
+    });
+  };
+
+  //KONIEC animowania kart
 
   //losowanie fiszka
   useEffect(() => {
@@ -59,19 +105,23 @@ export default function FiszkiWyswietlanie({ fiszki }: FiszkiWyswietlanieProp) {
             style={{ width: 45, height: 45 }}
           />
         </Pressable>
-        <Pressable onPress={() => {}}>
+        <Pressable onPress={onFlip}>
           <View className="realtive m-auto w-[50vw] h-[60vh]">
             {/* TODO animacja jest spierdolona */}
-            <View
+            <Animated.View
+              style={[frontStyle]}
               className={`absolute w-[100%] h-[100%] shadow-xl bg-lime-600 border  rounded-xl `}
             >
               <Text>{wybranaFiszka?.polski}</Text>
               <Text>{wybranaFiszka?.angielski}</Text>
               <Text>{wybranaFiszka?.kontekst}</Text>
-            </View>
-            <View className={`absolute w-[100%] h-[100%] shadow-xl bg-lime-500 border rounded-xl`}>
+            </Animated.View>
+            <Animated.View
+              style={[backStyle]}
+              className={`absolute w-[100%] h-[100%] shadow-xl bg-lime-500 border rounded-xl`}
+            >
               <Text className="m-auto">{wybranaFiszka?.polski}</Text>
-            </View>
+            </Animated.View>
           </View>
         </Pressable>
         <View className="flex flex-row">
