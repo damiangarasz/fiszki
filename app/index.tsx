@@ -48,7 +48,7 @@ export default function Index() {
   }, [fiszki]);
 
   const MojeFiszki = () => {
-    return <MojeFiszkiEkran fiszki={fiszki} />;
+    return <MojeFiszkiEkran fiszki={fiszki} setFiszki={setFiszki}/>;
   };
 
   const Edycja = () => {

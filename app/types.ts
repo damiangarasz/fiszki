@@ -67,6 +67,7 @@ export type EdycjaScreenProps = {
 
 export type FiszkiWyswietlanieProp = {
   fiszki: fiszki;
+  setFiszki: setFiszki;
 };
 
 export type MojeFiszkiEkranMainProp = { navigation: MojeFiszkiEkranProp };

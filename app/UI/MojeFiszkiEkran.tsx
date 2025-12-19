@@ -9,13 +9,19 @@ export default function FiszkiWyswietlanie({ fiszki }: FiszkiWyswietlanieProp) {
   const [jakiZestawDoWyswietlenia, setJakiZestawDoWyswietlenia] = useState("");
   const [indexFiszek, setIndexFiszek] = useState(0);
   const [wybranaFiszka, setWybranaFiszka] = useState({ polski: "", angielski: "", kontekst: "" });
+  const [historia, setHistoria] = useState<string[]>([]);
+  const [switchTaFiszkaJuzByla, setSwitchTaFiszkaJuzByla] = useState(false);
+  const [opcjeToggle, setOpcjeToggle] = useState(false);
+  const [opcjeJezyj, setOpcjeJezyk] = useState("PL/EN");
+  const [back, setBack] = useState("");
+  const [front, setFront] = useState("");
 
   //rotowanie kart
   const rotation = useSharedValue(0);
   const [flipped, setFlipped] = useState(false);
 
   const frontStyle = useAnimatedStyle(() => ({
-    transform: [{ perspective: 3000 }, { rotateY: `${rotation.value}deg` }],
+    transform: [{ perspective: 3000 }, { rotateY: `${rotation.value - 90}deg` }],
     backgroundColor: "#84cc16", // lime-600
     borderWidth: 1,
     borderColor: "#4b5563", // gray-400
@@ -31,7 +37,7 @@ export default function FiszkiWyswietlanie({ fiszki }: FiszkiWyswietlanieProp) {
   }));
 
   const backStyle = useAnimatedStyle(() => ({
-    transform: [{ perspective: 3000 }, { rotateY: `${rotation.value - 90}deg` }],
+    transform: [{ perspective: 3000 }, { rotateY: `${rotation.value}deg` }],
     backgroundColor: "#84d382", // lime-500
     borderWidth: 1,
     borderColor: "#4b5563",
@@ -47,10 +53,10 @@ export default function FiszkiWyswietlanie({ fiszki }: FiszkiWyswietlanieProp) {
   }));
 
   const onFlip = () => {
-    setFlipped(!flipped);
     rotation.value = withTiming(flipped ? 0 : 90, {
       duration: 300,
     });
+    setFlipped(!flipped);
   };
 
   //KONIEC animowania kart
@@ -58,21 +64,109 @@ export default function FiszkiWyswietlanie({ fiszki }: FiszkiWyswietlanieProp) {
   //funkcja losująca z tabliczki uwzględniająca wagę, sumuje każdą wagę a później wybiera losując między 0 a suma wszystkich wag i wypycha pierwsze zadanie które jest większe od wylosowanej liczby
   useEffect(() => {
     //wybieranie fiszki na podstawie wagi:
-    setWybranaFiszka(() => {
-      let sum = 0;
-      let accumulatedArray = [];
+    if (fiszki[indexFiszek] == undefined) return;
+    let sum = 0;
+    let accumulatedArray = [];
 
-      for (let n of fiszki[indexFiszek].lista) {
-        sum += n.waga;
-        accumulatedArray.push(sum);
+    for (let n of fiszki[indexFiszek].lista) {
+      sum += n.waga;
+      accumulatedArray.push(sum);
+    }
+
+    const rand = Math.random() * sum;
+    const index = accumulatedArray.findIndex((value) => rand < value);
+
+    //sprawdzanie historii
+    if (fiszki[indexFiszek].lista.length <= 5) {
+      //jeżeli fiszek jest mniej niż 5 zwracaj wylosowaną fiszkę
+      setWybranaFiszka(fiszki[indexFiszek].lista[index]);
+    } else if (historia.includes(fiszki[indexFiszek].lista[index].polski)) {
+      //fiszka sie powtarza losowanie nowej fiszki:
+      setSwitchTaFiszkaJuzByla((prev) => !prev);
+      return;
+    } else {
+      //fiszki nie ma w historii:
+      //puszowanie wyboru do historii
+      setHistoria((prev) => {
+        const noMutable = [...prev];
+        if (noMutable.length >= 5) {
+          noMutable.shift();
+        }
+
+        const never = fiszki[indexFiszek].lista[index].polski;
+        noMutable.push(never);
+
+        return noMutable;
+      });
+      setWybranaFiszka(fiszki[indexFiszek].lista[index]);
+    }
+
+    const konFlip = Math.floor(Math.random() * 2);
+    console.log(konFlip);
+
+    if (opcjeJezyj == "PL") {
+      setFront(() => {
+        return wybranaFiszka.angielski;
+      });
+      setBack(() => {
+        return wybranaFiszka.polski;
+      });
+    } else if (opcjeJezyj == "EN") {
+      setBack(() => {
+        return wybranaFiszka.angielski;
+      });
+      setFront(() => {
+        return wybranaFiszka.polski;
+      });
+    } else {
+      if (konFlip == 0) {
+        setFront(() => {
+          return wybranaFiszka.angielski;
+        });
+        setBack(() => {
+          return wybranaFiszka.polski;
+        });
+      } else {
+        setBack(() => {
+          return wybranaFiszka.angielski;
+        });
+        setFront(() => {
+          return wybranaFiszka.polski;
+        });
       }
+    }
+  }, [indexFiszek, switchTaFiszkaJuzByla]);
 
-      const index = Math.random() * sum;
-      console.log(index);
-
-      return fiszki[indexFiszek].lista[index];
-    });
-  }, [indexFiszek]);
+  function OpcjeFiszki() {
+    return (
+      <View>
+        <Pressable
+          onPress={() => {
+            setOpcjeJezyk("PL");
+            setOpcjeToggle((prev) => !prev);
+          }}
+        >
+          <Text>Polski</Text>
+        </Pressable>
+        <Pressable
+          onPress={() => {
+            setOpcjeJezyk("EN");
+            setOpcjeToggle((prev) => !prev);
+          }}
+        >
+          <Text>Angielski</Text>
+        </Pressable>
+        <Pressable
+          onPress={() => {
+            setOpcjeJezyk("PL/EN");
+            setOpcjeToggle((prev) => !prev);
+          }}
+        >
+          <Text>Polsko/Angielski</Text>
+        </Pressable>
+      </View>
+    );
+  }
 
   function MojeFiszkiEkranMain({ navigation }: MojeFiszkiEkranMainProp) {
     return (
@@ -108,38 +202,70 @@ export default function FiszkiWyswietlanie({ fiszki }: FiszkiWyswietlanieProp) {
     return (
       <View className="h-[100%] w-[100%] flex">
         <Text className="m-auto text-2xl">{jakiZestawDoWyswietlenia}</Text>
-        <Pressable className="absolute right-10 top-5">
+        <Pressable
+          className="absolute right-10 top-5"
+          onPress={() => {
+            setOpcjeToggle((prev) => !prev);
+          }}
+        >
           <Image
             source={require("../../assets/images/opcje.png")}
             style={{ width: 45, height: 45 }}
           />
         </Pressable>
+        <View>{opcjeToggle ? OpcjeFiszki() : <></>}</View>
         <Pressable onPress={onFlip}>
           <View className="realtive m-auto w-[50vw] h-[60vh]">
             <Animated.View
-              style={[frontStyle]}
+              style={[backStyle]}
               className={`absolute w-[100%] h-[100%] shadow-xl bg-lime-600 border  rounded-xl `}
             >
-              <Text>{wybranaFiszka?.polski}</Text>
-              <Text>{wybranaFiszka?.angielski}</Text>
-              <Text>{wybranaFiszka?.kontekst}</Text>
+              <Text>{back}</Text>
+              <Text>{wybranaFiszka.kontekst}</Text>
             </Animated.View>
             <Animated.View
-              style={[backStyle]}
+              style={[frontStyle]}
               className={`absolute w-[100%] h-[100%] shadow-xl bg-lime-500 border rounded-xl`}
             >
-              <Text className="m-auto">{wybranaFiszka?.polski}</Text>
+              <Text>{front}</Text>
             </Animated.View>
           </View>
         </Pressable>
         <View className="flex flex-row">
-          <Pressable className="w-[33vw] h-16  bg-green-600">
+          <Pressable
+            className="w-[33vw] h-16  bg-green-600"
+            onPress={() => {
+              setSwitchTaFiszkaJuzByla((prev) => !prev);
+              if (flipped) {
+                rotation.value = 0;
+                setFlipped(!flipped);
+              }
+            }}
+          >
             <Text className="m-auto text-5xl">Znam</Text>
           </Pressable>
-          <Pressable className="w-[33vw] h-16 bg-slate-300">
+          <Pressable
+            className="w-[33vw] h-16 bg-slate-300"
+            onPress={() => {
+              setSwitchTaFiszkaJuzByla((prev) => !prev);
+              if (flipped) {
+                rotation.value = 0;
+                setFlipped(!flipped);
+              }
+            }}
+          >
             <Text className="m-auto text-center text-2xl">Troche znam, a troche nie znam</Text>
           </Pressable>
-          <Pressable className="w-[33vw] h-16 bg-red-700">
+          <Pressable
+            className="w-[33vw] h-16 bg-red-700"
+            onPress={() => {
+              setSwitchTaFiszkaJuzByla((prev) => !prev);
+              if (flipped) {
+                rotation.value = 0;
+                setFlipped(!flipped);
+              }
+            }}
+          >
             <Text className="m-auto text-5xl">Nie znam</Text>
           </Pressable>
         </View>
