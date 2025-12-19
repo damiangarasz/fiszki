@@ -4,7 +4,7 @@ import { Image, Pressable, Text, View } from "react-native";
 import Animated, { useAnimatedStyle, useSharedValue, withTiming } from "react-native-reanimated";
 import { FiszkiWyswietlanieProp, MojeFiszkiEkranMainProp } from "../types.ts";
 
-export default function FiszkiWyswietlanie({ fiszki }: FiszkiWyswietlanieProp) {
+export default function FiszkiWyswietlanie({ fiszki, setFiszki }: FiszkiWyswietlanieProp) {
   const Stack = createNativeStackNavigator();
   const [jakiZestawDoWyswietlenia, setJakiZestawDoWyswietlenia] = useState("");
   const [indexFiszek, setIndexFiszek] = useState(0);
@@ -15,6 +15,7 @@ export default function FiszkiWyswietlanie({ fiszki }: FiszkiWyswietlanieProp) {
   const [opcjeJezyj, setOpcjeJezyk] = useState("PL/EN");
   const [back, setBack] = useState("");
   const [front, setFront] = useState("");
+  const [indexX, setIndexX] = useState(0);
 
   //rotowanie kart
   const rotation = useSharedValue(0);
@@ -79,6 +80,7 @@ export default function FiszkiWyswietlanie({ fiszki }: FiszkiWyswietlanieProp) {
     //sprawdzanie historii
     if (fiszki[indexFiszek].lista.length <= 5) {
       //jeżeli fiszek jest mniej niż 5 zwracaj wylosowaną fiszkę
+      setIndexX(index);
       setWybranaFiszka(fiszki[indexFiszek].lista[index]);
     } else if (historia.includes(fiszki[indexFiszek].lista[index].polski)) {
       //fiszka sie powtarza losowanie nowej fiszki:
@@ -98,6 +100,7 @@ export default function FiszkiWyswietlanie({ fiszki }: FiszkiWyswietlanieProp) {
 
         return noMutable;
       });
+      setIndexX(index);
       setWybranaFiszka(fiszki[indexFiszek].lista[index]);
     }
 
@@ -106,36 +109,100 @@ export default function FiszkiWyswietlanie({ fiszki }: FiszkiWyswietlanieProp) {
 
     if (opcjeJezyj == "PL") {
       setFront(() => {
-        return wybranaFiszka.angielski;
+        return wybranaFiszka?.angielski;
       });
       setBack(() => {
-        return wybranaFiszka.polski;
+        return wybranaFiszka?.polski;
       });
     } else if (opcjeJezyj == "EN") {
       setBack(() => {
-        return wybranaFiszka.angielski;
+        return wybranaFiszka?.angielski;
       });
       setFront(() => {
-        return wybranaFiszka.polski;
+        return wybranaFiszka?.polski;
       });
     } else {
       if (konFlip == 0) {
         setFront(() => {
-          return wybranaFiszka.angielski;
+          return wybranaFiszka?.angielski;
         });
         setBack(() => {
-          return wybranaFiszka.polski;
+          return wybranaFiszka?.polski;
         });
       } else {
         setBack(() => {
-          return wybranaFiszka.angielski;
+          return wybranaFiszka?.angielski;
         });
         setFront(() => {
-          return wybranaFiszka.polski;
+          return wybranaFiszka?.polski;
         });
       }
     }
+    if (wybranaFiszka?.polski == "") {
+      console.log("halo");
+      setSwitchTaFiszkaJuzByla((prev) => !prev);
+    }
   }, [indexFiszek, switchTaFiszkaJuzByla]);
+
+  //wiem że nie DRY ale trudno, nikt mi medalu za DRY nie da
+  //TODO do refaktoryzacji
+  function zmianaWagi(arg: string) {
+    const fiszkiArrCopy = [...fiszki];
+    if (arg == "znam") {
+      if (fiszkiArrCopy[indexFiszek].lista[indexX].waga > 0.5) {
+        setFiszki((prev) => {
+          const prevArr = [...prev];
+          prevArr[indexFiszek].lista[indexX].waga =
+            Math.round((prevArr[indexFiszek].lista[indexX].waga - 0.5) * 100) / 100;
+          console.log("waga:", prevArr[indexFiszek].lista[indexX].waga);
+          return prevArr;
+        });
+      } else if (
+        fiszkiArrCopy[indexFiszek].lista[indexX].waga <= 0.5 &&
+        fiszkiArrCopy[indexFiszek].lista[indexX].waga > 0.1
+      ) {
+        setFiszki((prev) => {
+          const prevArr = [...prev];
+          prevArr[indexFiszek].lista[indexX].waga =
+            Math.round((prevArr[indexFiszek].lista[indexX].waga - 0.1) * 100) / 100;
+          console.log("waga:", prevArr[indexFiszek].lista[indexX].waga);
+          return prevArr;
+        });
+      } else if (fiszkiArrCopy[indexFiszek].lista[indexX].waga <= 0.1) {
+        console.log(fiszki[indexFiszek].lista[indexX].waga);
+      }
+    } else if (arg == "nieZnam") {
+      if (fiszkiArrCopy[indexFiszek].lista[indexX].waga < 1.5) {
+        setFiszki((prev) => {
+          const prevArr = [...prev];
+          prevArr[indexFiszek].lista[indexX].waga =
+            Math.round((prevArr[indexFiszek].lista[indexX].waga + 0.5) * 100) / 100;
+          console.log("waga:", prevArr[indexFiszek].lista[indexX].waga);
+          return prevArr;
+        });
+      } else if (
+        fiszkiArrCopy[indexFiszek].lista[indexX].waga >= 1.5 &&
+        fiszkiArrCopy[indexFiszek].lista[indexX].waga < 1.9
+      ) {
+        setFiszki((prev) => {
+          const prevArr = [...prev];
+          prevArr[indexFiszek].lista[indexX].waga =
+            Math.round((prevArr[indexFiszek].lista[indexX].waga + 0.1) * 100) / 100;
+          console.log("waga:", prevArr[indexFiszek].lista[indexX].waga);
+          return prevArr;
+        });
+      } else if (fiszkiArrCopy[indexFiszek].lista[indexX].waga >= 1.9) {
+        console.log(fiszki[indexFiszek].lista[indexX].waga);
+      }
+    } else {
+      setFiszki((prev) => {
+        const prevArr = [...prev];
+        prevArr[indexFiszek].lista[indexX].waga = 1;
+        console.log("waga:", prevArr[indexFiszek].lista[indexX].waga);
+        return prevArr;
+      });
+    }
+  }
 
   function OpcjeFiszki() {
     return (
@@ -221,7 +288,7 @@ export default function FiszkiWyswietlanie({ fiszki }: FiszkiWyswietlanieProp) {
               className={`absolute w-[100%] h-[100%] shadow-xl bg-lime-600 border  rounded-xl `}
             >
               <Text>{back}</Text>
-              <Text>{wybranaFiszka.kontekst}</Text>
+              <Text>{wybranaFiszka?.kontekst}</Text>
             </Animated.View>
             <Animated.View
               style={[frontStyle]}
@@ -236,6 +303,7 @@ export default function FiszkiWyswietlanie({ fiszki }: FiszkiWyswietlanieProp) {
             className="w-[33vw] h-16  bg-green-600"
             onPress={() => {
               setSwitchTaFiszkaJuzByla((prev) => !prev);
+              zmianaWagi("znam");
               if (flipped) {
                 rotation.value = 0;
                 setFlipped(!flipped);
@@ -248,6 +316,7 @@ export default function FiszkiWyswietlanie({ fiszki }: FiszkiWyswietlanieProp) {
             className="w-[33vw] h-16 bg-slate-300"
             onPress={() => {
               setSwitchTaFiszkaJuzByla((prev) => !prev);
+              zmianaWagi("troche");
               if (flipped) {
                 rotation.value = 0;
                 setFlipped(!flipped);
@@ -260,6 +329,7 @@ export default function FiszkiWyswietlanie({ fiszki }: FiszkiWyswietlanieProp) {
             className="w-[33vw] h-16 bg-red-700"
             onPress={() => {
               setSwitchTaFiszkaJuzByla((prev) => !prev);
+              zmianaWagi("nieZnam");
               if (flipped) {
                 rotation.value = 0;
                 setFlipped(!flipped);
