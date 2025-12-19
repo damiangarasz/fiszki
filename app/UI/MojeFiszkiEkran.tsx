@@ -15,7 +15,7 @@ export default function FiszkiWyswietlanie({ fiszki }: FiszkiWyswietlanieProp) {
   const [flipped, setFlipped] = useState(false);
 
   const frontStyle = useAnimatedStyle(() => ({
-    transform: [{ perspective: 1000 }, { rotateY: `${rotation.value}deg` }],
+    transform: [{ perspective: 3000 }, { rotateY: `${rotation.value}deg` }],
     backgroundColor: "#84cc16", // lime-600
     borderWidth: 1,
     borderColor: "#4b5563", // gray-400
@@ -31,7 +31,7 @@ export default function FiszkiWyswietlanie({ fiszki }: FiszkiWyswietlanieProp) {
   }));
 
   const backStyle = useAnimatedStyle(() => ({
-    transform: [{ perspective: 1000 }, { rotateY: `${rotation.value - 90}deg` }],
+    transform: [{ perspective: 3000 }, { rotateY: `${rotation.value - 90}deg` }],
     backgroundColor: "#84d382", // lime-500
     borderWidth: 1,
     borderColor: "#4b5563",
@@ -55,13 +55,22 @@ export default function FiszkiWyswietlanie({ fiszki }: FiszkiWyswietlanieProp) {
 
   //KONIEC animowania kart
 
-  //losowanie fiszka
+  //funkcja losująca z tabliczki uwzględniająca wagę, sumuje każdą wagę a później wybiera losując między 0 a suma wszystkich wag i wypycha pierwsze zadanie które jest większe od wylosowanej liczby
   useEffect(() => {
-    //proste losowanie fiszek bez wagi
-    //TODO do rafabrykacji
+    //wybieranie fiszki na podstawie wagi:
     setWybranaFiszka(() => {
-      const randomNumber = Math.floor(Math.random() * fiszki[indexFiszek].lista.length);
-      return fiszki[indexFiszek].lista[randomNumber];
+      let sum = 0;
+      let accumulatedArray = [];
+
+      for (let n of fiszki[indexFiszek].lista) {
+        sum += n.waga;
+        accumulatedArray.push(sum);
+      }
+
+      const index = Math.random() * sum;
+      console.log(index);
+
+      return fiszki[indexFiszek].lista[index];
     });
   }, [indexFiszek]);
 
@@ -107,7 +116,6 @@ export default function FiszkiWyswietlanie({ fiszki }: FiszkiWyswietlanieProp) {
         </Pressable>
         <Pressable onPress={onFlip}>
           <View className="realtive m-auto w-[50vw] h-[60vh]">
-            {/* TODO animacja jest spierdolona */}
             <Animated.View
               style={[frontStyle]}
               className={`absolute w-[100%] h-[100%] shadow-xl bg-lime-600 border  rounded-xl `}

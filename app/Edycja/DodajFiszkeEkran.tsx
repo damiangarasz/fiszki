@@ -15,7 +15,12 @@ export default function DodajFiszkeEkran({
   function dodawanieFiszki() {
     setFiszki((prev) => {
       const edycja = [...prev];
-      const nowaFiszka = { polski: polskiText, angielski: angielskiText, kontekst: kontekstText };
+      const nowaFiszka = {
+        polski: polskiText,
+        angielski: angielskiText,
+        kontekst: kontekstText,
+        waga: 1,
+      };
       edycja[fiszkaDoEdycji].lista.push(nowaFiszka);
       return edycja;
     });
