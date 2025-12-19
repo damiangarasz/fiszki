@@ -267,10 +267,10 @@ export default function FiszkiWyswietlanie({ fiszki, setFiszki }: FiszkiWyswietl
 
   function WyswietlanieKart() {
     return (
-      <View className="h-[100%] w-[100%] flex">
-        <Text className="m-auto text-2xl">{jakiZestawDoWyswietlenia}</Text>
+      <View className="h-[100vh] w-[100%] flex relative">
+        <Text className="m-auto text-2xl absolute">{jakiZestawDoWyswietlenia}</Text>
         <Pressable
-          className="absolute right-10 top-5"
+          className="absolute right-10 top-5 z-10"
           onPress={() => {
             setOpcjeToggle((prev) => !prev);
           }}
@@ -280,25 +280,32 @@ export default function FiszkiWyswietlanie({ fiszki, setFiszki }: FiszkiWyswietl
             style={{ width: 45, height: 45 }}
           />
         </Pressable>
-        <View>{opcjeToggle ? OpcjeFiszki() : <></>}</View>
-        <Pressable onPress={onFlip}>
-          <View className="realtive m-auto w-[50vw] h-[60vh]">
-            <Animated.View
-              style={[backStyle]}
-              className={`absolute w-[100%] h-[100%] shadow-xl bg-lime-600 border  rounded-xl `}
-            >
-              <Text>{back}</Text>
-              <Text>{wybranaFiszka?.kontekst}</Text>
-            </Animated.View>
-            <Animated.View
-              style={[frontStyle]}
-              className={`absolute w-[100%] h-[100%] shadow-xl bg-lime-500 border rounded-xl`}
-            >
-              <Text>{front}</Text>
-            </Animated.View>
-          </View>
-        </Pressable>
-        <View className="flex flex-row">
+        <View className="absolute z-10">{opcjeToggle ? OpcjeFiszki() : <></>}</View>
+        <View className="h-[70vh]">
+          <Pressable onPress={onFlip} className="m-auto">
+            <View className="realtive m-auto w-[45vw] h-[50vh]">
+              <Animated.View
+                style={[backStyle]}
+                className={`absolute w-[100%] h-[100%] shadow-xl bg-lime-600 border  rounded-xl `}
+              >
+                <Text className="text-center m-auto text-6xl">{back}</Text>
+              </Animated.View>
+              <Animated.View
+                style={[frontStyle]}
+                className={`absolute w-[100%] h-[100%] shadow-xl bg-lime-500 border rounded-xl`}
+              >
+                <View className="h-[33%]"></View>
+                <View className="h-[33%] m-auto w-[90%]">
+                  <Text className="text-center m-auto text-6xl">{front}</Text>
+                </View>
+                <View className="h-[33%]">
+                  <Text className="m-auto text-center text-2xl">{wybranaFiszka?.kontekst}</Text>
+                </View>
+              </Animated.View>
+            </View>
+          </Pressable>
+        </View>
+        <View className="flex flex-row h-[30vh]">
           <Pressable
             className="w-[33vw] h-16  bg-green-600"
             onPress={() => {

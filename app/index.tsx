@@ -48,7 +48,7 @@ export default function Index() {
   }, [fiszki]);
 
   const MojeFiszki = () => {
-    return <MojeFiszkiEkran fiszki={fiszki} setFiszki={setFiszki}/>;
+    return <MojeFiszkiEkran fiszki={fiszki} setFiszki={setFiszki} />;
   };
 
   const Edycja = () => {
@@ -67,7 +67,11 @@ export default function Index() {
   };
 
   return (
-    <Tab.Navigator>
+    <Tab.Navigator
+      screenOptions={{
+        headerShown: false,
+      }}
+    >
       <Tab.Screen name="Moje Fiszki" component={MojeFiszki} />
       <Tab.Screen name="Edycja" component={Edycja} />
       <Tab.Screen name="Logowanie" component={Logowanie} />
