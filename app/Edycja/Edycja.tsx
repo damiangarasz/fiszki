@@ -4,10 +4,8 @@ import { propEdycja } from "../types.ts";
 import DodajFiszkeEkran from "./DodajFiszkeEkran.tsx";
 
 export default function Edycja({ navigation, fiszki, setFiszki, fiszkaDoEdycji }: propEdycja) {
-  const [zapisNowejFiszki, setZapisNowejFiszki] = useState(false);
-
   const [dodajFiszke, setDodajFiszke] = useState(false);
-
+  const [czyUsunac, setCzyUsunac] = useState(false);
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <View className="h-[100%] w-[100%]">
@@ -15,25 +13,54 @@ export default function Edycja({ navigation, fiszki, setFiszki, fiszkaDoEdycji }
           <Pressable
             className="w-[50%] h-16 bg-green-600"
             onPress={() => {
+              setCzyUsunac(false);
               setDodajFiszke(true);
             }}
           >
-            <Text className="text-center m-auto text-5xl">Dodaj fiszkę</Text>
+            <Text className="text-center m-auto text-2xl">Dodaj fiszkę</Text>
           </Pressable>
           <Pressable
             className="w-[50%] h-16 bg-red-700"
             onPress={() => {
-              setFiszki((prev) => {
-                const newArr = [...prev];
-                newArr.splice(fiszkaDoEdycji, 1);
-                return newArr;
-              });
-              navigation.navigate("main");
+              setCzyUsunac(true);
             }}
           >
-            <Text className="text-center m-auto text-5xl">Usuń wszystkie</Text>
+            <Text className="text-center m-auto text-2xl">Usuń wszystkie</Text>
           </Pressable>
         </View>
+
+        {czyUsunac ? (
+          <View className="w-[75%] h-[15vh] m-auto ">
+            <Text className="m-auto">Czy na pewno usunąć?</Text>
+            <View className="w-[100%] flex-row">
+              <Pressable
+                className="w-[50%] bg-red-700"
+                onPress={() => {
+                  setFiszki((prev) => {
+                    const newArr = [...prev];
+                    newArr.splice(fiszkaDoEdycji, 1);
+                    return newArr;
+                  });
+                  setCzyUsunac(false);
+                  navigation.navigate("main");
+                }}
+              >
+                <Text className="m-auto">TAK</Text>
+              </Pressable>
+              <Pressable
+                className="w-[50%] bg-green-600"
+                onPress={() => {
+                  setCzyUsunac(false);
+                }}
+              >
+                <Text className="m-auto">NIE</Text>
+              </Pressable>
+            </View>
+          </View>
+        ) : (
+          <></>
+        )}
+
         {dodajFiszke ? (
           <DodajFiszkeEkran
             setDodajFiszke={setDodajFiszke}

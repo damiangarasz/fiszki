@@ -27,18 +27,18 @@ export default function DodajFiszkeEkran({
   }
 
   return (
-    <View className="bg-white w-[75%] h-[75%] m-auto shadow-xl">
+    <View className="bg-white w-[75%] h-auto m-auto shadow-xl">
       <TextInput
         placeholder="polski"
         placeholderTextColor="#9ca3af"
-        className="bg-white shadow-xl h-10 w-[75%] m-auto"
+        className="bg-white shadow-xl h-10 w-[75%] mx-auto my-5"
         onChangeText={setPolskiText}
         maxLength={25}
       />
       <TextInput
         placeholder="angielski"
         placeholderTextColor="#9ca3af"
-        className="bg-white shadow-xl h-10 w-[75%] m-auto"
+        className="bg-white shadow-xl h-10 w-[75%] mx-auto my-5"
         onChangeText={setAngielskiText}
         maxLength={25}
       />
@@ -48,7 +48,7 @@ export default function DodajFiszkeEkran({
         onChangeText={setKontekstText}
         maxLength={200}
         multiline={true}
-        className="bg-white shadow-xl h-28 w-[75%] m-auto"
+        className="bg-white shadow-xl h-28 w-[75%] mx-auto my-5"
       />
       <View className="flex-row justify-around">
         <Pressable

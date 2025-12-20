@@ -15,8 +15,8 @@ export default function DodajGrupeFiszek({ setFiszki, setDodajGrupeFiszek }: Dod
   }
 
   return (
-    <View className="bg-white w-[75%] h-[75%] m-auto shadow-xl">
-      <Text className="m-auto text-2xl">Wpipsz swoją nazwę zestawu fiszek.</Text>
+    <View className="bg-white w-[75%] h-[45%] m-auto shadow-xl">
+      <Text className="mx-auto text-2xl text-center">Wpipsz swoją nazwę zestawu fiszek.</Text>
       <TextInput
         className="bg-white shadow-xl h-10 w-[75%] m-auto"
         placeholder="Twoja nazwa"

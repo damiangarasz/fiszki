@@ -1,6 +1,6 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { useEffect, useState } from "react";
-import { Image, Keyboard, Pressable, Text, TouchableWithoutFeedback, View } from "react-native";
+import { Image, Pressable, Text, View } from "react-native";
 import Animated, { useAnimatedStyle, useSharedValue, withTiming } from "react-native-reanimated";
 import { FiszkiWyswietlanieProp, MojeFiszkiEkranMainProp } from "../types.ts";
 
@@ -206,30 +206,33 @@ export default function FiszkiWyswietlanie({ fiszki, setFiszki }: FiszkiWyswietl
 
   function OpcjeFiszki() {
     return (
-      <View>
+      <View className="flex-row bg-teal-600/90 m-auto w-[100%] h-[100%]">
         <Pressable
+          className="w-[33%]"
           onPress={() => {
             setOpcjeJezyk("PL");
             setOpcjeToggle((prev) => !prev);
           }}
         >
-          <Text>Polski</Text>
+          <Text className="text-center m-auto">Polski</Text>
         </Pressable>
         <Pressable
+          className="w-[33%]"
           onPress={() => {
             setOpcjeJezyk("EN");
             setOpcjeToggle((prev) => !prev);
           }}
         >
-          <Text>Angielski</Text>
+          <Text className="text-center m-auto">Angielski</Text>
         </Pressable>
         <Pressable
+          className="w-[33%]"
           onPress={() => {
             setOpcjeJezyk("PL/EN");
             setOpcjeToggle((prev) => !prev);
           }}
         >
-          <Text>Polsko/Angielski</Text>
+          <Text className="text-center m-auto">Polsko/Angielski</Text>
         </Pressable>
       </View>
     );
@@ -237,38 +240,38 @@ export default function FiszkiWyswietlanie({ fiszki, setFiszki }: FiszkiWyswietl
 
   function MojeFiszkiEkranMain({ navigation }: MojeFiszkiEkranMainProp) {
     return (
-        <View className="w-[75%] h-[75%] m-auto shadow-2xl">
-          {fiszki.length == 0 ? (
-            <View>
-              <Text className="text-center text-4xl">
-                Brak fiszek! Dodaj pierwszą w &#34;Edycja&#34;
-              </Text>
-            </View>
-          ) : (
-            fiszki.map((param, index) => {
-              return (
-                <View key={index} className="border-b border-gray-400 border-dotted">
-                  <Pressable
-                    onPress={() => {
-                      setJakiZestawDoWyswietlenia(param.key);
-                      setIndexFiszek(index);
-                      navigation.navigate("wyswietlanie");
-                    }}
-                  >
-                    <Text className="w-[50%] text-center m-auto text-2xl">{param.key}</Text>
-                  </Pressable>
-                </View>
-              );
-            })
-          )}
-        </View>
+      <View className="w-[75%] h-[75%] m-auto shadow-2xl">
+        {fiszki.length == 0 ? (
+          <View>
+            <Text className="text-center text-4xl">
+              Brak fiszek! Dodaj pierwszą w &#34;Edycja&#34;
+            </Text>
+          </View>
+        ) : (
+          fiszki.map((param, index) => {
+            return (
+              <View key={index} className="border-b border-gray-400 border-dotted">
+                <Pressable
+                  onPress={() => {
+                    setJakiZestawDoWyswietlenia(param.key);
+                    setIndexFiszek(index);
+                    navigation.navigate("wyswietlanie");
+                  }}
+                >
+                  <Text className="w-[50%] text-center m-auto text-2xl">{param.key}</Text>
+                </Pressable>
+              </View>
+            );
+          })
+        )}
+      </View>
     );
   }
 
   function WyswietlanieKart() {
     return (
       <View className="h-[100vh] w-[100%] flex relative">
-        <Text className="m-auto text-2xl absolute">{jakiZestawDoWyswietlenia}</Text>
+        <Text className="m-auto text-2xl h-[5vh]">{jakiZestawDoWyswietlenia}</Text>
         <Pressable
           className="absolute right-10 top-5 z-10"
           onPress={() => {
@@ -280,10 +283,12 @@ export default function FiszkiWyswietlanie({ fiszki, setFiszki }: FiszkiWyswietl
             style={{ width: 45, height: 45 }}
           />
         </Pressable>
-        <View className="absolute z-10">{opcjeToggle ? OpcjeFiszki() : <></>}</View>
-        <View className="h-[70vh]">
+        <View className="absolute z-10 w-[100vw] top-24 h-[15vh]">
+          {opcjeToggle ? OpcjeFiszki() : <></>}
+        </View>
+        <View className="h-[67vh]">
           <Pressable onPress={onFlip} className="m-auto">
-            <View className="realtive m-auto w-[45vw] h-[50vh]">
+            <View className="realtive m-auto w-[90vw] h-[50vh]">
               <Animated.View
                 style={[backStyle]}
                 className={`absolute w-[100%] h-[100%] shadow-xl bg-lime-600 border  rounded-xl `}
@@ -305,7 +310,7 @@ export default function FiszkiWyswietlanie({ fiszki, setFiszki }: FiszkiWyswietl
             </View>
           </Pressable>
         </View>
-        <View className="flex flex-row h-[30vh]">
+        <View className="flex flex-row h-[28vh]">
           <Pressable
             className="w-[33vw] h-16  bg-green-600"
             onPress={() => {
@@ -317,7 +322,7 @@ export default function FiszkiWyswietlanie({ fiszki, setFiszki }: FiszkiWyswietl
               }
             }}
           >
-            <Text className="m-auto text-5xl">Znam</Text>
+            <Text className="m-auto text-3xl">Znam</Text>
           </Pressable>
           <Pressable
             className="w-[33vw] h-16 bg-slate-300"
@@ -330,7 +335,7 @@ export default function FiszkiWyswietlanie({ fiszki, setFiszki }: FiszkiWyswietl
               }
             }}
           >
-            <Text className="m-auto text-center text-2xl">Troche znam, a troche nie znam</Text>
+            <Text className="m-auto text-center text-1xl">Troche znam, a troche nie znam</Text>
           </Pressable>
           <Pressable
             className="w-[33vw] h-16 bg-red-700"
@@ -343,13 +348,14 @@ export default function FiszkiWyswietlanie({ fiszki, setFiszki }: FiszkiWyswietl
               }
             }}
           >
-            <Text className="m-auto text-5xl">Nie znam</Text>
+            <Text className="m-auto text-3xl">Nie znam</Text>
           </Pressable>
         </View>
       </View>
     );
   }
 
+  //TODO te komponenty do osobnych plików refaktor i dodać odpowiedni prop
   return (
     <Stack.Navigator screenOptions={{}} initialRouteName="main">
       <Stack.Screen name="main" component={MojeFiszkiEkranMain} />

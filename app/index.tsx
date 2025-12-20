@@ -76,7 +76,7 @@ export default function Index() {
     >
       <Tab.Screen name="Moje Fiszki" component={MojeFiszki} />
       <Tab.Screen name="Edycja" component={Edycja} />
-      <Tab.Screen name="Logowanie" component={Logowanie} />
+      {/* <Tab.Screen name="Logowanie" component={Logowanie} /> */}
     </Tab.Navigator>
   );
 }
