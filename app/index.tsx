@@ -47,6 +47,8 @@ export default function Index() {
     storeData();
   }, [fiszki]);
 
+  //TODO refaktor, użyć components i wybrać odpowiednią metodę prop
+
   const MojeFiszki = () => {
     return <MojeFiszkiEkran fiszki={fiszki} setFiszki={setFiszki} />;
   };

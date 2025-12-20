@@ -1,6 +1,6 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { useEffect, useState } from "react";
-import { Image, Pressable, Text, View } from "react-native";
+import { Image, Keyboard, Pressable, Text, TouchableWithoutFeedback, View } from "react-native";
 import Animated, { useAnimatedStyle, useSharedValue, withTiming } from "react-native-reanimated";
 import { FiszkiWyswietlanieProp, MojeFiszkiEkranMainProp } from "../types.ts";
 
@@ -237,31 +237,31 @@ export default function FiszkiWyswietlanie({ fiszki, setFiszki }: FiszkiWyswietl
 
   function MojeFiszkiEkranMain({ navigation }: MojeFiszkiEkranMainProp) {
     return (
-      <View className="w-[75%] h-[75%] m-auto shadow-2xl">
-        {fiszki.length == 0 ? (
-          <View>
-            <Text className="text-center text-4xl">
-              Brak fiszek! Dodaj pierwszą w &#34;Edycja&#34;
-            </Text>
-          </View>
-        ) : (
-          fiszki.map((param, index) => {
-            return (
-              <View key={index} className="border-b border-gray-400 border-dotted">
-                <Pressable
-                  onPress={() => {
-                    setJakiZestawDoWyswietlenia(param.key);
-                    setIndexFiszek(index);
-                    navigation.navigate("wyswietlanie");
-                  }}
-                >
-                  <Text className="w-[50%] text-center m-auto text-2xl">{param.key}</Text>
-                </Pressable>
-              </View>
-            );
-          })
-        )}
-      </View>
+        <View className="w-[75%] h-[75%] m-auto shadow-2xl">
+          {fiszki.length == 0 ? (
+            <View>
+              <Text className="text-center text-4xl">
+                Brak fiszek! Dodaj pierwszą w &#34;Edycja&#34;
+              </Text>
+            </View>
+          ) : (
+            fiszki.map((param, index) => {
+              return (
+                <View key={index} className="border-b border-gray-400 border-dotted">
+                  <Pressable
+                    onPress={() => {
+                      setJakiZestawDoWyswietlenia(param.key);
+                      setIndexFiszek(index);
+                      navigation.navigate("wyswietlanie");
+                    }}
+                  >
+                    <Text className="w-[50%] text-center m-auto text-2xl">{param.key}</Text>
+                  </Pressable>
+                </View>
+              );
+            })
+          )}
+        </View>
     );
   }
 
