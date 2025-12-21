@@ -105,7 +105,6 @@ export default function FiszkiWyswietlanie({ fiszki, setFiszki }: FiszkiWyswietl
     }
 
     const konFlip = Math.floor(Math.random() * 2);
-    console.log(konFlip);
 
     if (opcjeJezyj == "PL") {
       setFront(() => {
@@ -139,7 +138,6 @@ export default function FiszkiWyswietlanie({ fiszki, setFiszki }: FiszkiWyswietl
       }
     }
     if (wybranaFiszka?.polski == "") {
-      console.log("halo");
       setSwitchTaFiszkaJuzByla((prev) => !prev);
     }
   }, [indexFiszek, switchTaFiszkaJuzByla]);
@@ -154,7 +152,6 @@ export default function FiszkiWyswietlanie({ fiszki, setFiszki }: FiszkiWyswietl
           const prevArr = [...prev];
           prevArr[indexFiszek].lista[indexX].waga =
             Math.round((prevArr[indexFiszek].lista[indexX].waga - 0.5) * 100) / 100;
-          console.log("waga:", prevArr[indexFiszek].lista[indexX].waga);
           return prevArr;
         });
       } else if (
@@ -165,11 +162,9 @@ export default function FiszkiWyswietlanie({ fiszki, setFiszki }: FiszkiWyswietl
           const prevArr = [...prev];
           prevArr[indexFiszek].lista[indexX].waga =
             Math.round((prevArr[indexFiszek].lista[indexX].waga - 0.1) * 100) / 100;
-          console.log("waga:", prevArr[indexFiszek].lista[indexX].waga);
           return prevArr;
         });
       } else if (fiszkiArrCopy[indexFiszek].lista[indexX].waga <= 0.1) {
-        console.log(fiszki[indexFiszek].lista[indexX].waga);
       }
     } else if (arg == "nieZnam") {
       if (fiszkiArrCopy[indexFiszek].lista[indexX].waga < 1.5) {
@@ -177,7 +172,6 @@ export default function FiszkiWyswietlanie({ fiszki, setFiszki }: FiszkiWyswietl
           const prevArr = [...prev];
           prevArr[indexFiszek].lista[indexX].waga =
             Math.round((prevArr[indexFiszek].lista[indexX].waga + 0.5) * 100) / 100;
-          console.log("waga:", prevArr[indexFiszek].lista[indexX].waga);
           return prevArr;
         });
       } else if (
@@ -253,12 +247,15 @@ export default function FiszkiWyswietlanie({ fiszki, setFiszki }: FiszkiWyswietl
               <View key={index} className="border-b border-gray-400 border-dotted">
                 <Pressable
                   onPress={() => {
-                    setJakiZestawDoWyswietlenia(param.key);
-                    setIndexFiszek(index);
-                    navigation.navigate("wyswietlanie");
+                    if (fiszki[index].lista.length > 0) {
+                      setJakiZestawDoWyswietlenia(param.key);
+                      setIndexFiszek(index);
+                      navigation.navigate("wyswietlanie");
+                    }
                   }}
                 >
                   <Text className="w-[50%] text-center m-auto text-2xl">{param.key}</Text>
+                  <Text>Ilość fiszek: {fiszki[index].lista.length}</Text>
                 </Pressable>
               </View>
             );
