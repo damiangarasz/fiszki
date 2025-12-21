@@ -1,5 +1,5 @@
 import { View } from "react-native";
 
-export default function FiszkiLogowanie() {
+export default function FiszkiStatystyki() {
   return <View></View>;
 }

@@ -41,6 +41,7 @@ export default function FiszkiEdycja({
           {dadajGrupeFiszek ? (
             <DodajGrupeFiszek
               navigation={navigation}
+              fiszki={fiszki}
               setFiszki={setFiszki}
               setDodajGrupeFiszek={setDodajGrupeFiszek}
               setFiszkaDoEdycji={setFiszkaDoEdycji}

@@ -17,7 +17,7 @@ export type setFiszki = React.Dispatch<
 export type propFiszkiEdycja = {
   fiszki: fiszki;
   setFiszki: setFiszki;
-  setFiszkaDoEdycji: React.Dispatch<number>;
+  setFiszkaDoEdycji: React.Dispatch<React.SetStateAction<number>>;
   fiszkaDoEdycji: number;
 };
 
@@ -48,9 +48,10 @@ export interface MainScreenProps {
 
 export type DodajGrupeFiszekProp = {
   navigation: MainScreenNavigationProp;
+  fiszki: fiszki;
   setFiszki: setFiszki;
   setDodajGrupeFiszek: React.Dispatch<boolean>;
-  setFiszkaDoEdycji: React.Dispatch<number>;
+  setFiszkaDoEdycji: React.Dispatch<React.SetStateAction<number>>;
 };
 
 export type DodajFiszkeEkranProp = {

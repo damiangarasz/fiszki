@@ -2,7 +2,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { useEffect, useState } from "react";
 import FiszkiEdycja from "./Edycja/FiszkiEdycja";
-import FiszkiLogowanie from "./Logowanie/FiszkiLogowanie";
+import FiszkiStatystyki from "./Statystyki/FiszkiStatystyki.tsx";
 import MojeFiszkiEkran from "./UI/MojeFiszkiEkran.tsx";
 import { fiszki } from "./types.ts";
 
@@ -64,10 +64,6 @@ export default function Index() {
     );
   };
 
-  const Logowanie = () => {
-    return <FiszkiLogowanie />;
-  };
-
   return (
     <Tab.Navigator
       screenOptions={{
@@ -76,7 +72,7 @@ export default function Index() {
     >
       <Tab.Screen name="Moje Fiszki" component={MojeFiszki} />
       <Tab.Screen name="Edycja" component={Edycja} />
-      {/* <Tab.Screen name="Logowanie" component={Logowanie} /> */}
+      <Tab.Screen name="Statsy" component={FiszkiStatystyki} />
     </Tab.Navigator>
   );
 }

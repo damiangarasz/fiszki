@@ -4,6 +4,7 @@ import { DodajGrupeFiszekProp } from "../types";
 
 export default function DodajGrupeFiszek({
   navigation,
+  fiszki,
   setFiszki,
   setDodajGrupeFiszek,
   setFiszkaDoEdycji,
@@ -35,8 +36,8 @@ export default function DodajGrupeFiszek({
           onPress={() => {
             dodajFiszke();
             navigation.navigate("edycja");
+            setFiszkaDoEdycji(() => fiszki.length);
             //TODO Tutaj jestem
-            
           }}
         >
           <Text className="text-center text-5xl m-auto">Dodaj</Text>
