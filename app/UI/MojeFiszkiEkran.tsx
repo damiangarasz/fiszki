@@ -182,17 +182,15 @@ export default function FiszkiWyswietlanie({ fiszki, setFiszki }: FiszkiWyswietl
           const prevArr = [...prev];
           prevArr[indexFiszek].lista[indexX].waga =
             Math.round((prevArr[indexFiszek].lista[indexX].waga + 0.1) * 100) / 100;
-          console.log("waga:", prevArr[indexFiszek].lista[indexX].waga);
           return prevArr;
         });
       } else if (fiszkiArrCopy[indexFiszek].lista[indexX].waga >= 1.9) {
-        console.log(fiszki[indexFiszek].lista[indexX].waga);
       }
     } else {
       setFiszki((prev) => {
         const prevArr = [...prev];
         prevArr[indexFiszek].lista[indexX].waga = 1;
-        console.log("waga:", prevArr[indexFiszek].lista[indexX].waga);
+
         return prevArr;
       });
     }
@@ -234,7 +232,7 @@ export default function FiszkiWyswietlanie({ fiszki, setFiszki }: FiszkiWyswietl
 
   function MojeFiszkiEkranMain({ navigation }: MojeFiszkiEkranMainProp) {
     return (
-      <View className="w-[75%] h-[75%] m-auto shadow-2xl">
+      <View className="bg-white w-[75%] h-[75%] m-auto shadow-2xl">
         {fiszki.length == 0 ? (
           <View>
             <Text className="text-center text-4xl">

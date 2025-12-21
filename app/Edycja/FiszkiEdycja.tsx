@@ -26,10 +26,6 @@ export default function FiszkiEdycja({
     );
   }
 
-  function DodajGrupeFiszekEkran() {
-    return <DodajGrupeFiszek setFiszki={setFiszki} setDodajGrupeFiszek={setDodajGrupeFiszek} />;
-  }
-
   function MainScreen({ navigation, fiszki, setFiszki }: MainScreenProps) {
     return (
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -42,7 +38,16 @@ export default function FiszkiEdycja({
           >
             <Text className="text-center m-auto text-5xl">Dodaj nowe</Text>
           </Pressable>
-          {dadajGrupeFiszek ? <DodajGrupeFiszekEkran /> : <></>}
+          {dadajGrupeFiszek ? (
+            <DodajGrupeFiszek
+              navigation={navigation}
+              setFiszki={setFiszki}
+              setDodajGrupeFiszek={setDodajGrupeFiszek}
+              setFiszkaDoEdycji={setFiszkaDoEdycji}
+            />
+          ) : (
+            <></>
+          )}
           <View className="bg-white w-[75%] h-[75%] shadow-2xl m-auto">
             {fiszki.map((element, index) => {
               const key = Object.keys(element)[0] + index;

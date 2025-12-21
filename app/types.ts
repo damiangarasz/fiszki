@@ -47,8 +47,10 @@ export interface MainScreenProps {
 }
 
 export type DodajGrupeFiszekProp = {
+  navigation: MainScreenNavigationProp;
   setFiszki: setFiszki;
   setDodajGrupeFiszek: React.Dispatch<boolean>;
+  setFiszkaDoEdycji: React.Dispatch<number>;
 };
 
 export type DodajFiszkeEkranProp = {

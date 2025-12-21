@@ -2,7 +2,12 @@ import { useState } from "react";
 import { Pressable, Text, TextInput, View } from "react-native";
 import { DodajGrupeFiszekProp } from "../types";
 
-export default function DodajGrupeFiszek({ setFiszki, setDodajGrupeFiszek }: DodajGrupeFiszekProp) {
+export default function DodajGrupeFiszek({
+  navigation,
+  setFiszki,
+  setDodajGrupeFiszek,
+  setFiszkaDoEdycji,
+}: DodajGrupeFiszekProp) {
   const [nazwaFiszki, setNazwaFiszki] = useState("");
 
   //funkcja dodająca nowy zestaw fiszek do istniejącego zestawu
@@ -29,6 +34,9 @@ export default function DodajGrupeFiszek({ setFiszki, setDodajGrupeFiszek }: Dod
           className="w-[50%] h-16 bg-green-600"
           onPress={() => {
             dodajFiszke();
+            navigation.navigate("edycja");
+            //TODO Tutaj jestem
+            
           }}
         >
           <Text className="text-center text-5xl m-auto">Dodaj</Text>
