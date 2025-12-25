@@ -2,6 +2,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { useEffect, useState } from "react";
 import { Image, Pressable, Text, View } from "react-native";
 import Animated, { useAnimatedStyle, useSharedValue, withTiming } from "react-native-reanimated";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { FiszkiWyswietlanieProp, MojeFiszkiEkranMainProp } from "../types.ts";
 
 export default function FiszkiWyswietlanie({ fiszki, setFiszki }: FiszkiWyswietlanieProp) {
@@ -24,8 +25,7 @@ export default function FiszkiWyswietlanie({ fiszki, setFiszki }: FiszkiWyswietl
   const frontStyle = useAnimatedStyle(() => ({
     transform: [{ perspective: 3000 }, { rotateY: `${rotation.value - 90}deg` }],
     backgroundColor: "#84cc16", // lime-600
-    borderWidth: 1,
-    borderColor: "#4b5563", // gray-400
+    borderWidth: 0,
     borderRadius: 16,
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },
@@ -40,8 +40,7 @@ export default function FiszkiWyswietlanie({ fiszki, setFiszki }: FiszkiWyswietl
   const backStyle = useAnimatedStyle(() => ({
     transform: [{ perspective: 3000 }, { rotateY: `${rotation.value}deg` }],
     backgroundColor: "#84d382", // lime-500
-    borderWidth: 1,
-    borderColor: "#4b5563",
+    borderWidth: 0,
     borderRadius: 16,
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },
@@ -198,7 +197,7 @@ export default function FiszkiWyswietlanie({ fiszki, setFiszki }: FiszkiWyswietl
 
   function OpcjeFiszki() {
     return (
-      <View className="flex-row bg-teal-600/90 m-auto w-[100%] h-[100%]">
+      <View className="flex-row bg-teal-600/90 m-auto absolute z-10 w-[100vw] top-24 h-[15vh]">
         <Pressable
           className="w-[33%]"
           onPress={() => {
@@ -265,96 +264,105 @@ export default function FiszkiWyswietlanie({ fiszki, setFiszki }: FiszkiWyswietl
 
   function WyswietlanieKart() {
     return (
-      <View className="h-[100vh] w-[100%] flex relative">
-        <Text className="m-auto text-2xl h-[5vh]">{jakiZestawDoWyswietlenia}</Text>
-        <Pressable
-          className="absolute right-10 top-5 z-10"
-          onPress={() => {
-            setOpcjeToggle((prev) => !prev);
-          }}
-        >
-          <Image
-            source={require("../../assets/images/opcje.png")}
-            style={{ width: 45, height: 45 }}
-          />
-        </Pressable>
-        <View className="absolute z-10 w-[100vw] top-24 h-[15vh]">
+      <SafeAreaView>
+        <View className="h-[100vh] w-[100%] flex relative">
+          <Text className="m-auto text-2xl h-[5vh]">{jakiZestawDoWyswietlenia}</Text>
+          <Pressable
+            className="absolute right-10 top-[5vh] z-10"
+            onPress={() => {
+              setOpcjeToggle((prev) => !prev);
+            }}
+          >
+            <Image
+              source={require("../../assets/images/opcje.png")}
+              style={{ width: 45, height: 45 }}
+            />
+          </Pressable>
           {opcjeToggle ? OpcjeFiszki() : <></>}
+
+          <View className="h-[67vh]">
+            <Pressable onPress={onFlip} className="m-auto">
+              <View className="realtive m-auto w-[90vw] h-[50vh]">
+                <Animated.View
+                  style={[backStyle]}
+                  className={`absolute w-[100%] h-[100%] shadow-xl bg-lime-600 border  rounded-xl `}
+                >
+                  <Text className="text-center m-auto text-6xl">{back}</Text>
+                </Animated.View>
+                <Animated.View
+                  style={[frontStyle]}
+                  className={`absolute w-[100%] h-[100%] shadow-xl bg-lime-500 border rounded-xl`}
+                >
+                  <View className="h-[33%]"></View>
+                  <View className="h-[33%] m-auto w-[90%]">
+                    <Text className="text-center m-auto text-6xl">{front}</Text>
+                  </View>
+                  <View className="h-[33%]">
+                    <Text className="m-auto text-center text-2xl">{wybranaFiszka?.kontekst}</Text>
+                  </View>
+                </Animated.View>
+              </View>
+            </Pressable>
+          </View>
+          <View className="flex flex-row h-[28vh]">
+            <Pressable
+              className="w-[33vw] h-16  bg-green-600"
+              onPress={() => {
+                setSwitchTaFiszkaJuzByla((prev) => !prev);
+                zmianaWagi("znam");
+                if (flipped) {
+                  rotation.value = 0;
+                  setFlipped(!flipped);
+                }
+              }}
+            >
+              <Text className="m-auto text-3xl">Znam</Text>
+            </Pressable>
+            <Pressable
+              className="w-[33vw] h-16 bg-slate-300"
+              onPress={() => {
+                setSwitchTaFiszkaJuzByla((prev) => !prev);
+                zmianaWagi("troche");
+                if (flipped) {
+                  rotation.value = 0;
+                  setFlipped(!flipped);
+                }
+              }}
+            >
+              <Text className="m-auto text-center text-1xl">Troche znam, a troche nie znam</Text>
+            </Pressable>
+            <Pressable
+              className="w-[33vw] h-16 bg-red-700"
+              onPress={() => {
+                setSwitchTaFiszkaJuzByla((prev) => !prev);
+                zmianaWagi("nieZnam");
+                if (flipped) {
+                  rotation.value = 0;
+                  setFlipped(!flipped);
+                }
+              }}
+            >
+              <Text className="m-auto text-3xl">Nie znam</Text>
+            </Pressable>
+          </View>
         </View>
-        <View className="h-[67vh]">
-          <Pressable onPress={onFlip} className="m-auto">
-            <View className="realtive m-auto w-[90vw] h-[50vh]">
-              <Animated.View
-                style={[backStyle]}
-                className={`absolute w-[100%] h-[100%] shadow-xl bg-lime-600 border  rounded-xl `}
-              >
-                <Text className="text-center m-auto text-6xl">{back}</Text>
-              </Animated.View>
-              <Animated.View
-                style={[frontStyle]}
-                className={`absolute w-[100%] h-[100%] shadow-xl bg-lime-500 border rounded-xl`}
-              >
-                <View className="h-[33%]"></View>
-                <View className="h-[33%] m-auto w-[90%]">
-                  <Text className="text-center m-auto text-6xl">{front}</Text>
-                </View>
-                <View className="h-[33%]">
-                  <Text className="m-auto text-center text-2xl">{wybranaFiszka?.kontekst}</Text>
-                </View>
-              </Animated.View>
-            </View>
-          </Pressable>
-        </View>
-        <View className="flex flex-row h-[28vh]">
-          <Pressable
-            className="w-[33vw] h-16  bg-green-600"
-            onPress={() => {
-              setSwitchTaFiszkaJuzByla((prev) => !prev);
-              zmianaWagi("znam");
-              if (flipped) {
-                rotation.value = 0;
-                setFlipped(!flipped);
-              }
-            }}
-          >
-            <Text className="m-auto text-3xl">Znam</Text>
-          </Pressable>
-          <Pressable
-            className="w-[33vw] h-16 bg-slate-300"
-            onPress={() => {
-              setSwitchTaFiszkaJuzByla((prev) => !prev);
-              zmianaWagi("troche");
-              if (flipped) {
-                rotation.value = 0;
-                setFlipped(!flipped);
-              }
-            }}
-          >
-            <Text className="m-auto text-center text-1xl">Troche znam, a troche nie znam</Text>
-          </Pressable>
-          <Pressable
-            className="w-[33vw] h-16 bg-red-700"
-            onPress={() => {
-              setSwitchTaFiszkaJuzByla((prev) => !prev);
-              zmianaWagi("nieZnam");
-              if (flipped) {
-                rotation.value = 0;
-                setFlipped(!flipped);
-              }
-            }}
-          >
-            <Text className="m-auto text-3xl">Nie znam</Text>
-          </Pressable>
-        </View>
-      </View>
+      </SafeAreaView>
     );
   }
 
   //TODO te komponenty do osobnych plików refaktor i dodać odpowiedni prop
   return (
-    <Stack.Navigator screenOptions={{}} initialRouteName="main">
-      <Stack.Screen name="main" component={MojeFiszkiEkranMain} />
-      <Stack.Screen name="wyswietlanie" component={WyswietlanieKart} />
+    <Stack.Navigator screenOptions={{}} initialRouteName="Moje Fiszki">
+      <Stack.Screen name="Moje Fiszki" component={MojeFiszkiEkranMain} />
+      <Stack.Screen
+        name="wyswietlanie"
+        options={{
+          headerTitle: "",
+          headerTransparent: true,
+          headerTintColor: "black",
+        }}
+        component={WyswietlanieKart}
+      />
     </Stack.Navigator>
   );
 }

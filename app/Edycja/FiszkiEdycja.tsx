@@ -73,11 +73,16 @@ export default function FiszkiEdycja({
   }
 
   return (
-    <Stack.Navigator screenOptions={{}} initialRouteName="main">
-      <Stack.Screen name="main">
+    <Stack.Navigator screenOptions={{}} initialRouteName="Edycja">
+      <Stack.Screen name="Edycja">
         {(props) => <MainScreen {...props} fiszki={fiszki} setFiszki={setFiszki} />}
       </Stack.Screen>
-      <Stack.Screen name="edycja">
+      <Stack.Screen
+        name="edycja"
+        options={{
+          headerTitle: "",
+        }}
+      >
         {(props) => (
           <EdycjaEkran
             {...props}
