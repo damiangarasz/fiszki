@@ -22,10 +22,11 @@ export default function Index() {
         if (jsonValue) {
           const parsed = JSON.parse(jsonValue);
           setFiszki(parsed);
-          setIsLoaded(true);
         }
       } catch (e) {
         console.error("Error reading fiszki", e);
+      } finally {
+        setIsLoaded(true);
       }
     };
     getData();
