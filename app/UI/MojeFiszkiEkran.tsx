@@ -1,4 +1,5 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { LinearGradient } from "expo-linear-gradient";
 import { useEffect, useState } from "react";
 import { Image, Pressable, Text, View } from "react-native";
 import Animated, { useAnimatedStyle, useSharedValue, withTiming } from "react-native-reanimated";
@@ -21,16 +22,12 @@ export default function FiszkiWyswietlanie({ fiszki, setFiszki }: FiszkiWyswietl
   //rotowanie kart
   const rotation = useSharedValue(0);
   const [flipped, setFlipped] = useState(false);
+  const AnimatedLinearGradient = Animated.createAnimatedComponent(LinearGradient);
 
   const frontStyle = useAnimatedStyle(() => ({
     transform: [{ perspective: 3000 }, { rotateY: `${rotation.value - 90}deg` }],
-    backgroundColor: "#84cc16", // lime-600
     borderWidth: 0,
     borderRadius: 16,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.3,
-    shadowRadius: 4,
     elevation: 5, // dla Androida
     width: "100%",
     height: "100%",
@@ -39,13 +36,8 @@ export default function FiszkiWyswietlanie({ fiszki, setFiszki }: FiszkiWyswietl
 
   const backStyle = useAnimatedStyle(() => ({
     transform: [{ perspective: 3000 }, { rotateY: `${rotation.value}deg` }],
-    backgroundColor: "#84d382", // lime-500
     borderWidth: 0,
     borderRadius: 16,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.3,
-    shadowRadius: 4,
     elevation: 5,
     width: "100%",
     height: "100%",
@@ -265,48 +257,82 @@ export default function FiszkiWyswietlanie({ fiszki, setFiszki }: FiszkiWyswietl
   function WyswietlanieKart() {
     return (
       <SafeAreaView>
-        <View className="h-[100vh] w-[100%] flex relative">
-          <Text className="m-auto text-2xl h-[5vh]">{jakiZestawDoWyswietlenia}</Text>
+        <View className="h-[100vh] w-[100%] flex relative bg-[#faf4e8]">
+          <Text className="absolute m-auto text-2xl color-[#9b6b46] font-SourGummy h-[5vh]">
+            {jakiZestawDoWyswietlenia}
+          </Text>
           <Pressable
-            className="absolute right-10 top-[5vh] z-10"
+            className="absolute right-10 top-[8vh] z-10"
             onPress={() => {
               setOpcjeToggle((prev) => !prev);
             }}
           >
             <Image
-              source={require("../../assets/images/opcje.png")}
+              source={require("../../assets/images/opcje-bronze.png")}
               style={{ width: 45, height: 45 }}
             />
           </Pressable>
           {opcjeToggle ? OpcjeFiszki() : <></>}
 
-          <View className="h-[67vh]">
-            <Pressable onPress={onFlip} className="m-auto">
+          <View className="h-[100vh]">
+            <Pressable onPress={onFlip} className="mx-auto mt-40">
               <View className="realtive m-auto w-[90vw] h-[50vh]">
                 <Animated.View
                   style={[backStyle]}
-                  className={`absolute w-[100%] h-[100%] shadow-xl bg-lime-600 border  rounded-xl `}
+                  className={`absolute w-[100%] h-[100%] shadow-xl border rounded-xl`}
                 >
-                  <Text className="text-center m-auto text-6xl">{back}</Text>
+                  <LinearGradient
+                    colors={["#cdebc7", "#fdedb2"]}
+                    start={{ x: 0, y: 0 }}
+                    end={{ x: 1, y: 1 }}
+                    style={{
+                      flex: 1, // Wypełnia cały Animated.View
+                      borderRadius: 16, // Zaokrąglenie tutaj
+                      justifyContent: "center",
+                      alignItems: "center",
+                      padding: 20,
+                    }}
+                  >
+                    <Text className="text-center m-auto font-SourGummy text-6xl color-[#9b6b46]">
+                      {back}
+                    </Text>
+                  </LinearGradient>
                 </Animated.View>
                 <Animated.View
                   style={[frontStyle]}
-                  className={`absolute w-[100%] h-[100%] shadow-xl bg-lime-500 border rounded-xl`}
+                  className={`absolute w-[100%] h-[100%] shadow-xl border rounded-xl`}
                 >
-                  <View className="h-[33%]"></View>
-                  <View className="h-[33%] m-auto w-[90%]">
-                    <Text className="text-center m-auto text-6xl">{front}</Text>
-                  </View>
-                  <View className="h-[33%]">
-                    <Text className="m-auto text-center text-2xl">{wybranaFiszka?.kontekst}</Text>
-                  </View>
+                  <LinearGradient
+                    colors={["#b6d1b0", "#fddfb2"]}
+                    start={{ x: 0, y: 0 }}
+                    end={{ x: 1, y: 1 }}
+                    style={{
+                      flex: 1, // Wypełnia cały Animated.View
+                      borderRadius: 16, // Zaokrąglenie tutaj
+                      justifyContent: "center",
+                      alignItems: "center",
+                      padding: 20,
+                    }}
+                  >
+                    <View className="h-[33%]"></View>
+                    <View className="h-[33%] m-auto w-[90%]">
+                      <Text className="text-center m-auto text-6xl font-SourGummy color-[#9b6b46]">
+                        {front}
+                      </Text>
+                    </View>
+                    <View className="h-[33%]">
+                      <Text className="m-auto text-center text-2xl color-[#9b6b46]">
+                        {wybranaFiszka?.kontekst}
+                      </Text>
+                    </View>
+                  </LinearGradient>
                 </Animated.View>
               </View>
             </Pressable>
           </View>
-          <View className="flex flex-row h-[28vh]">
+          <View className="absolute bottom-40 flex flex-row h-[56px] w-[100%] justify-evenly">
             <Pressable
-              className="w-[33vw] h-16  bg-green-600"
+              className="w-[30vw] h-16  bg-[#e1eed4] border-2 border-[#53985d] rounded-full shadow-xl"
               onPress={() => {
                 setSwitchTaFiszkaJuzByla((prev) => !prev);
                 zmianaWagi("znam");
@@ -316,10 +342,10 @@ export default function FiszkiWyswietlanie({ fiszki, setFiszki }: FiszkiWyswietl
                 }
               }}
             >
-              <Text className="m-auto text-3xl">Znam</Text>
+              <Text className="m-auto text-3xl color-[#53985d]">Znam</Text>
             </Pressable>
             <Pressable
-              className="w-[33vw] h-16 bg-slate-300"
+              className="w-[30vw] h-16 bg-[#d7e8f8] border-2 border-[#71a5d7] rounded-full shadow-xl"
               onPress={() => {
                 setSwitchTaFiszkaJuzByla((prev) => !prev);
                 zmianaWagi("troche");
@@ -329,10 +355,12 @@ export default function FiszkiWyswietlanie({ fiszki, setFiszki }: FiszkiWyswietl
                 }
               }}
             >
-              <Text className="m-auto text-center text-1xl">Troche znam, a troche nie znam</Text>
+              <Text className="m-auto text-center text-1xl color-[#71a5d7] ">
+                Troche znam, a troche nie znam
+              </Text>
             </Pressable>
             <Pressable
-              className="w-[33vw] h-16 bg-red-700"
+              className="w-[30vw] h-16 bg-[#f9d5d5] border-2 border-[#a82b2d] rounded-full shadow-xl"
               onPress={() => {
                 setSwitchTaFiszkaJuzByla((prev) => !prev);
                 zmianaWagi("nieZnam");
@@ -342,7 +370,7 @@ export default function FiszkiWyswietlanie({ fiszki, setFiszki }: FiszkiWyswietl
                 }
               }}
             >
-              <Text className="m-auto text-3xl">Nie znam</Text>
+              <Text className="m-auto text-3xl color-[#a82b2d]">Nie znam</Text>
             </Pressable>
           </View>
         </View>
@@ -352,14 +380,26 @@ export default function FiszkiWyswietlanie({ fiszki, setFiszki }: FiszkiWyswietl
 
   //TODO te komponenty do osobnych plików refaktor i dodać odpowiedni prop
   return (
-    <Stack.Navigator screenOptions={{}} initialRouteName="Moje Fiszki">
-      <Stack.Screen name="Moje Fiszki" component={MojeFiszkiEkranMain} />
+    <Stack.Navigator screenOptions={{ headerTintColor: "#9b6b46" }} initialRouteName="Moje Fiszki">
+      <Stack.Screen
+        name="Moje Fiszki"
+        options={{
+          headerTintColor: "white",
+          headerStyle: {
+            backgroundColor: "#9b6b46",
+          },
+        }}
+        component={MojeFiszkiEkranMain}
+      />
       <Stack.Screen
         name="wyswietlanie"
         options={{
           headerTitle: "",
           headerTransparent: true,
-          headerTintColor: "black",
+          headerTintColor: "#9b6b46",
+          headerStyle: {
+            backgroundColor: "#9b6b46",
+          },
         }}
         component={WyswietlanieKart}
       />

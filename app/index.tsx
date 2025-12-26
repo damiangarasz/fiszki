@@ -1,5 +1,7 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { useFonts } from "expo-font";
+import { StatusBar } from "expo-status-bar";
 import { useEffect, useState } from "react";
 import FiszkiEdycja from "./Edycja/FiszkiEdycja";
 import FiszkiStatystyki from "./Statystyki/FiszkiStatystyki.tsx";
@@ -7,6 +9,11 @@ import MojeFiszkiEkran from "./UI/MojeFiszkiEkran.tsx";
 import { fiszki } from "./types.ts";
 
 export default function Index() {
+  //Ładowanie fonta
+  const [fontsLoaded] = useFonts({
+    SourGummy: require("../assets/fonts/SourGummy_Expanded-Light.ttf"),
+  });
+
   const Tab = createBottomTabNavigator();
 
   //zapisane fiszki
@@ -66,14 +73,20 @@ export default function Index() {
   };
 
   return (
-    <Tab.Navigator
-      screenOptions={{
-        headerShown: false,
-      }}
-    >
-      <Tab.Screen name="Moje Fiszki" component={MojeFiszki} />
-      <Tab.Screen name="Edycja" component={Edycja} />
-      <Tab.Screen name="Statsy" component={FiszkiStatystyki} />
-    </Tab.Navigator>
+    <>
+      <StatusBar style="light" translucent={false} />
+      <Tab.Navigator
+        screenOptions={{
+          headerShown: false,
+          tabBarStyle: { backgroundColor: "#9b6b46" },
+          tabBarActiveTintColor: "#e1eed4",
+          tabBarInactiveTintColor: "white",
+        }}
+      >
+        <Tab.Screen name="Moje Fiszki" component={MojeFiszki} />
+        <Tab.Screen name="Edycja" component={Edycja} />
+        <Tab.Screen name="Statsy" component={FiszkiStatystyki} />
+      </Tab.Navigator>
+    </>
   );
 }
