@@ -42,7 +42,8 @@ export default function Edycja({ navigation, fiszki, setFiszki, fiszkaDoEdycji }
                     return newArr;
                   });
                   setCzyUsunac(false);
-                  navigation.navigate("main");
+                  //TODO tuta route nei działą
+                  navigation.navigate("edycja");
                 }}
               >
                 <Text className="m-auto">TAK</Text>

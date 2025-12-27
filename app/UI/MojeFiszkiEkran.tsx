@@ -1,10 +1,12 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { LinearGradient } from "expo-linear-gradient";
 import { useEffect, useState } from "react";
-import { Image, Pressable, ScrollView, Text, View } from "react-native";
+import { Image, Pressable, Text, View } from "react-native";
 import Animated, { useAnimatedStyle, useSharedValue, withTiming } from "react-native-reanimated";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { FiszkiWyswietlanieProp, MojeFiszkiEkranMainProp } from "../types.ts";
+import { FiszkiWyswietlanieProp } from "../types.ts";
+import MojeFiszkiEkranMain from "./MojeFiszkiEkranMain.tsx";
+import { useRouter } from "expo-router";
 
 export default function FiszkiWyswietlanie({ fiszki, setFiszki }: FiszkiWyswietlanieProp) {
   const Stack = createNativeStackNavigator();
@@ -18,6 +20,8 @@ export default function FiszkiWyswietlanie({ fiszki, setFiszki }: FiszkiWyswietl
   const [back, setBack] = useState("");
   const [front, setFront] = useState("");
   const [indexX, setIndexX] = useState(0);
+
+  const router = useRouter();
 
   //rotowanie kart
   const rotation = useSharedValue(0);
@@ -221,44 +225,44 @@ export default function FiszkiWyswietlanie({ fiszki, setFiszki }: FiszkiWyswietl
     );
   }
 
-  function MojeFiszkiEkranMain({ navigation }: MojeFiszkiEkranMainProp) {
-    return (
-      <View className="bg-[#faf4e8] w-[100%] h-[100%]">
-        <View className="bg-[#faf4e8] w-[75%] h-[75%] m-auto shadow-2xl rounded-xl">
-          <ScrollView>
-            {fiszki.length == 0 ? (
-              <View>
-                <Text className="text-center text-2xl font-SourGummy">
-                  Brak fiszek! Dodaj pierwszą w &#34;Edycja&#34;
-                </Text>
-              </View>
-            ) : (
-              fiszki.map((param, index) => {
-                return (
-                  <View key={index} className="border-b border-gray-400 border-dotted">
-                    <Pressable
-                      onPress={() => {
-                        if (fiszki[index].lista.length > 0) {
-                          setJakiZestawDoWyswietlenia(param.key);
-                          setIndexFiszek(index);
-                          navigation.navigate("wyswietlanie");
-                        }
-                      }}
-                    >
-                      <Text className="w-[50%] text-center m-auto text-2xl font-SourGummy">
-                        {param.key}
-                      </Text>
-                      <Text>Ilość fiszek: {fiszki[index].lista.length}</Text>
-                    </Pressable>
-                  </View>
-                );
-              })
-            )}
-          </ScrollView>
-        </View>
-      </View>
-    );
-  }
+  // function MojeFiszkiEkranMain({ navigation }: MojeFiszkiEkranMainProp) {
+  //   return (
+  //     <View className="bg-[#faf4e8] w-[100%] h-[100%]">
+  //       <View className="bg-[#faf4e8] w-[75%] h-[75%] m-auto shadow-2xl rounded-xl">
+  //         <ScrollView>
+  //           {fiszki.length == 0 ? (
+  //             <View>
+  //               <Text className="text-center text-2xl font-SourGummy">
+  //                 Brak fiszek! Dodaj pierwszą w &#34;Edycja&#34;
+  //               </Text>
+  //             </View>
+  //           ) : (
+  //             fiszki.map((param, index) => {
+  //               return (
+  //                 <View key={index} className="border-b border-gray-400 border-dotted">
+  //                   <Pressable
+  //                     onPress={() => {
+  //                       if (fiszki[index].lista.length > 0) {
+  //                         setJakiZestawDoWyswietlenia(param.key);
+  //                         setIndexFiszek(index);
+  //                         navigation.navigate("wyswietlanie");
+  //                       }
+  //                     }}
+  //                   >
+  //                     <Text className="w-[50%] text-center m-auto text-2xl font-SourGummy">
+  //                       {param.key}
+  //                     </Text>
+  //                     <Text>Ilość fiszek: {fiszki[index].lista.length}</Text>
+  //                   </Pressable>
+  //                 </View>
+  //               );
+  //             })
+  //           )}
+  //         </ScrollView>
+  //       </View>
+  //     </View>
+  //   );
+  // }
 
   function WyswietlanieKart() {
     return (
