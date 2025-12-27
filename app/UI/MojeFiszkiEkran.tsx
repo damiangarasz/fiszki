@@ -228,7 +228,7 @@ export default function FiszkiWyswietlanie({ fiszki, setFiszki }: FiszkiWyswietl
           <ScrollView>
             {fiszki.length == 0 ? (
               <View>
-                <Text className="text-center text-4xl font-SourGummy">
+                <Text className="text-center text-2xl font-SourGummy">
                   Brak fiszek! Dodaj pierwszą w &#34;Edycja&#34;
                 </Text>
               </View>
