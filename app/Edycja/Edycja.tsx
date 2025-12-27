@@ -8,10 +8,10 @@ export default function Edycja({ navigation, fiszki, setFiszki, fiszkaDoEdycji }
   const [czyUsunac, setCzyUsunac] = useState(false);
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-      <View className="h-[100%] w-[100%]">
-        <View className="flex flex-row w-[100%]">
+      <View className="h-[100%] w-[100%] bg-[#faf4e8]">
+        <View className="flex flex-row w-[100%] justify-evenly">
           <Pressable
-            className="w-[50%] h-16 bg-green-600"
+            className="w-[40vw] h-16 mt-3 bg-[#e1eed4] border-2 border-[#53985d] rounded-full shadow-xl"
             onPress={() => {
               setCzyUsunac(false);
               setDodajFiszke(true);
@@ -20,7 +20,7 @@ export default function Edycja({ navigation, fiszki, setFiszki, fiszkaDoEdycji }
             <Text className="text-center m-auto text-2xl">Dodaj fiszkę</Text>
           </Pressable>
           <Pressable
-            className="w-[50%] h-16 bg-red-700"
+            className="w-[40vw] h-16 mt-3 bg-[#f9d5d5] border-2 border-[#a82b2d] rounded-full shadow-xl"
             onPress={() => {
               setCzyUsunac(true);
             }}
@@ -32,9 +32,9 @@ export default function Edycja({ navigation, fiszki, setFiszki, fiszkaDoEdycji }
         {czyUsunac ? (
           <View className="w-[75%] h-[15vh] m-auto ">
             <Text className="m-auto">Czy na pewno usunąć?</Text>
-            <View className="w-[100%] flex-row">
+            <View className="w-[100%] flex-row justify-evenly">
               <Pressable
-                className="w-[50%] bg-red-700"
+                className="w-[30vw] h-16 mt-3 bg-[#f9d5d5] border-2 border-[#a82b2d] rounded-full shadow-xl"
                 onPress={() => {
                   setFiszki((prev) => {
                     const newArr = [...prev];
@@ -48,7 +48,7 @@ export default function Edycja({ navigation, fiszki, setFiszki, fiszkaDoEdycji }
                 <Text className="m-auto">TAK</Text>
               </Pressable>
               <Pressable
-                className="w-[50%] bg-green-600"
+                className="w-[30vw] h-16 mt-3 bg-[#e1eed4] border-2 border-[#53985d] rounded-full shadow-xl"
                 onPress={() => {
                   setCzyUsunac(false);
                 }}
@@ -74,7 +74,7 @@ export default function Edycja({ navigation, fiszki, setFiszki, fiszkaDoEdycji }
         <View className="w-[75%] h-[40] m-auto ">
           <Text className="text-center text-3xl">{fiszki[fiszkaDoEdycji]?.key}</Text>
         </View>
-        <View className="bg-white w-[75%] h-[75%] m-auto shadow-2xl">
+        <View className="bg-[#faf4e8] w-[75%] h-[75%] m-auto shadow-2xl rounded-2xl">
           <FlatList
             data={fiszki[fiszkaDoEdycji]?.lista ?? []}
             keyExtractor={(_, index) => index.toString()}

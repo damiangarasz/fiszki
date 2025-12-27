@@ -1,7 +1,7 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { LinearGradient } from "expo-linear-gradient";
 import { useEffect, useState } from "react";
-import { Image, Pressable, Text, View } from "react-native";
+import { Image, Pressable, ScrollView, Text, View } from "react-native";
 import Animated, { useAnimatedStyle, useSharedValue, withTiming } from "react-native-reanimated";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { FiszkiWyswietlanieProp, MojeFiszkiEkranMainProp } from "../types.ts";
@@ -189,33 +189,33 @@ export default function FiszkiWyswietlanie({ fiszki, setFiszki }: FiszkiWyswietl
 
   function OpcjeFiszki() {
     return (
-      <View className="flex-row bg-teal-600/90 m-auto absolute z-10 w-[100vw] top-24 h-[15vh]">
+      <View className="flex-row bg-[#9b6b4651] m-auto absolute z-10 w-[100vw] top-16 h-[15vh] justify-evenly">
         <Pressable
-          className="w-[33%]"
+          className="w-[30%] border-2 rounded-full shadow-xl h-16 m-auto bg-[#9b6b46]"
           onPress={() => {
             setOpcjeJezyk("PL");
             setOpcjeToggle((prev) => !prev);
           }}
         >
-          <Text className="text-center m-auto">Polski</Text>
+          <Text className="text-center m-auto font-SourGummy">Polski</Text>
         </Pressable>
         <Pressable
-          className="w-[33%]"
+          className="w-[30%] border-2 rounded-full shadow-xl h-16 m-auto bg-[#9b6b46]"
           onPress={() => {
             setOpcjeJezyk("EN");
             setOpcjeToggle((prev) => !prev);
           }}
         >
-          <Text className="text-center m-auto">Angielski</Text>
+          <Text className="text-center m-auto font-SourGummy">Angielski</Text>
         </Pressable>
         <Pressable
-          className="w-[33%]"
+          className="w-[30%] border-2 rounded-full shadow-xl h-16 m-auto bg-[#9b6b46]"
           onPress={() => {
             setOpcjeJezyk("PL/EN");
             setOpcjeToggle((prev) => !prev);
           }}
         >
-          <Text className="text-center m-auto">Polsko/Angielski</Text>
+          <Text className="text-center m-auto font-SourGummy">Polsko/Angielski</Text>
         </Pressable>
       </View>
     );
@@ -223,33 +223,39 @@ export default function FiszkiWyswietlanie({ fiszki, setFiszki }: FiszkiWyswietl
 
   function MojeFiszkiEkranMain({ navigation }: MojeFiszkiEkranMainProp) {
     return (
-      <View className="bg-white w-[75%] h-[75%] m-auto shadow-2xl">
-        {fiszki.length == 0 ? (
-          <View>
-            <Text className="text-center text-4xl">
-              Brak fiszek! Dodaj pierwszą w &#34;Edycja&#34;
-            </Text>
-          </View>
-        ) : (
-          fiszki.map((param, index) => {
-            return (
-              <View key={index} className="border-b border-gray-400 border-dotted">
-                <Pressable
-                  onPress={() => {
-                    if (fiszki[index].lista.length > 0) {
-                      setJakiZestawDoWyswietlenia(param.key);
-                      setIndexFiszek(index);
-                      navigation.navigate("wyswietlanie");
-                    }
-                  }}
-                >
-                  <Text className="w-[50%] text-center m-auto text-2xl">{param.key}</Text>
-                  <Text>Ilość fiszek: {fiszki[index].lista.length}</Text>
-                </Pressable>
+      <View className="bg-[#faf4e8] w-[100%] h-[100%]">
+        <View className="bg-[#faf4e8] w-[75%] h-[75%] m-auto shadow-2xl rounded-xl">
+          <ScrollView>
+            {fiszki.length == 0 ? (
+              <View>
+                <Text className="text-center text-4xl font-SourGummy">
+                  Brak fiszek! Dodaj pierwszą w &#34;Edycja&#34;
+                </Text>
               </View>
-            );
-          })
-        )}
+            ) : (
+              fiszki.map((param, index) => {
+                return (
+                  <View key={index} className="border-b border-gray-400 border-dotted">
+                    <Pressable
+                      onPress={() => {
+                        if (fiszki[index].lista.length > 0) {
+                          setJakiZestawDoWyswietlenia(param.key);
+                          setIndexFiszek(index);
+                          navigation.navigate("wyswietlanie");
+                        }
+                      }}
+                    >
+                      <Text className="w-[50%] text-center m-auto text-2xl font-SourGummy">
+                        {param.key}
+                      </Text>
+                      <Text>Ilość fiszek: {fiszki[index].lista.length}</Text>
+                    </Pressable>
+                  </View>
+                );
+              })
+            )}
+          </ScrollView>
+        </View>
       </View>
     );
   }
@@ -258,7 +264,7 @@ export default function FiszkiWyswietlanie({ fiszki, setFiszki }: FiszkiWyswietl
     return (
       <SafeAreaView>
         <View className="h-[100vh] w-[100%] flex relative bg-[#faf4e8]">
-          <Text className="absolute m-auto text-2xl color-[#9b6b46] font-SourGummy h-[5vh]">
+          <Text className="absolute m-auto text-2xl color-[#9b6b46] font-SourGummy h-[5vh] top-16">
             {jakiZestawDoWyswietlenia}
           </Text>
           <Pressable
@@ -286,8 +292,8 @@ export default function FiszkiWyswietlanie({ fiszki, setFiszki }: FiszkiWyswietl
                     start={{ x: 0, y: 0 }}
                     end={{ x: 1, y: 1 }}
                     style={{
-                      flex: 1, // Wypełnia cały Animated.View
-                      borderRadius: 16, // Zaokrąglenie tutaj
+                      flex: 1,
+                      borderRadius: 16,
                       justifyContent: "center",
                       alignItems: "center",
                       padding: 20,
@@ -307,8 +313,8 @@ export default function FiszkiWyswietlanie({ fiszki, setFiszki }: FiszkiWyswietl
                     start={{ x: 0, y: 0 }}
                     end={{ x: 1, y: 1 }}
                     style={{
-                      flex: 1, // Wypełnia cały Animated.View
-                      borderRadius: 16, // Zaokrąglenie tutaj
+                      flex: 1,
+                      borderRadius: 16,
                       justifyContent: "center",
                       alignItems: "center",
                       padding: 20,

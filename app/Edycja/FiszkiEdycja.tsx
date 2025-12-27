@@ -29,9 +29,9 @@ export default function FiszkiEdycja({
   function MainScreen({ navigation, fiszki, setFiszki }: MainScreenProps) {
     return (
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <View className="w-[100%] h-[100%]">
+        <View className="w-[100%] h-[100%] bg-[#faf4e8]">
           <Pressable
-            className="w-[100%] h-16 bg-green-600"
+            className="w-[90vw] h-16 mt-4 mx-auto bg-[#e1eed4] border-2 border-[#53985d] rounded-full shadow-xl"
             onPress={() => {
               setDodajGrupeFiszek(true);
             }}
@@ -49,7 +49,7 @@ export default function FiszkiEdycja({
           ) : (
             <></>
           )}
-          <View className="bg-white w-[75%] h-[75%] shadow-2xl m-auto">
+          <View className="bg-[#faf4e8] w-[75%] h-[75%] shadow-2xl m-auto rounded-xl">
             {fiszki.map((element, index) => {
               const key = Object.keys(element)[0] + index;
               return (
@@ -74,13 +74,25 @@ export default function FiszkiEdycja({
 
   return (
     <Stack.Navigator screenOptions={{}} initialRouteName="Edycja">
-      <Stack.Screen name="Edycja">
+      <Stack.Screen
+        name="Edycja"
+        options={{
+          headerTintColor: "white",
+          headerStyle: {
+            backgroundColor: "#9b6b46",
+          },
+        }}
+      >
         {(props) => <MainScreen {...props} fiszki={fiszki} setFiszki={setFiszki} />}
       </Stack.Screen>
       <Stack.Screen
         name="edycja"
         options={{
+          headerTintColor: "white",
           headerTitle: "",
+          headerStyle: {
+            backgroundColor: "#9b6b46",
+          },
         }}
       >
         {(props) => (

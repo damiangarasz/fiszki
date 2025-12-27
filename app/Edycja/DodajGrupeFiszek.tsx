@@ -21,7 +21,7 @@ export default function DodajGrupeFiszek({
   }
 
   return (
-    <View className="bg-white w-[75%] h-[45%] m-auto shadow-xl">
+    <View className="rounded-xl w-[75%] h-[45%] my-3 mx-auto shadow-xl bg-[#faf4e8]">
       <Text className="mx-auto text-2xl text-center">Wpipsz swoją nazwę zestawu fiszek.</Text>
       <TextInput
         className="bg-white shadow-xl h-10 w-[75%] m-auto"
@@ -30,25 +30,24 @@ export default function DodajGrupeFiszek({
         onChangeText={setNazwaFiszki}
         maxLength={25}
       />
-      <View className="flex-row justify-around">
+      <View className="flex-row justify-around mb-5">
         <Pressable
-          className="w-[50%] h-16 bg-green-600"
+          className="w-[30vw] h-16  bg-[#e1eed4] border-2 border-[#53985d] rounded-full shadow-xl"
           onPress={() => {
             dodajFiszke();
             navigation.navigate("edycja");
             setFiszkaDoEdycji(() => fiszki.length);
-            //TODO Tutaj jestem
           }}
         >
-          <Text className="text-center text-5xl m-auto">Dodaj</Text>
+          <Text className="text-center text-3xl m-auto">Dodaj</Text>
         </Pressable>
         <Pressable
-          className="w-[50%] h-16 bg-red-700"
+          className="w-[30vw] h-16 bg-[#f9d5d5] border-2 border-[#a82b2d] rounded-full shadow-xl"
           onPress={() => {
             setDodajGrupeFiszek(false);
           }}
         >
-          <Text className="text-center text-5xl m-auto">Anuluj</Text>
+          <Text className="text-center text-3xl m-auto">Anuluj</Text>
         </Pressable>
       </View>
     </View>
