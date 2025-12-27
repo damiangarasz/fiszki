@@ -1,7 +1,16 @@
 import { Pressable, ScrollView, Text, View } from "react-native";
+import { useFiszki } from "../context/FiszkiContext";
 import { MojeFiszkiEkranMainProp } from "../types";
 
 export default function MojeFiszkiEkranMain({ navigation }: MojeFiszkiEkranMainProp) {
+  const {
+    fiszki,
+    setJakiZestawDoWyswietlenia,
+    setIndexFiszek,
+    switchTaFiszkaJuzByla,
+    setSwitchTaFiszkaJuzByla,
+  } = useFiszki();
+
   return (
     <View className="bg-[#faf4e8] w-[100%] h-[100%]">
       <View className="bg-[#faf4e8] w-[75%] h-[75%] m-auto shadow-2xl rounded-xl">
@@ -13,7 +22,7 @@ export default function MojeFiszkiEkranMain({ navigation }: MojeFiszkiEkranMainP
               </Text>
             </View>
           ) : (
-            fiszki.map((param, index) => {
+            fiszki.map((param, index: number) => {
               return (
                 <View key={index} className="border-b border-gray-400 border-dotted">
                   <Pressable
