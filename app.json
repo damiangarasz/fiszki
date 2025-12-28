@@ -21,7 +21,7 @@
       "package": "com.damiangarasz.fiszki",
       "versionCode": 5,
       "permissions": [],
-      "minSdkVersion": 24
+      "minSdkVersion": 22
     },
     "web": {
       "output": "static",
