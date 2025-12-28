@@ -1,50 +1,61 @@
-# Welcome to your Expo app 👋
+# 📚 Fiszki App (Nazwij to np. "Flashcards Master")
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Aplikacja mobilna do nauki języków obcych i zarządzania własną bazą fiszek. Projekt stworzony, aby pomóc w systematycznej nauce poprzez algorytm powtórek.
 
-## Get started
+![Expo](https://img.shields.io/badge/Expo-4630EB?style=for-the-badge&logo=expo&logoColor=white)
+![React Native](https://img.shields.io/badge/React_Native-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
+![NativeWind](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
 
-1. Install dependencies
+## 📱 Zrzuty ekranu
 
+<p align="center">
+  <img src="./screeny/1.PNG" width="30%" />
+  <img src="./screeny/2.PNG" width="30%" />
+  <img src="./screeny/3.PNG" width="30%" />
+  <img src="./screeny/4.PNG" width="30%" />
+</p>
+
+## 🚀 Główne funkcjonalności
+
+- **System powtórek:** Algorytm ważący słowa ("Znam", "Trochę znam", "Nie znam") i dostosowujący częstotliwość ich wyświetlania.
+- **Zarządzanie bazą:** Dodawanie, edycja i usuwanie fiszek oraz kategorii.
+- **Interaktywny UI:** Animowane odwracanie kart (React Native Reanimated).
+- **Wielojęzyczność:** Możliwość nauki w trybie PL -> EN, EN -> PL lub losowym.
+- **Persystencja danych:** Zapisywanie postępów i bazy w pamięci urządzenia (AsyncStorage).
+
+## 👀 Co w najbliższej przyszłości
+
+- **Statystyki:** Przyjazne dla oka statystyki uprzyjemniające naukę
+- **Synchronizacja:** Synchronizacja danych z chmura za pomocą Firebase
+- **Udostępnianie:** Udostępnianie fiszek za pomoca generowanego kodu
+- **Wielojęzyczność:** przetłumaczenie aplikacji na wiele języków
+- **Mikropłatności:** Udostępnienie płatnych skórek
+
+## 🛠️ Technologie
+
+Projekt został zbudowany z użyciem nowoczesnego stacku technologicznego:
+
+- **Core:** React Native, Expo (Expo Router)
+- **Język:** TypeScript
+- **Stylowanie:** NativeWind (TailwindCSS)
+- **Nawigacja:** Expo Router (File-based routing)
+- **Animacje:** React Native Reanimated
+- **Zarządzanie stanem:** Context API (Custom Hooks)
+
+## 💡 Czego się nauczyłem? (Sekcja dla Juniora!)
+
+Podczas tworzenia tej aplikacji zmierzyłem się z wieloma wyzwaniami:
+
+1.  **Zarządzanie stanem:** Początkowo używałem lokalnych stanów i `prop drilling`, co prowadziło do problemów. Przepisałem aplikację na **Global Context API**, co uporządkowało przepływ danych.
+2.  **Optymalizacja renderowania:** Zrozumiałem działanie `useEffect` i `useCallback` oraz nauczyłem się unikać nieskończonych pętli renderowania (tzw. infinite loops) przy aktualizacji stanu.
+3.  **Architektura:** Wdrożyłem wzorzec "Immutable Update" przy edycji złożonych struktur danych (tablice obiektów).
+4.  **Git:** Nauczyłem się zarządzać historią zmian i pracować z `.gitignore`.
+
+## ⚙️ Instalacja i uruchomienie
+
+1. Sklonuj repozytorium:
    ```bash
-   npm install
+   git clone [https://github.com/damiangarasz/fiszki.git](https://github.com/damiangarasz/fiszki.git)
    ```
-
-2. Start the app
-
-   ```bash
-   npx expo start
-   ```
-
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+2. Lub dołącz do grona testerów: [https://play.google.com/apps/internaltest/4701472644857898973](https://play.google.com/apps/internaltest/4701472644857898973)
