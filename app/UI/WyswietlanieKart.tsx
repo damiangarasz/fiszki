@@ -145,6 +145,7 @@ export default function WyswietlanieKart() {
 
   function zmianaWagi(arg: string) {
     const fiszkiArrCopy = [...fiszki];
+    if (fiszkiArrCopy.length == 0) return;
     if (arg == "znam") {
       if (fiszkiArrCopy[indexFiszek].lista[indexX].waga > 0.5) {
         setFiszki((prev) => {
