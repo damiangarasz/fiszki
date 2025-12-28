@@ -1,4 +1,4 @@
-# 📚 Fiszki App (Nazwij to np. "Flashcards Master")
+# 📚 Fiszki App
 
 Aplikacja mobilna do nauki języków obcych i zarządzania własną bazą fiszek. Projekt stworzony, aby pomóc w systematycznej nauce poprzez algorytm powtórek.
 
