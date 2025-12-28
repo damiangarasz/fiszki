@@ -2,20 +2,11 @@
 
 # dependencies
 node_modules/
-package-lock.json
-package.json
-tailwind.config.js
-tsconfig.json
-.prettierrc
-metro.config.js
-.vscode/
-app.json
-babel.config.js
-eas.json
-eslint.config.js
-nativewind-env.d.ts
-nativewind-env-d.ts
+.pnp
+.pnp.js
 
+# testing
+coverage/
 
 # Expo
 .expo/
@@ -49,8 +40,6 @@ yarn-error.*
 
 # typescript
 *.tsbuildinfo
-
-app-example
 
 # generated native folders
 /ios
