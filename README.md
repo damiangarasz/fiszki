@@ -42,6 +42,7 @@ Projekt został zbudowany z użyciem nowoczesnego stacku technologicznego:
 - **Nawigacja:** Expo Router (File-based routing)
 - **Animacje:** React Native Reanimated
 - **Zarządzanie stanem:** Context API (Custom Hooks)
+- **Zarządzanie stanem:** Zamiana tekstu angielskiego na mowę
 
 ## 💡 Czego się nauczyłem? (Sekcja dla Juniora!)
 
