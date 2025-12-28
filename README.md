@@ -29,7 +29,7 @@ Aplikacja mobilna do nauki języków obcych i zarządzania własną bazą fiszek
 - **Statystyki:** Przyjazne dla oka statystyki uprzyjemniające naukę
 - **Synchronizacja:** Synchronizacja danych z chmura za pomocą Firebase
 - **Udostępnianie:** Udostępnianie fiszek za pomoca generowanego kodu
-- **Wielojęzyczność:** przetłumaczenie aplikacji na wiele języków
+- **Wielojęzyczność:** Przetłumaczenie aplikacji na wiele języków
 - **Mikropłatności:** Udostępnienie płatnych skórek
 
 ## 🛠️ Technologie
@@ -44,13 +44,13 @@ Projekt został zbudowany z użyciem nowoczesnego stacku technologicznego:
 - **Zarządzanie stanem:** Context API (Custom Hooks)
 - **Zarządzanie stanem:** Zamiana tekstu angielskiego na mowę
 
-## 💡 Czego się nauczyłem? (Sekcja dla Juniora!)
+## 💡 Czego się nauczyłem?
 
 Podczas tworzenia tej aplikacji zmierzyłem się z wieloma wyzwaniami:
 
 1.  **Zarządzanie stanem:** Początkowo używałem lokalnych stanów i `prop drilling`, co prowadziło do problemów. Przepisałem aplikację na **Global Context API**, co uporządkowało przepływ danych.
-2.  **Optymalizacja renderowania:** Zrozumiałem działanie `useEffect` i `useCallback` oraz nauczyłem się unikać nieskończonych pętli renderowania (tzw. infinite loops) przy aktualizacji stanu.
-3.  **Architektura:** Wdrożyłem wzorzec "Immutable Update" przy edycji złożonych struktur danych (tablice obiektów).
+2.  **Optymalizacja renderowania:** Zrozumiałem działanie `useEffect` i `useCallback` oraz nauczyłem się unikać infinite loops przy aktualizacji stanu.
+3.  **Architektura:** Wdrożyłem wzorzec Immutable Update przy edycji złożonych struktur danych.
 4.  **Git:** Nauczyłem się zarządzać historią zmian i pracować z `.gitignore`.
 
 ## ⚙️ Instalacja i uruchomienie
