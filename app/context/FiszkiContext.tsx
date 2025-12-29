@@ -54,19 +54,33 @@ export const FiszkiProvider = ({ children }: { children: React.ReactNode }) => {
   const [opcjeJezyj, setOpcjeJezyk] = useState("PL/EN");
   const [back, setBack] = useState("");
   const [front, setFront] = useState("");
-  const [wybranaFiszka, setWybranaFiszka] = useState({ polski: "", angielski: "", kontekst: "" });
+  const [wybranaFiszka, setWybranaFiszka] = useState({
+    id: "",
+    polski: "",
+    angielski: "",
+    kontekst: "",
+  });
 
   //KONIEC UI
 
   //EDYCJA
   const [dadajGrupeFiszek, setDodajGrupeFiszek] = useState(false);
   const [dodajFiszke, setDodajFiszke] = useState(false);
+  const [polskiText, setPolskiText] = useState("");
+  const [angielskiText, setAngielskiText] = useState("");
+  const [kontekstText, setKontekstText] = useState("");
 
   //KONIEC EDYCJA
 
   return (
     <FiszkiContext.Provider
       value={{
+        polskiText,
+        setPolskiText,
+        angielskiText,
+        setAngielskiText,
+        kontekstText,
+        setKontekstText,
         indexFiszek,
         jakiZestawDoWyswietlenia,
         fiszki,

@@ -1,12 +1,40 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { FlatList, Keyboard, Pressable, Text, TouchableWithoutFeedback, View } from "react-native";
 import { useFiszki } from "../context/FiszkiContext.tsx";
 import DodajFiszkeEkran from "./DodajFiszkeEkran.tsx";
 import { MainScreenNavigationProp } from "./EdycjaTypes.ts";
+import FiszkaItem from "./FiszkaItemMemo.tsx";
 
 export default function Edycja({ navigation }: MainScreenNavigationProp) {
   const { setFiszki, fiszkaDoEdycji, fiszki, setDodajFiszke, dodajFiszke } = useFiszki();
   const [czyUsunac, setCzyUsunac] = useState(false);
+
+  const handleEdycjaFiszki = useCallback((id: string) => {
+    setFiszki((prev)=>{
+      prev.map((kat, index)=>{
+        if(index == fiszkaDoEdycji){
+          kat.lista.map((fiszka)=>{
+            if(fiszka.id.toString() == id){
+              return {...fiszka, }
+            }
+          })
+        }
+      })
+    })
+  }, []);
+
+  //TODO zjebane, odzjebać
+  const renderItem = useCallback(
+    (item) => {
+      <FiszkaItem
+        id={item.id}
+        polski={item.polski}
+        angielski={item.angielski}
+        kontekst={item.kontekst}
+      />;
+    },
+    [handleEdycjaFiszki]
+  );
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <View className="h-[100%] w-[100%] bg-[#faf4e8]">
@@ -70,18 +98,7 @@ export default function Edycja({ navigation }: MainScreenNavigationProp) {
           <FlatList
             data={fiszki[fiszkaDoEdycji]?.lista ?? []}
             keyExtractor={(_, index) => index.toString()}
-            renderItem={({ item }) => (
-              <View className="border-b border-gray-400 border-dotted">
-                <Pressable onPress={} className="flex flex-row justify-around h-8">
-                  <Text className="w-[50%] text-center m-auto">{item.polski}</Text>
-                  <Text className="w-[50%] text-center m-auto">{item.angielski}</Text>
-                </Pressable>
-
-                <Pressable>
-                  <Text className="text-center">{item.kontekst}</Text>
-                </Pressable>
-              </View>
-            )}
+            renderItem={renderItem}
           />
         </View>
       </View>

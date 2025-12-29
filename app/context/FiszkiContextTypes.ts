@@ -1,18 +1,24 @@
 type fiszki = {
   key: string;
-  lista: { polski: string; angielski: string; kontekst: string; waga: number }[];
+  lista: { id: string; polski: string; angielski: string; kontekst: string; waga: number }[];
 }[];
 
 type setFiszki = React.Dispatch<
   React.SetStateAction<
     {
       key: string;
-      lista: { polski: string; angielski: string; kontekst: string; waga: number }[];
+      lista: { id: string; polski: string; angielski: string; kontekst: string; waga: number }[];
     }[]
   >
 >;
 
 export interface FiszkiContextType {
+  polskiText: string;
+  angielskiText: string;
+  kontekstText: string;
+  setPolskiText: string;
+  setAngielskiText: React.Dispatch<React.SetStateAction<string>>;
+  setKontekstText: React.Dispatch<React.SetStateAction<string>>;
   fiszki: fiszki;
   setFiszki: setFiszki;
   setJakiZestawDoWyswietlenia: React.Dispatch<string>;
@@ -29,8 +35,13 @@ export interface FiszkiContextType {
   setBack: React.Dispatch<React.SetStateAction<string>>;
   front: string;
   setFront: React.Dispatch<React.SetStateAction<string>>;
-  wybranaFiszka: { polski: string; angielski: string; kontekst: string };
-  setWybranaFiszka: React.Dispatch<{ polski: string; angielski: string; kontekst: string }>;
+  wybranaFiszka: { id: string; polski: string; angielski: string; kontekst: string };
+  setWybranaFiszka: React.Dispatch<{
+    id: string;
+    polski: string;
+    angielski: string;
+    kontekst: string;
+  }>;
   fiszkaDoEdycji: number;
   setFiszkaDoEdycji: React.Dispatch<React.SetStateAction<number>>;
   dadajGrupeFiszek: boolean;

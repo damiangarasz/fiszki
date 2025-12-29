@@ -1,13 +1,19 @@
-import { useState } from "react";
+import * as Crypto from "expo-crypto";
 import { Pressable, Text, TextInput, View } from "react-native";
 import { useFiszki } from "../context/FiszkiContext.tsx";
 
 export default function DodajFiszkeEkran() {
-  const { setFiszki, fiszkaDoEdycji, setDodajFiszke } = useFiszki();
-
-  const [polskiText, setPolskiText] = useState("");
-  const [angielskiText, setAngielskiText] = useState("");
-  const [kontekstText, setKontekstText] = useState("");
+  const {
+    setFiszki,
+    fiszkaDoEdycji,
+    setDodajFiszke,
+    polskiText,
+    angielskiText,
+    kontekstText,
+    setPolskiText,
+    setAngielskiText,
+    setKontekstText,
+  } = useFiszki();
 
   function dodawanieFiszki() {
     setFiszki((prev) => {
@@ -19,6 +25,7 @@ export default function DodajFiszkeEkran() {
             lista: [
               ...item.lista,
               {
+                id: Crypto.randomUUID(),
                 polski: polskiText,
                 angielski: angielskiText,
                 kontekst: kontekstText,
