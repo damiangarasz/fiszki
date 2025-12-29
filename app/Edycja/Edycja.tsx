@@ -72,7 +72,7 @@ export default function Edycja({ navigation }: MainScreenNavigationProp) {
             keyExtractor={(_, index) => index.toString()}
             renderItem={({ item }) => (
               <View className="border-b border-gray-400 border-dotted">
-                <Pressable className="flex flex-row justify-around h-8">
+                <Pressable onPress={} className="flex flex-row justify-around h-8">
                   <Text className="w-[50%] text-center m-auto">{item.polski}</Text>
                   <Text className="w-[50%] text-center m-auto">{item.angielski}</Text>
                 </Pressable>
