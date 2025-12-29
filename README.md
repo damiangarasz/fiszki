@@ -31,18 +31,18 @@ Aplikacja mobilna do nauki języków obcych i zarządzania własną bazą fiszek
 - **Udostępnianie:** Udostępnianie fiszek za pomoca generowanego kodu
 - **Wielojęzyczność:** Przetłumaczenie aplikacji na wiele języków
 - **Mikropłatności:** Udostępnienie płatnych skórek
+- **Wymowa:** Zamiana tekstu angielskiego na mowę
 
 ## 🛠️ Technologie
 
 Projekt został zbudowany z użyciem nowoczesnego stacku technologicznego:
 
-- **Core:** React Native, Expo (Expo Router)
+- **Core:** React Native, Expo
 - **Język:** TypeScript
 - **Stylowanie:** NativeWind (TailwindCSS)
-- **Nawigacja:** Expo Router (File-based routing)
+- **Nawigacja:** React Navigation
 - **Animacje:** React Native Reanimated
 - **Zarządzanie stanem:** Context API (Custom Hooks)
-- **Zarządzanie stanem:** Zamiana tekstu angielskiego na mowę
 
 ## 💡 Czego się nauczyłem?
 
