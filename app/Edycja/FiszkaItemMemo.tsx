@@ -1,13 +1,6 @@
 import { memo } from "react";
 import { Pressable, Text, View } from "react-native";
-
-type props = {
-  id: string;
-  polski: string;
-  angielski: string;
-  kontekst: string;
-  handleEdit: (polski: string, angielski: string, kontekst: string, id: string) => void;
-};
+import { PropsMemo } from "./EdycjaTypes.ts";
 
 const FiszkaItem = memo(function FiszkaItemComponent({
   id,
@@ -15,7 +8,7 @@ const FiszkaItem = memo(function FiszkaItemComponent({
   angielski,
   kontekst,
   handleEdit,
-}: props) {
+}: PropsMemo) {
   console.log("render");
 
   return (

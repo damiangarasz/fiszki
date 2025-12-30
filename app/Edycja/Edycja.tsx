@@ -30,7 +30,6 @@ export default function Edycja({ navigation }: MainScreenNavigationProp) {
     []
   );
 
-  //TODO zjebane, odzjebać
   const renderItem = useCallback(({ item }: { item: FiszkaMemo }) => {
     return <FiszkaItem {...item} handleEdit={handleEdit} />;
   }, []);
@@ -97,7 +96,7 @@ export default function Edycja({ navigation }: MainScreenNavigationProp) {
         <View className="bg-[#faf4e8] w-[75%] h-[75%] m-auto shadow-2xl rounded-2xl">
           <FlatList
             data={fiszki[fiszkaDoEdycji]?.lista ?? []}
-            keyExtractor={(_, index) => index.toString()}
+            keyExtractor={(item) => item.id}
             renderItem={renderItem}
           />
         </View>

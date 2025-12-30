@@ -15,3 +15,11 @@ export type FiszkaMemo = {
   kontekst: string;
   waga: number;
 };
+
+export type PropsMemo = {
+  id: string;
+  polski: string;
+  angielski: string;
+  kontekst: string;
+  handleEdit: (polski: string, angielski: string, kontekst: string, id: string) => void;
+};
