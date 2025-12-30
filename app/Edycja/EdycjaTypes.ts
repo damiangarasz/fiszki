@@ -7,3 +7,11 @@ type StackParamList = {
 export type MainScreenNavigationProp = {
   navigation: StackNavigationProp<StackParamList, "Edycja">;
 };
+
+export type FiszkaMemo = {
+  id: string;
+  polski: string;
+  angielski: string;
+  kontekst: string;
+  waga: number;
+};

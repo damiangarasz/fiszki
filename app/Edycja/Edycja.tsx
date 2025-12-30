@@ -2,39 +2,39 @@ import { useCallback, useState } from "react";
 import { FlatList, Keyboard, Pressable, Text, TouchableWithoutFeedback, View } from "react-native";
 import { useFiszki } from "../context/FiszkiContext.tsx";
 import DodajFiszkeEkran from "./DodajFiszkeEkran.tsx";
-import { MainScreenNavigationProp } from "./EdycjaTypes.ts";
+import { FiszkaMemo, MainScreenNavigationProp } from "./EdycjaTypes.ts";
 import FiszkaItem from "./FiszkaItemMemo.tsx";
 
 export default function Edycja({ navigation }: MainScreenNavigationProp) {
-  const { setFiszki, fiszkaDoEdycji, fiszki, setDodajFiszke, dodajFiszke } = useFiszki();
+  const {
+    setFiszki,
+    fiszkaDoEdycji,
+    fiszki,
+    setDodajFiszke,
+    dodajFiszke,
+    setPolskiText,
+    setAngielskiText,
+    setKontekstText,
+    setIdEdytowanejFiszki,
+  } = useFiszki();
   const [czyUsunac, setCzyUsunac] = useState(false);
 
-  const handleEdycjaFiszki = useCallback((id: string) => {
-    setFiszki((prev)=>{
-      prev.map((kat, index)=>{
-        if(index == fiszkaDoEdycji){
-          kat.lista.map((fiszka)=>{
-            if(fiszka.id.toString() == id){
-              return {...fiszka, }
-            }
-          })
-        }
-      })
-    })
-  }, []);
+  const handleEdit = useCallback(
+    (polski: string, angielski: string, kontekst: string, id: string) => {
+      setPolskiText(polski);
+      setAngielskiText(angielski);
+      setKontekstText(kontekst);
+      setDodajFiszke(true);
+      setIdEdytowanejFiszki(id);
+    },
+    []
+  );
 
   //TODO zjebane, odzjebać
-  const renderItem = useCallback(
-    (item) => {
-      <FiszkaItem
-        id={item.id}
-        polski={item.polski}
-        angielski={item.angielski}
-        kontekst={item.kontekst}
-      />;
-    },
-    [handleEdycjaFiszki]
-  );
+  const renderItem = useCallback(({ item }: { item: FiszkaMemo }) => {
+    return <FiszkaItem {...item} handleEdit={handleEdit} />;
+  }, []);
+
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <View className="h-[100%] w-[100%] bg-[#faf4e8]">

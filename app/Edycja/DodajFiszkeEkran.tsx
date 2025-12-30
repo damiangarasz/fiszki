@@ -13,30 +13,56 @@ export default function DodajFiszkeEkran() {
     setPolskiText,
     setAngielskiText,
     setKontekstText,
+    idEdytowaniejFiszki,
+    setIdEdytowanejFiszki,
   } = useFiszki();
 
   function dodawanieFiszki() {
     setFiszki((prev) => {
       //Głęboka kopia żeby react odświeżył stan
-      const edycja = prev.map((item, index) => {
-        if (index == fiszkaDoEdycji) {
-          return {
-            ...item,
-            lista: [
-              ...item.lista,
-              {
-                id: Crypto.randomUUID(),
-                polski: polskiText,
-                angielski: angielskiText,
-                kontekst: kontekstText,
-                waga: 1,
-              },
-            ],
-          };
-        }
-        return item;
-      });
-      return edycja;
+      if (idEdytowaniejFiszki) {
+        const calyZestaw = prev.map((zestaw, index) => {
+          if (index == fiszkaDoEdycji) {
+            const mapaPoFiszkach = zestaw.lista.map((fiszka) => {
+              if (fiszka.id == idEdytowaniejFiszki) {
+                return {
+                  ...fiszka,
+                  polski: polskiText,
+                  angielski: angielskiText,
+                  kontekst: kontekstText,
+                };
+              } else {
+                return fiszka;
+              }
+            });
+            return { ...zestaw, lista: mapaPoFiszkach };
+          } else {
+            return zestaw;
+          }
+        });
+        setIdEdytowanejFiszki("");
+        return calyZestaw;
+      } else {
+        const edycja = prev.map((item, index) => {
+          if (index == fiszkaDoEdycji) {
+            return {
+              ...item,
+              lista: [
+                ...item.lista,
+                {
+                  id: Crypto.randomUUID(),
+                  polski: polskiText,
+                  angielski: angielskiText,
+                  kontekst: kontekstText,
+                  waga: 1,
+                },
+              ],
+            };
+          }
+          return item;
+        });
+        return edycja;
+      }
     });
     setPolskiText("");
     setAngielskiText("");
@@ -83,6 +109,9 @@ export default function DodajFiszkeEkran() {
           className="w-[30vw] h-16 bg-[#f9d5d5] border-2 border-[#a82b2d] rounded-full shadow-xl"
           onPress={() => {
             setDodajFiszke(false);
+            setPolskiText("");
+            setAngielskiText("");
+            setKontekstText("");
           }}
         >
           <Text className="text-center text-2xl m-auto">Odrzuć</Text>

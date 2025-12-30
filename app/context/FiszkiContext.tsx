@@ -3,10 +3,8 @@ import React, { createContext, useContext, useEffect, useState } from "react";
 import { fiszki } from "../types";
 import { FiszkiContextType } from "./FiszkiContextTypes";
 
-// 2. Tworzymy Context
 const FiszkiContext = createContext<FiszkiContextType | undefined>(undefined);
 
-// 3. Provider - tu żyje logika
 export const FiszkiProvider = ({ children }: { children: React.ReactNode }) => {
   const [fiszki, setFiszki] = useState<fiszki>([]);
   const [fiszkaDoEdycji, setFiszkaDoEdycji] = useState<number>(0);
@@ -72,6 +70,10 @@ export const FiszkiProvider = ({ children }: { children: React.ReactNode }) => {
 
   //KONIEC EDYCJA
 
+  //MEMO EDYTOWANIE FISZKI
+  const [idEdytowaniejFiszki, setIdEdytowanejFiszki] = useState("");
+  //KONIEC MEMO
+
   return (
     <FiszkiContext.Provider
       value={{
@@ -105,6 +107,8 @@ export const FiszkiProvider = ({ children }: { children: React.ReactNode }) => {
         setDodajGrupeFiszek,
         dodajFiszke,
         setDodajFiszke,
+        idEdytowaniejFiszki,
+        setIdEdytowanejFiszki,
       }}
     >
       {children}

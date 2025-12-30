@@ -16,7 +16,7 @@ export interface FiszkiContextType {
   polskiText: string;
   angielskiText: string;
   kontekstText: string;
-  setPolskiText: string;
+  setPolskiText: React.Dispatch<React.SetStateAction<string>>;
   setAngielskiText: React.Dispatch<React.SetStateAction<string>>;
   setKontekstText: React.Dispatch<React.SetStateAction<string>>;
   fiszki: fiszki;
@@ -48,4 +48,6 @@ export interface FiszkiContextType {
   setDodajGrupeFiszek: React.Dispatch<boolean>;
   dodajFiszke: boolean;
   setDodajFiszke: React.Dispatch<boolean>;
+  idEdytowaniejFiszki: string;
+  setIdEdytowanejFiszki: React.Dispatch<React.SetStateAction<string>>;
 }
