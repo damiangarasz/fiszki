@@ -1,7 +1,7 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { fiszki } from "../types";
-import { FiszkiContextType } from "./FiszkiContextTypes";
+import { FiszkiContextType, Ogolne } from "./FiszkiContextTypes";
 
 const FiszkiContext = createContext<FiszkiContextType | undefined>(undefined);
 
@@ -74,6 +74,12 @@ export const FiszkiProvider = ({ children }: { children: React.ReactNode }) => {
   const [idEdytowaniejFiszki, setIdEdytowanejFiszki] = useState("");
   //KONIEC MEMO
 
+  //STATYSTYKI
+
+  const [ogolneStatystyki, setOgolneStatystyki] = useState<Ogolne>([]);
+
+  //KONIEC STATYSTYKI
+
   return (
     <FiszkiContext.Provider
       value={{
@@ -109,6 +115,8 @@ export const FiszkiProvider = ({ children }: { children: React.ReactNode }) => {
         setDodajFiszke,
         idEdytowaniejFiszki,
         setIdEdytowanejFiszki,
+        ogolneStatystyki,
+        setOgolneStatystyki,
       }}
     >
       {children}

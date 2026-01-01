@@ -2,7 +2,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { useFonts } from "expo-font";
 import { StatusBar } from "expo-status-bar";
 import FiszkiEdycja from "./Edycja/FiszkiEdycjaEkran.tsx";
-import FiszkiStatystyki from "./Statystyki/FiszkiStatystyki.tsx";
+import FiszkiStatystyki from "./Statystyki/FiszkiStatystykiEkran.tsx";
 import MojeFiszkiEkran from "./UI/MojeFiszkiEkran.tsx";
 
 export default function Index() {

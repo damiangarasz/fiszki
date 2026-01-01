@@ -1,5 +1,5 @@
 import { View } from "react-native";
 
-export default function FiszkiStatystyki() {
+export default function FiszkiStatystykiEkran() {
   return <View></View>;
 }

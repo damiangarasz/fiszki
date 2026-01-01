@@ -1,9 +1,11 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import MojeFiszkiEkranMain from "./MojeFiszkiEkranMain.tsx";
 import WyswietlanieKart from "./WyswietlanieKart.tsx";
+import { useDodawanieStat } from "./hooks/useDodawanieStat.tsx";
 
 export default function FiszkiWyswietlanie() {
   const Stack = createNativeStackNavigator();
+  useDodawanieStat();
 
   return (
     <Stack.Navigator screenOptions={{ headerTintColor: "#9b6b46" }} initialRouteName="Moje Fiszki">

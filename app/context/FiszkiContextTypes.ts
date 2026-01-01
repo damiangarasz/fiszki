@@ -12,6 +12,8 @@ type setFiszki = React.Dispatch<
   >
 >;
 
+export type Ogolne = { value: number; dzien: number; slowka: string[] }[];
+
 export interface FiszkiContextType {
   polskiText: string;
   angielskiText: string;
@@ -50,4 +52,6 @@ export interface FiszkiContextType {
   setDodajFiszke: React.Dispatch<boolean>;
   idEdytowaniejFiszki: string;
   setIdEdytowanejFiszki: React.Dispatch<React.SetStateAction<string>>;
+  ogolneStatystyki: Ogolne;
+  setOgolneStatystyki: React.Dispatch<React.SetStateAction<Ogolne>>;
 }
