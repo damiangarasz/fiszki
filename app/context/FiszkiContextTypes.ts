@@ -7,12 +7,19 @@ type setFiszki = React.Dispatch<
   React.SetStateAction<
     {
       key: string;
-      lista: { id: string; polski: string; angielski: string; kontekst: string; waga: number }[];
+      lista: {
+        id: string;
+        polski: string;
+        angielski: string;
+        kontekst: string;
+        waga: number;
+        znamNieZnam: number;
+      }[];
     }[]
   >
 >;
 
-export type Ogolne = {data: number[]; dzienTygodnia: number; slowka: string[] }[];
+export type Ogolne = { data: number[]; dzienTygodnia: number; slowka: string[] }[];
 
 export interface FiszkiContextType {
   polskiText: string;

@@ -1,4 +1,6 @@
-export function dodawanieStat(setOgolneStatystyki, angielskiText) {
+import { dodawanieStatArg } from "./utilitiesTypes.ts";
+
+export function dodawanieStat({ setOgolneStatystyki, angielskiText, num }: dodawanieStatArg) {
   const date = new Date();
   const day = date.getDay();
   const data = date.getDate();
@@ -13,7 +15,7 @@ export function dodawanieStat(setOgolneStatystyki, angielskiText) {
     if (findIndex != -1) {
       const arrOfObj = prev.map((obj, index) => {
         if (findIndex == index) {
-          return { ...obj, slowka: [...obj.slowka, angielskiText] };
+          return { ...obj, slowka: [...obj.slowka, angielskiText]};
         } else {
           return obj;
         }
@@ -23,7 +25,10 @@ export function dodawanieStat(setOgolneStatystyki, angielskiText) {
       if (prev.length >= 30) {
         const sliced = prev.slice(1);
 
-        return [...sliced, { data: pelnaData, dzienTygodnia: day, slowka: [angielskiText] }];
+        return [
+          ...sliced,
+          { data: pelnaData, dzienTygodnia: day, slowka: [angielskiText] },
+        ];
       } else {
         return [...prev, { data: pelnaData, dzienTygodnia: day, slowka: [angielskiText] }];
       }

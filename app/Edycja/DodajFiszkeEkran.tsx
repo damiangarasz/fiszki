@@ -55,6 +55,7 @@ export default function DodajFiszkeEkran() {
                   angielski: angielskiText,
                   kontekst: kontekstText,
                   waga: 1,
+                  znamNieZnam: 0,
                 },
               ],
             };
@@ -75,7 +76,8 @@ export default function DodajFiszkeEkran() {
         placeholder="polski"
         value={polskiText}
         placeholderTextColor="#9ca3af"
-        className="bg-white shadow-xl h-10 w-[75%] mx-auto my-5"
+        className="bg-white shadow-xl h-10 w-[75%] mx-auto my-5 p-2"
+        style={{ color: "black" }}
         onChangeText={setPolskiText}
         maxLength={25}
       />
@@ -83,7 +85,8 @@ export default function DodajFiszkeEkran() {
         placeholder="angielski"
         value={angielskiText}
         placeholderTextColor="#9ca3af"
-        className="bg-white shadow-xl h-10 w-[75%] mx-auto my-5"
+        className="bg-white shadow-xl h-10 w-[75%] mx-auto my-5 p-2"
+        style={{ color: "black" }}
         onChangeText={setAngielskiText}
         maxLength={25}
       />
@@ -91,10 +94,12 @@ export default function DodajFiszkeEkran() {
         placeholder="kontekst"
         value={kontekstText}
         placeholderTextColor="#9ca3af"
+        textAlignVertical="top"
         onChangeText={setKontekstText}
+        style={{ color: "black" }}
         maxLength={200}
         multiline={true}
-        className="bg-white shadow-xl h-28 w-[75%] mx-auto my-5"
+        className="bg-white shadow-xl h-28 w-[75%] mx-auto my-5 p-2"
       />
       <View className="flex-row justify-around my-1">
         <Pressable
