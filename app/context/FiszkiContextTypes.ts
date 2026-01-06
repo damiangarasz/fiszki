@@ -12,7 +12,7 @@ type setFiszki = React.Dispatch<
   >
 >;
 
-export type Ogolne = { value: number; dzien: number; slowka: string[] }[];
+export type Ogolne = {data: number[]; dzienTygodnia: number; slowka: string[] }[];
 
 export interface FiszkiContextType {
   polskiText: string;

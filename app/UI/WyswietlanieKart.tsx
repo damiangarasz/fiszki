@@ -4,6 +4,7 @@ import { Image, Pressable, Text, View } from "react-native";
 import Animated, { useAnimatedStyle, useSharedValue, withTiming } from "react-native-reanimated";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useFiszki } from "../context/FiszkiContext";
+import { dodawanieStat } from "./utilities/dodawanieStat";
 
 export default function WyswietlanieKart() {
   const {
@@ -22,6 +23,9 @@ export default function WyswietlanieKart() {
     setBack,
     setFront,
     setWybranaFiszka,
+    ogolneStatystyki,
+    setOgolneStatystyki,
+    angielskiText,
   } = useFiszki();
 
   const [historia, setHistoria] = useState<string[]>([]);
@@ -309,6 +313,7 @@ export default function WyswietlanieKart() {
           <Pressable
             className="w-[30vw] h-16  bg-[#e1eed4] border-2 border-[#53985d] rounded-full shadow-xl"
             onPress={() => {
+              dodawanieStat(ogolneStatystyki, setOgolneStatystyki, angielskiText);
               losowanieFiszki();
               zmianaWagi("znam");
               if (flipped) {
@@ -322,6 +327,7 @@ export default function WyswietlanieKart() {
           <Pressable
             className="w-[30vw] h-16 bg-[#d7e8f8] border-2 border-[#71a5d7] rounded-full shadow-xl"
             onPress={() => {
+              dodawanieStat(ogolneStatystyki, setOgolneStatystyki, angielskiText);
               losowanieFiszki();
               zmianaWagi("troche");
               if (flipped) {
@@ -337,6 +343,7 @@ export default function WyswietlanieKart() {
           <Pressable
             className="w-[30vw] h-16 bg-[#f9d5d5] border-2 border-[#a82b2d] rounded-full shadow-xl"
             onPress={() => {
+              dodawanieStat(ogolneStatystyki, setOgolneStatystyki, angielskiText);
               losowanieFiszki();
               zmianaWagi("nieZnam");
               if (flipped) {
