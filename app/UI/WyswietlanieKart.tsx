@@ -258,7 +258,7 @@ export default function WyswietlanieKart() {
             <View className="realtive m-auto w-[90vw] h-[50vh]">
               <Animated.View
                 style={[backStyle]}
-                className={`absolute w-[100%] h-[100%] shadow-xl border rounded-xl`}
+                className={`absolute w-[100%] h-[100%] border rounded-xl`}
               >
                 <LinearGradient
                   colors={["#cdebc7", "#fdedb2"]}
@@ -279,7 +279,7 @@ export default function WyswietlanieKart() {
               </Animated.View>
               <Animated.View
                 style={[frontStyle]}
-                className={`absolute w-[100%] h-[100%] shadow-xl border rounded-xl`}
+                className={`absolute w-[100%] h-[100%] border rounded-xl`}
               >
                 <LinearGradient
                   colors={["#b6d1b0", "#fddfb2"]}

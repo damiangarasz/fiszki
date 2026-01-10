@@ -76,7 +76,9 @@ export const FiszkiProvider = ({ children }: { children: React.ReactNode }) => {
 
   //STATYSTYKI
 
-  const [ogolneStatystyki, setOgolneStatystyki] = useState<Ogolne>([]);
+  const [ogolneStatystyki, setOgolneStatystyki] = useState<Ogolne>([
+    { data: [7, 0], dzienTygodnia: 3, slowka: ["lol", "nic"] },
+  ]);
 
   //KONIEC STATYSTYKI
 

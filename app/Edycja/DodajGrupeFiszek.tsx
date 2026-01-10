@@ -21,9 +21,10 @@ export default function DodajGrupeFiszek({ navigation }: MainScreenNavigationPro
     <View className="rounded-xl w-[75%] h-[45%] my-3 mx-auto shadow-xl bg-[#faf4e8]">
       <Text className="mx-auto text-2xl text-center">Wpipsz swoją nazwę zestawu fiszek.</Text>
       <TextInput
-        className="bg-white shadow-xl h-10 w-[75%] m-auto"
+        className="bg-white shadow-xl h-10 w-[75%] m-auto my-5 p-2"
         placeholder="Twoja nazwa"
         placeholderTextColor="#9ca3af"
+        style={{ color: "black" }}
         onChangeText={setNazwaFiszki}
         maxLength={25}
       />
