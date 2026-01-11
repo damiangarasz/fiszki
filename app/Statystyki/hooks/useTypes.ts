@@ -4,6 +4,4 @@ export type useStatystykiReturn = {
   miesiac: number[];
 };
 
-export type lastSevenDays = { value: number; label: string }[];
-export type bestDayOfTheWeek = number[];
-export type month = number[];
+export type statType = { value: number; label: string }[];
