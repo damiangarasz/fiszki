@@ -76,7 +76,9 @@ export const FiszkiProvider = ({ children }: { children: React.ReactNode }) => {
 
   //STATYSTYKI
 
-  const [ogolneStatystyki, setOgolneStatystyki] = useState<Ogolne>([]);
+  const [ogolneStatystyki, setOgolneStatystyki] = useState<Ogolne>([
+    { data: [11, 5, 2025], dzienTygodnia: 4, slowka: ["dagmara", "cep"] },
+  ]);
   const [isLoadedStaty, setIsLoadedStaty] = useState(false);
 
   // odczyt statystyk z perm memory i zaps w setFiszki
@@ -111,7 +113,7 @@ export const FiszkiProvider = ({ children }: { children: React.ReactNode }) => {
       }
     };
     storeData();
-  }, [fiszki]);
+  }, [ogolneStatystyki]);
 
   //KONIEC STATYSTYKI
 

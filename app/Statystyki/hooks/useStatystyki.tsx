@@ -25,7 +25,9 @@ export default function useStatystyki() {
       ]);
     }
 
+    if (ogolneStatystyki.length == 0) return;
     const slicedData = ogolneStatystyki.slice(-7);
+    console.log(JSON.stringify(slicedData, null, 2));
     const preparedData = slicedData.map((data): [string, number] => {
       return [`${data.data[0]}-${data.data[1]}-${data.data[2]}`, data.slowka.length];
     });
@@ -43,6 +45,7 @@ export default function useStatystyki() {
     setLastSevenDays(finalArr.reverse());
   }, [ogolneStatystyki]);
   const bestDayOfTheWeekFn = useCallback(() => {
+    if (ogolneStatystyki.length == 0) return;
     const extractionArray = ogolneStatystyki.map((obj) => {
       return [obj.dzienTygodnia, obj.slowka.length];
     });
@@ -61,6 +64,7 @@ export default function useStatystyki() {
   }, [ogolneStatystyki]);
 
   const monthFn = useCallback(() => {
+    if (ogolneStatystyki.length == 0) return;
     const sliced = ogolneStatystyki.slice(-30);
 
     const data = new Date();
