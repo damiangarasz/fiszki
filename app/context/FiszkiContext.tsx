@@ -76,9 +76,42 @@ export const FiszkiProvider = ({ children }: { children: React.ReactNode }) => {
 
   //STATYSTYKI
 
-  const [ogolneStatystyki, setOgolneStatystyki] = useState<Ogolne>([
-    { data: [7, 0, 2025], dzienTygodnia: 3, slowka: ["lol", "nic"] },
-  ]);
+  const [ogolneStatystyki, setOgolneStatystyki] = useState<Ogolne>([]);
+  const [isLoadedStaty, setIsLoadedStaty] = useState(false);
+
+  // odczyt statystyk z perm memory i zaps w setFiszki
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const jsonValue = await AsyncStorage.getItem("staty");
+        if (jsonValue) {
+          const parsed = JSON.parse(jsonValue);
+          setOgolneStatystyki(parsed);
+        }
+      } catch (e) {
+        console.error("Error reading staty", e);
+      } finally {
+        setIsLoadedStaty(true);
+      }
+    };
+    getData();
+  }, []);
+
+  //zapis statystyk w perm memory
+  useEffect(() => {
+    if (!ogolneStatystyki) return;
+    if (!isLoadedStaty) return;
+
+    const storeData = async () => {
+      try {
+        const jsonValue = JSON.stringify(ogolneStatystyki);
+        await AsyncStorage.setItem("staty", jsonValue);
+      } catch (e) {
+        console.error("Error saving staty", e);
+      }
+    };
+    storeData();
+  }, [fiszki]);
 
   //KONIEC STATYSTYKI
 
