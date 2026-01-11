@@ -4,6 +4,6 @@ export type useStatystykiReturn = {
   miesiac: number[];
 };
 
-export type lastSevenDays = { ilePrzerobionychFiszek: number; dzienTygodnia: string }[];
+export type lastSevenDays = { value: number; label: string }[];
 export type bestDayOfTheWeek = number[];
 export type month = number[];

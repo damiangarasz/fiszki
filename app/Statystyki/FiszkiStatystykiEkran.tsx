@@ -6,7 +6,6 @@ import useStatystyki  from "./hooks/useStatystyki.tsx"
 export default function FiszkiStatystykiEkran() {
   const Stack = createStackNavigator<StackParamList>();
 
-  const {} = useStatystyki();
 
   return (
     <Stack.Navigator screenOptions={{}} initialRouteName="Staty">

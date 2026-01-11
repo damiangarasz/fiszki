@@ -16,30 +16,30 @@ export default function useStatystyki() {
       // populuje tablicę datami, z ostatnich 7 dni w formacie [dzien, miesiąc, dzień tygodnia od 0-6]
       const lastSevenDays = [];
       const data = new Date();
-      const day = data.getDate();
       for (let n = 0; n < 7; n++) {
-        data.setDate(day - n);
-        lastSevenDays.push([data.getDate(), data.getMonth(), data.getDay()]);
+        //romie kopię żeby nie mutowac danych
+        const tempDate = new Date(data);
+        tempDate.setDate(tempDate.getDate() - n);
+        lastSevenDays.push([tempDate.getDate(), tempDate.getMonth(), tempDate.getDay()]);
       }
 
-      //TODO tu jestem
       const slicedData = ogolneStatystyki.slice(-7);
-      //tu muszę pzreszukać po całej tablicy dni i każdy dzień porównać z całą tablicą dni w memory, każdy dzień z każdym, jeśli pasuje to obiekt pełen, jeżeli nie ma dopasowania to oddaje obiekt z 0 przerobionymi fiszkami
+      //tu muszę przeszukać po całej tablicy dni i każdy dzień porównać z całą tablicą dni w memory, każdy dzień z każdym, jeśli pasuje to obiekt pełen, jeżeli nie ma dopasowania to oddaje obiekt z 0 przerobionymi fiszkami
       const finalArr = lastSevenDays.map((day, index) => {
         const temp = slicedData.map((dayInMemory) => {
           if (day[0] == dayInMemory.data[0] && day[1] == dayInMemory.data[1]) {
             return {
-              ilePrzerobionychFiszek: dayInMemory.slowka.length,
-              dzienTygodnia: dayOfTheWeek[dayInMemory.dzienTygodnia],
+              value: dayInMemory.slowka.length,
+              label: dayOfTheWeek[dayInMemory.dzienTygodnia],
             };
           } else {
-            return { ilePrzerobionychFiszek: 0, dzienTygodnia: dayOfTheWeek[day[2]] };
+            return { value: 0, label: dayOfTheWeek[day[2]] };
           }
         });
         return temp;
       });
 
-      return finalArr;
+      return finalArr.flat().reverse();
     });
   }, []);
   const bestDayOfTheWeekFn = useCallback(() => {}, []);
