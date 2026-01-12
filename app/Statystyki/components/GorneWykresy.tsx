@@ -35,7 +35,7 @@ export default function GorneWykresy() {
           />
         ) : (
           <></>
-        )}{" "}
+        )}
         {chartNajlepszyDzien ? (
           <BarChart
             width={szerokoscChartu}
