@@ -9,7 +9,7 @@ export default function useStatystyki() {
 
   const [lastSevenDays, setLastSevenDays] = useState<statType>([]);
   const [bestDayOfTheWeek, setBestDayOfTheWeek] = useState<statType>([]);
-  const [month, setMonth] = useState<number[]>([]);
+  const [month, setMonth] = useState<{ value: number }[]>([]);
 
   const lastSevenDaysFn = useCallback(() => {
     // populuje tablicę datami, z ostatnich 7 dni w formacie [[dzien-miesiąc-rok], dzień tygodnia]
@@ -82,13 +82,13 @@ export default function useStatystyki() {
       return [dataString, data.slowka.length];
     });
 
-    const finalArr = lastMonthData.reverse().map((data): number => {
+    const finalArr = lastMonthData.reverse().map((data): { value: number } => {
       const isData = dataValueArr.find((element) => element[0] == data);
 
       if (isData) {
-        return isData[1];
+        return { value: isData[1] };
       } else {
-        return 0;
+        return { value: 0 };
       }
     });
     setMonth(finalArr);
