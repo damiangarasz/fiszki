@@ -5,6 +5,7 @@ import Animated, { useAnimatedStyle, useSharedValue, withTiming } from "react-na
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useFiszki } from "../context/FiszkiContext";
 import { dodawanieStat } from "./utilities/dodawanieStat";
+import zamianaZnamNieZnam from "./utilities/zmianaZnamNieZnam.tsx";
 
 export default function WyswietlanieKart() {
   const {
@@ -313,6 +314,7 @@ export default function WyswietlanieKart() {
           <Pressable
             className="w-[30vw] h-16  bg-[#e1eed4] border-2 border-[#53985d] rounded-full shadow-xl"
             onPress={() => {
+              zamianaZnamNieZnam({ param: 2, setFiszki, indexFiszek, indexX });
               dodawanieStat({ setOgolneStatystyki, angielskiText, num: 2 });
               losowanieFiszki();
               zmianaWagi("znam");
@@ -327,6 +329,7 @@ export default function WyswietlanieKart() {
           <Pressable
             className="w-[30vw] h-16 bg-[#d7e8f8] border-2 border-[#71a5d7] rounded-full shadow-xl"
             onPress={() => {
+              zamianaZnamNieZnam({ param: 1, setFiszki, indexFiszek, indexX });
               dodawanieStat({ setOgolneStatystyki, angielskiText, num: 1 });
               losowanieFiszki();
               zmianaWagi("troche");
@@ -343,6 +346,7 @@ export default function WyswietlanieKart() {
           <Pressable
             className="w-[30vw] h-16 bg-[#f9d5d5] border-2 border-[#a82b2d] rounded-full shadow-xl"
             onPress={() => {
+              zamianaZnamNieZnam({ param: 0, setFiszki, indexFiszek, indexX });
               dodawanieStat({ setOgolneStatystyki, angielskiText, num: 0 });
               losowanieFiszki();
               zmianaWagi("nieZnam");
