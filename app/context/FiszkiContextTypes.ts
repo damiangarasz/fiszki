@@ -1,4 +1,4 @@
-type fiszki = {
+export type fiszki = {
   key: string;
   lista: {
     id: string;
