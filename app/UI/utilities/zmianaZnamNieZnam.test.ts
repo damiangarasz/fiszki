@@ -23,6 +23,27 @@ const stanPoczatkowy: fiszki = [
       },
     ],
   },
+  {
+    key: "Inny zestaw",
+    lista: [
+      {
+        id: "109j=sd",
+        polski: "kot",
+        angielski: "cat",
+        kontekst: "",
+        waga: 0.5,
+        znamNieZnam: 0,
+      },
+      {
+        id: "2aasd",
+        polski: "pies",
+        angielski: "dog",
+        kontekst: "",
+        waga: 1,
+        znamNieZnam: 1,
+      },
+    ],
+  },
 ];
 
 describe("Funkcja ZamianaZnamNieZNam", () => {
@@ -41,6 +62,7 @@ describe("Funkcja ZamianaZnamNieZNam", () => {
 
     expect(wynik[0].lista[0].znamNieZnam).toBe(2);
     expect(wynik[0].lista[1].znamNieZnam).toBe(1);
+    expect(wynik[1]).toBe(stanPoczatkowy[1]);
     expect(wynik).not.toBe(stanPoczatkowy);
   });
 
@@ -50,16 +72,24 @@ describe("Funkcja ZamianaZnamNieZNam", () => {
       param: 2,
       setFiszki: mockSetFiszki,
       fiszki: stanPoczatkowy,
-      indexFiszek: 1,
+      indexFiszek: 2, //zły index, nie ma nic na indeksie 1
       indexX: 0,
     });
 
-    const funkcjaAktualizujaca = mockSetFiszki.mock.calls[0][0];
-    const wynik = funkcjaAktualizujaca(stanPoczatkowy);
+    expect(mockSetFiszki).not.toHaveBeenCalled();
+  });
 
-    expect(wynik[0].lista[0].znamNieZnam).toBe(0);
-    expect(wynik[0].lista[1].znamNieZnam).toBe(1);
-    expect(wynik[1]).toBe(undefined);
+  it("nie powinno zmienić stanu jezeli podaje zły index fiszki w zestawie fiszek", () => {
+    const mockSetFiszki = jest.fn();
+    zamianaZnamNieZnam({
+      param: 2,
+      setFiszki: mockSetFiszki,
+      fiszki: stanPoczatkowy,
+      indexFiszek: 0,
+      indexX: 3, //zły index, nie ma nic na indeksie 3
+    });
+
+    expect(mockSetFiszki).not.toHaveBeenCalled();
   });
 
   it("nie powinna zmienić znam nie znam jeżeli jest podana zła wartość", () => {
@@ -72,9 +102,18 @@ describe("Funkcja ZamianaZnamNieZNam", () => {
       indexX: 0,
     });
 
-    const funkcjaAktualizujaca = mockSetFiszki.mock.calls[0][0];
-    const wynik2 = funkcjaAktualizujaca(stanPoczatkowy);
+    expect(mockSetFiszki).not.toHaveBeenCalled();
+  });
 
-    expect(wynik2[0].lista[0].znamNieZnam).toBe(0);
+  it("nie powinno wykonać akcji jeżeli setFiszki nie jest funkcją", () => {
+    const zlySetter = "lol" as any;
+
+    zamianaZnamNieZnam({
+      param: 1,
+      setFiszki: zlySetter,
+      fiszki: stanPoczatkowy,
+      indexFiszek: 0,
+      indexX: 0,
+    });
   });
 });
