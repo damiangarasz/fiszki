@@ -1,4 +1,4 @@
-import {setFiszki} from "../../context/FiszkiContextTypes.ts"
+import { fiszki, setFiszki } from "../../context/FiszkiContextTypes.ts";
 
 type Ogolne = { data: number[]; dzienTygodnia: number; slowka: string[] }[];
 
@@ -11,6 +11,7 @@ export type dodawanieStatArg = {
 export type zmianaZnamNieZnamParam = {
   param: number;
   setFiszki: setFiszki;
+  fiszki: fiszki;
   indexFiszek: number;
-  indexX: number; 
+  indexX: number;
 };

@@ -28,7 +28,13 @@ const stanPoczatkowy: fiszki = [
 describe("Funkcja ZamianaZnamNieZNam", () => {
   it("powinna poprawnie zmienić status wybranej fiszki", () => {
     const mockSetFiszki = jest.fn();
-    zamianaZnamNieZnam({ param: 2, setFiszki: mockSetFiszki, indexFiszek: 0, indexX: 0 });
+    zamianaZnamNieZnam({
+      param: 2,
+      setFiszki: mockSetFiszki,
+      fiszki: stanPoczatkowy,
+      indexFiszek: 0,
+      indexX: 0,
+    });
 
     const funkcjaAktualizujaca = mockSetFiszki.mock.calls[0][0];
     const wynik = funkcjaAktualizujaca(stanPoczatkowy);
@@ -40,7 +46,13 @@ describe("Funkcja ZamianaZnamNieZNam", () => {
 
   it("nie powinna zmienić stanu jeżeli jest podany błędny index", () => {
     const mockSetFiszki = jest.fn();
-    zamianaZnamNieZnam({ param: 2, setFiszki: mockSetFiszki, indexFiszek: 1, indexX: 0 });
+    zamianaZnamNieZnam({
+      param: 2,
+      setFiszki: mockSetFiszki,
+      fiszki: stanPoczatkowy,
+      indexFiszek: 1,
+      indexX: 0,
+    });
 
     const funkcjaAktualizujaca = mockSetFiszki.mock.calls[0][0];
     const wynik = funkcjaAktualizujaca(stanPoczatkowy);
@@ -52,7 +64,13 @@ describe("Funkcja ZamianaZnamNieZNam", () => {
 
   it("nie powinna zmienić znam nie znam jeżeli jest podana zła wartość", () => {
     const mockSetFiszki = jest.fn();
-    zamianaZnamNieZnam({ param: 4, setFiszki: mockSetFiszki, indexFiszek: 0, indexX: 0 });
+    zamianaZnamNieZnam({
+      param: 4,
+      setFiszki: mockSetFiszki,
+      fiszki: stanPoczatkowy,
+      indexFiszek: 0,
+      indexX: 0,
+    });
 
     const funkcjaAktualizujaca = mockSetFiszki.mock.calls[0][0];
     const wynik2 = funkcjaAktualizujaca(stanPoczatkowy);
