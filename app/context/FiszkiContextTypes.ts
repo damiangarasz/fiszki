@@ -1,9 +1,16 @@
-type fiszki = {
+export type fiszki = {
   key: string;
-  lista: { id: string; polski: string; angielski: string; kontekst: string; waga: number }[];
+  lista: {
+    id: string;
+    polski: string;
+    angielski: string;
+    kontekst: string;
+    waga: number;
+    znamNieZnam: number;
+  }[];
 }[];
 
-type setFiszki = React.Dispatch<
+export type setFiszki = React.Dispatch<
   React.SetStateAction<
     {
       key: string;

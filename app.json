@@ -2,7 +2,7 @@
   "expo": {
     "name": "fiszki",
     "slug": "fiszki",
-    "version": "1.0.8",
+    "version": "1.0.9",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "fiszki",
@@ -19,7 +19,7 @@
       "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": false,
       "package": "com.damiangarasz.fiszki",
-      "versionCode": 8,
+      "versionCode": 9,
       "permissions": [],
       "minSdkVersion": 22
     },
