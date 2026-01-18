@@ -5,7 +5,10 @@ import Animated, { useAnimatedStyle, useSharedValue, withTiming } from "react-na
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useFiszki } from "../context/FiszkiContext";
 import { dodawanieStat } from "./utilities/dodawanieStat";
+import losowanieIndexuFiszki from "./utilities/losowanieIndexuFiszki.tsx";
+import sprawdzanieHistoriiFiszek from "./utilities/sprawdzanieHistoriiFiszek.tsx";
 import zamianaZnamNieZnam from "./utilities/zmianaZnamNieZnam.tsx";
+import wybranieFiszkiNaPodstawieHistorii from "./utilities/wybranieFiszkiNaPodstawieHistorii.tsx"
 
 export default function WyswietlanieKart() {
   const {
@@ -32,47 +35,17 @@ export default function WyswietlanieKart() {
   const [historia, setHistoria] = useState<string[]>([]);
   const [jeszczeRazLOL, setJeszczeRazLOL] = useState(false);
 
+  const randomNum = Math.random();
+  const index = losowanieIndexuFiszki({ fiszki, indexFiszek, randomNum });
+  const sprHistorii = sprawdzanieHistoriiFiszek({ historia, fiszki, indexFiszek, index });
+  wybranieFiszkiNaPodstawieHistorii()
+
+  
   //funkcja losująca z tabliczki uwzględniająca wagę, sumuje każdą wagę a później wybiera losując między 0 a suma wszystkich wag i wypycha pierwsze zadanie które jest większe od wylosowanej liczby
   function losowanieFiszki() {
     //wybieranie fiszki na podstawie wagi:
-    if (fiszki[indexFiszek] == undefined) return;
-    let sum = 0;
-    let accumulatedArray = [];
 
-    for (let n of fiszki[indexFiszek].lista) {
-      sum += n.waga;
-      accumulatedArray.push(sum);
-    }
-
-    const rand = Math.random() * sum;
-    const index = accumulatedArray.findIndex((value) => rand < value);
-
-    //sprawdzanie historii
-    if (fiszki[indexFiszek].lista.length <= 5) {
-      //jeżeli fiszek jest mniej niż 5 zwracaj wylosowaną fiszkę
-      setIndexX(index);
-      setWybranaFiszka(fiszki[indexFiszek].lista[index]);
-    } else if (historia.includes(fiszki[indexFiszek].lista[index].polski)) {
-      //fiszka sie powtarza losowanie nowej fiszki:
-      setSwitchTaFiszkaJuzByla((prev) => !prev);
-      return;
-    } else {
-      //fiszki nie ma w historii:
-      //puszowanie wyboru do historii
-      setHistoria((prev) => {
-        const noMutable = [...prev];
-        if (noMutable.length >= 5) {
-          noMutable.shift();
-        }
-
-        const never = fiszki[indexFiszek].lista[index].polski;
-        noMutable.push(never);
-
-        return noMutable;
-      });
-      setIndexX(index);
-      setWybranaFiszka(fiszki[indexFiszek].lista[index]);
-    }
+    
 
     const konFlip = Math.floor(Math.random() * 2);
 

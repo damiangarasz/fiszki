@@ -15,3 +15,16 @@ export type zmianaZnamNieZnamParam = {
   indexFiszek: number;
   indexX: number;
 };
+
+export type losowanieIndexuFiszkiProp = {
+  fiszki: fiszki;
+  indexFiszek: number;
+  randomNum: number;
+};
+
+export type sprawdzanieHistoriiFiszekProp = {
+  historia: string[];
+  fiszki: fiszki;
+  indexFiszek: number;
+  index: number;
+};

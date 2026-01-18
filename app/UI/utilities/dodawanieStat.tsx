@@ -1,5 +1,6 @@
 import { dodawanieStatArg } from "./utilitiesTypes.ts";
 
+//NOT PURE!!!
 export function dodawanieStat({ setOgolneStatystyki, angielskiText, num }: dodawanieStatArg) {
   const date = new Date();
   const day = date.getDay();
