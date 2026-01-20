@@ -17,6 +17,7 @@ export default function WyswietlanieKart() {
     indexFiszek,
     jakiZestawDoWyswietlenia,
     setSwitchTaFiszkaJuzByla,
+    switchTaFiszkaJuzByla,
     indexX,
     setFiszki,
     setOpcjeJezyk,
@@ -34,27 +35,7 @@ export default function WyswietlanieKart() {
   } = useFiszki();
 
   const [historia, setHistoria] = useState<string[]>([]);
-  const [jeszczeRazLOL, setJeszczeRazLOL] = useState(false);
-
-  useEffect(() => {
-    const randomNum = Math.random();
-    const index = losowanieIndexuFiszki({ fiszki, indexFiszek, randomNum });
-
-    //sprawdzenia historii
-    const sprHistorii = sprawdzanieHistoriiFiszek({ historia, fiszki, indexFiszek, index });
-
-    //ustawia settery setIndexX setWybranaFiszka setSwitchTaFiszkaJuzByla setHistoria
-    wybranieFiszkiNaPodstawieHistorii({
-      fiszki,
-      indexFiszek,
-      setIndexX,
-      setWybranaFiszka,
-      setHistoria,
-      setSwitchTaFiszkaJuzByla,
-      sprHistorii,
-      index,
-    });
-  }, []);
+  const [triggerReload, setTriggerReload] = useState(false);
 
   useEffect(() => {
     const randomNum = Math.random();
@@ -64,7 +45,7 @@ export default function WyswietlanieKart() {
       setFront,
       setBack,
       wybranaFiszka,
-      setJeszczeRazLOL,
+      setTriggerReload,
     });
   }, [wybranaFiszka]);
 
@@ -86,7 +67,7 @@ export default function WyswietlanieKart() {
       sprHistorii,
       index,
     });
-  }, [jeszczeRazLOL]);
+  }, [triggerReload, switchTaFiszkaJuzByla]);
 
   //Rotownaie kart
   const rotation = useSharedValue(0);
@@ -288,7 +269,7 @@ export default function WyswietlanieKart() {
             onPress={() => {
               zamianaZnamNieZnam({ param: 2, setFiszki, fiszki, indexFiszek, indexX });
               dodawanieStat({ setOgolneStatystyki, angielskiText, num: 2 });
-              setJeszczeRazLOL((prev) => !prev);
+              setTriggerReload((prev) => !prev);
               zmianaWagi("znam");
               if (flipped) {
                 rotation.value = 0;
@@ -303,7 +284,7 @@ export default function WyswietlanieKart() {
             onPress={() => {
               zamianaZnamNieZnam({ param: 1, setFiszki, fiszki, indexFiszek, indexX });
               dodawanieStat({ setOgolneStatystyki, angielskiText, num: 1 });
-              setJeszczeRazLOL((prev) => !prev);
+              setTriggerReload((prev) => !prev);
               zmianaWagi("troche");
               if (flipped) {
                 rotation.value = 0;
@@ -320,7 +301,7 @@ export default function WyswietlanieKart() {
             onPress={() => {
               zamianaZnamNieZnam({ param: 0, setFiszki, fiszki, indexFiszek, indexX });
               dodawanieStat({ setOgolneStatystyki, angielskiText, num: 0 });
-              setJeszczeRazLOL((prev) => !prev);
+              setTriggerReload((prev) => !prev);
               zmianaWagi("nieZnam");
               if (flipped) {
                 rotation.value = 0;

@@ -6,7 +6,7 @@ export function wypelnianieKartSlowami({
   setFront,
   setBack,
   wybranaFiszka,
-  setJeszczeRazLOL,
+  setTriggerReload,
 }: wypelnianieKartSlowamiParam) {
   const konFlip = Math.floor(randomNum * 2);
 
@@ -42,6 +42,6 @@ export function wypelnianieKartSlowami({
     }
   }
   if (wybranaFiszka?.polski == "") {
-    setJeszczeRazLOL((prev: boolean) => !prev);
+    setTriggerReload((prev: boolean) => !prev);
   }
 }
