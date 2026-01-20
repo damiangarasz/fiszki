@@ -6,7 +6,7 @@ export default function losowanieIndexuFiszki({
   indexFiszek,
   randomNum,
 }: losowanieIndexuFiszkiProp) {
-  if (fiszki[indexFiszek] == undefined) return 0;
+  if (!fiszki || fiszki[indexFiszek] == undefined) return 0;
   let sum = 0;
   let accumulatedArray = [];
 
