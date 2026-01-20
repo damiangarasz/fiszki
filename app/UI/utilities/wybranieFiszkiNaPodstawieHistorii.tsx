@@ -1,5 +1,13 @@
-export function aktualizujHistorie() {
-  //TODO jestem tutaj
+import { wybranieFiszkiNaPodstawieHistoriiProp } from "./utilitiesTypes.ts";
+
+export function aktualizujHistorie(prev: string[], slowko: string) {
+  const noMutable = [...prev];
+  if (noMutable.length >= 5) {
+    noMutable.shift();
+  }
+
+  noMutable.push(slowko);
+  return noMutable;
 }
 
 export default function wybranieFiszkiNaPodstawieHistorii({
@@ -11,21 +19,16 @@ export default function wybranieFiszkiNaPodstawieHistorii({
   setSwitchTaFiszkaJuzByla,
   sprHistorii,
   index,
-}) {
+}: wybranieFiszkiNaPodstawieHistoriiProp) {
   if (fiszki[indexFiszek].lista.length <= 5) {
     setIndexX(index);
     setWybranaFiszka(fiszki[indexFiszek].lista[index]);
   } else if (sprHistorii == false) {
-    setHistoria((prev) => {
-      const noMutable = [...prev];
-      if (noMutable.length >= 5) {
-        noMutable.shift();
-      }
+    setHistoria((prev: string[]) => {
+      const slowko = fiszki[indexFiszek].lista[index].polski;
+      const tablica = aktualizujHistorie(prev, slowko);
 
-      const never = fiszki[indexFiszek].lista[index].polski;
-      noMutable.push(never);
-
-      return noMutable;
+      return tablica;
     });
     setIndexX(index);
     setWybranaFiszka(fiszki[indexFiszek].lista[index]);

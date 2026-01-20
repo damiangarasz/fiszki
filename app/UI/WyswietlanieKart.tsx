@@ -7,8 +7,8 @@ import { useFiszki } from "../context/FiszkiContext";
 import { dodawanieStat } from "./utilities/dodawanieStat";
 import losowanieIndexuFiszki from "./utilities/losowanieIndexuFiszki.tsx";
 import sprawdzanieHistoriiFiszek from "./utilities/sprawdzanieHistoriiFiszek.tsx";
+import wybranieFiszkiNaPodstawieHistorii from "./utilities/wybranieFiszkiNaPodstawieHistorii.tsx";
 import zamianaZnamNieZnam from "./utilities/zmianaZnamNieZnam.tsx";
-import wybranieFiszkiNaPodstawieHistorii from "./utilities/wybranieFiszkiNaPodstawieHistorii.tsx"
 
 export default function WyswietlanieKart() {
   const {
@@ -38,14 +38,22 @@ export default function WyswietlanieKart() {
   const randomNum = Math.random();
   const index = losowanieIndexuFiszki({ fiszki, indexFiszek, randomNum });
   const sprHistorii = sprawdzanieHistoriiFiszek({ historia, fiszki, indexFiszek, index });
-  wybranieFiszkiNaPodstawieHistorii()
 
-  
+  //ustawia settery setIndexX setWybranaFiszka setSwitchTaFiszkaJuzByla setHistoria
+  wybranieFiszkiNaPodstawieHistorii({
+    fiszki,
+    indexFiszek,
+    setIndexX,
+    setWybranaFiszka,
+    setHistoria,
+    setSwitchTaFiszkaJuzByla,
+    sprHistorii,
+    index,
+  });
+
   //funkcja losująca z tabliczki uwzględniająca wagę, sumuje każdą wagę a później wybiera losując między 0 a suma wszystkich wag i wypycha pierwsze zadanie które jest większe od wylosowanej liczby
   function losowanieFiszki() {
     //wybieranie fiszki na podstawie wagi:
-
-    
 
     const konFlip = Math.floor(Math.random() * 2);
 

@@ -28,3 +28,19 @@ export type sprawdzanieHistoriiFiszekProp = {
   indexFiszek: number;
   index: number;
 };
+
+export type wybranieFiszkiNaPodstawieHistoriiProp = {
+  fiszki: fiszki;
+  indexFiszek: number;
+  setIndexX: React.Dispatch<number>;
+  setWybranaFiszka: React.Dispatch<{
+    id: string;
+    polski: string;
+    angielski: string;
+    kontekst: string;
+  }>;
+  setHistoria: React.Dispatch<React.SetStateAction<string[]>>;
+  setSwitchTaFiszkaJuzByla: React.Dispatch<React.SetStateAction<boolean>>;
+  sprHistorii: boolean;
+  index: number;
+};
