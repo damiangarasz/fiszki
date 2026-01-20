@@ -44,3 +44,12 @@ export type wybranieFiszkiNaPodstawieHistoriiProp = {
   sprHistorii: boolean;
   index: number;
 };
+
+export type wypelnianieKartSlowamiParam = {
+  randomNum: number;
+  opcjeJezyj: string;
+  setFront: React.Dispatch<React.SetStateAction<string>>;
+  setBack: React.Dispatch<React.SetStateAction<string>>;
+  wybranaFiszka: { id: string; polski: string; angielski: string; kontekst: string };
+  setJeszczeRazLOL: React.Dispatch<React.SetStateAction<boolean>>;
+};

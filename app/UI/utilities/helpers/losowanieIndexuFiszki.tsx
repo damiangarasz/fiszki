@@ -1,4 +1,4 @@
-import { losowanieIndexuFiszkiProp } from "./utilitiesTypes.ts";
+import { losowanieIndexuFiszkiProp } from "../utilitiesTypes.ts";
 
 //PURE
 export default function losowanieIndexuFiszki({

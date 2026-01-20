@@ -1,4 +1,4 @@
-import { sprawdzanieHistoriiFiszekProp } from "./utilitiesTypes.ts";
+import { sprawdzanieHistoriiFiszekProp } from "../utilitiesTypes.ts";
 
 export default function sprawdzanieHistoriiFiszek({
   historia,

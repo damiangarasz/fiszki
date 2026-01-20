@@ -1,4 +1,4 @@
-import { dodawanieStatArg } from "./utilitiesTypes.ts";
+import { dodawanieStatArg } from "../utilitiesTypes.ts";
 
 //NOT PURE!!!
 export function dodawanieStat({ setOgolneStatystyki, angielskiText, num }: dodawanieStatArg) {

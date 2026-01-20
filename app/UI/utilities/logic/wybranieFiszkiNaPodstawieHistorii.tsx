@@ -1,4 +1,4 @@
-import { wybranieFiszkiNaPodstawieHistoriiProp } from "./utilitiesTypes.ts";
+import { wybranieFiszkiNaPodstawieHistoriiProp } from "../utilitiesTypes.ts";
 
 export function aktualizujHistorie(prev: string[], slowko: string) {
   const noMutable = [...prev];

@@ -4,11 +4,12 @@ import { Image, Pressable, Text, View } from "react-native";
 import Animated, { useAnimatedStyle, useSharedValue, withTiming } from "react-native-reanimated";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useFiszki } from "../context/FiszkiContext";
-import { dodawanieStat } from "./utilities/dodawanieStat";
-import losowanieIndexuFiszki from "./utilities/losowanieIndexuFiszki.tsx";
-import sprawdzanieHistoriiFiszek from "./utilities/sprawdzanieHistoriiFiszek.tsx";
-import wybranieFiszkiNaPodstawieHistorii from "./utilities/wybranieFiszkiNaPodstawieHistorii.tsx";
-import zamianaZnamNieZnam from "./utilities/zmianaZnamNieZnam.tsx";
+import losowanieIndexuFiszki from "./utilities/helpers/losowanieIndexuFiszki.tsx";
+import sprawdzanieHistoriiFiszek from "./utilities/helpers/sprawdzanieHistoriiFiszek.tsx";
+import { dodawanieStat } from "./utilities/logic/dodawanieStat.tsx";
+import wybranieFiszkiNaPodstawieHistorii from "./utilities/logic/wybranieFiszkiNaPodstawieHistorii.tsx";
+import { wypelnianieKartSlowami } from "./utilities/logic/wypelnianieKartSlowami.tsx";
+import zamianaZnamNieZnam from "./utilities/logic/zmianaZnamNieZnam.tsx";
 
 export default function WyswietlanieKart() {
   const {
@@ -35,66 +36,56 @@ export default function WyswietlanieKart() {
   const [historia, setHistoria] = useState<string[]>([]);
   const [jeszczeRazLOL, setJeszczeRazLOL] = useState(false);
 
-  const randomNum = Math.random();
-  const index = losowanieIndexuFiszki({ fiszki, indexFiszek, randomNum });
-  const sprHistorii = sprawdzanieHistoriiFiszek({ historia, fiszki, indexFiszek, index });
+  useEffect(() => {
+    const randomNum = Math.random();
+    const index = losowanieIndexuFiszki({ fiszki, indexFiszek, randomNum });
 
-  //ustawia settery setIndexX setWybranaFiszka setSwitchTaFiszkaJuzByla setHistoria
-  wybranieFiszkiNaPodstawieHistorii({
-    fiszki,
-    indexFiszek,
-    setIndexX,
-    setWybranaFiszka,
-    setHistoria,
-    setSwitchTaFiszkaJuzByla,
-    sprHistorii,
-    index,
-  });
+    //sprawdzenia historii
+    const sprHistorii = sprawdzanieHistoriiFiszek({ historia, fiszki, indexFiszek, index });
 
-  //funkcja losująca z tabliczki uwzględniająca wagę, sumuje każdą wagę a później wybiera losując między 0 a suma wszystkich wag i wypycha pierwsze zadanie które jest większe od wylosowanej liczby
-  function losowanieFiszki() {
-    //wybieranie fiszki na podstawie wagi:
-
-    const konFlip = Math.floor(Math.random() * 2);
-
-    if (opcjeJezyj == "PL") {
-      setFront(() => {
-        return wybranaFiszka?.angielski;
-      });
-      setBack(() => {
-        return wybranaFiszka?.polski;
-      });
-    } else if (opcjeJezyj == "EN") {
-      setBack(() => {
-        return wybranaFiszka?.angielski;
-      });
-      setFront(() => {
-        return wybranaFiszka?.polski;
-      });
-    } else {
-      if (konFlip == 0) {
-        setFront(() => {
-          return wybranaFiszka?.angielski;
-        });
-        setBack(() => {
-          return wybranaFiszka?.polski;
-        });
-      } else {
-        setBack(() => {
-          return wybranaFiszka?.angielski;
-        });
-        setFront(() => {
-          return wybranaFiszka?.polski;
-        });
-      }
-    }
-    if (wybranaFiszka?.polski == "") {
-      setJeszczeRazLOL((prev) => !prev);
-    }
-  }
+    //ustawia settery setIndexX setWybranaFiszka setSwitchTaFiszkaJuzByla setHistoria
+    wybranieFiszkiNaPodstawieHistorii({
+      fiszki,
+      indexFiszek,
+      setIndexX,
+      setWybranaFiszka,
+      setHistoria,
+      setSwitchTaFiszkaJuzByla,
+      sprHistorii,
+      index,
+    });
+  }, []);
 
   useEffect(() => {
-    losowanieFiszki();
+    const randomNum = Math.random();
+    wypelnianieKartSlowami({
+      randomNum,
+      opcjeJezyj,
+      setFront,
+      setBack,
+      wybranaFiszka,
+      setJeszczeRazLOL,
+    });
+  }, [wybranaFiszka]);
+
+  useEffect(() => {
+    const randomNum = Math.random();
+    const index = losowanieIndexuFiszki({ fiszki, indexFiszek, randomNum });
+
+    //sprawdzenia historii
+    const sprHistorii = sprawdzanieHistoriiFiszek({ historia, fiszki, indexFiszek, index });
+
+    //ustawia settery setIndexX setWybranaFiszka setSwitchTaFiszkaJuzByla setHistoria
+    wybranieFiszkiNaPodstawieHistorii({
+      fiszki,
+      indexFiszek,
+      setIndexX,
+      setWybranaFiszka,
+      setHistoria,
+      setSwitchTaFiszkaJuzByla,
+      sprHistorii,
+      index,
+    });
   }, [jeszczeRazLOL]);
 
   //Rotownaie kart
@@ -297,7 +288,7 @@ export default function WyswietlanieKart() {
             onPress={() => {
               zamianaZnamNieZnam({ param: 2, setFiszki, fiszki, indexFiszek, indexX });
               dodawanieStat({ setOgolneStatystyki, angielskiText, num: 2 });
-              losowanieFiszki();
+              setJeszczeRazLOL((prev) => !prev);
               zmianaWagi("znam");
               if (flipped) {
                 rotation.value = 0;
@@ -312,7 +303,7 @@ export default function WyswietlanieKart() {
             onPress={() => {
               zamianaZnamNieZnam({ param: 1, setFiszki, fiszki, indexFiszek, indexX });
               dodawanieStat({ setOgolneStatystyki, angielskiText, num: 1 });
-              losowanieFiszki();
+              setJeszczeRazLOL((prev) => !prev);
               zmianaWagi("troche");
               if (flipped) {
                 rotation.value = 0;
@@ -329,7 +320,7 @@ export default function WyswietlanieKart() {
             onPress={() => {
               zamianaZnamNieZnam({ param: 0, setFiszki, fiszki, indexFiszek, indexX });
               dodawanieStat({ setOgolneStatystyki, angielskiText, num: 0 });
-              losowanieFiszki();
+              setJeszczeRazLOL((prev) => !prev);
               zmianaWagi("nieZnam");
               if (flipped) {
                 rotation.value = 0;

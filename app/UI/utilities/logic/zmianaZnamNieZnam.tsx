@@ -1,4 +1,4 @@
-import { zmianaZnamNieZnamParam } from "./utilitiesTypes.ts";
+import { zmianaZnamNieZnamParam } from "../utilitiesTypes.ts";
 
 export default function zamianaZnamNieZnam({
   param,

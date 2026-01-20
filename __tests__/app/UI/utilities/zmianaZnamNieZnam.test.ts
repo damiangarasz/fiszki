@@ -1,5 +1,5 @@
 import { fiszki } from "../../../../app/context/FiszkiContextTypes.ts";
-import zamianaZnamNieZnam from "../../../../app/UI/utilities/zmianaZnamNieZnam.tsx";
+import zamianaZnamNieZnam from "../../../../app/UI/utilities/logic/zmianaZnamNieZnam.tsx";
 
 const stanPoczatkowy: fiszki = [
   {

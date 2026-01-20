@@ -1,7 +1,6 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import MojeFiszkiEkranMain from "./MojeFiszkiEkranMain.tsx";
 import WyswietlanieKart from "./WyswietlanieKart.tsx";
-import { dodawanieStat } from "./utilities/dodawanieStat.tsx";
 
 export default function FiszkiWyswietlanie() {
   const Stack = createNativeStackNavigator();
