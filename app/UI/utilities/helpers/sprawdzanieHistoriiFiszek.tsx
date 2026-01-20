@@ -6,8 +6,13 @@ export default function sprawdzanieHistoriiFiszek({
   indexFiszek,
   index,
 }: sprawdzanieHistoriiFiszekProp) {
-  //Jeżeli nie ma fiszki w historii oddaje false
+  //GUARD
+  if (!fiszki?.[indexFiszek]?.lista?.[index]?.polski) {
+    return false;
+  }
+
   if (historia.includes(fiszki[indexFiszek].lista[index].polski)) {
+    //Jeżeli nie ma fiszki w historii oddaje false
     return true;
   } else {
     return false;
