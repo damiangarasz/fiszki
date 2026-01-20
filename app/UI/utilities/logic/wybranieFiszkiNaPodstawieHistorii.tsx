@@ -20,6 +20,8 @@ export default function wybranieFiszkiNaPodstawieHistorii({
   sprHistorii,
   index,
 }: wybranieFiszkiNaPodstawieHistoriiProp) {
+  if (!fiszki?.[indexFiszek]?.lista?.[index]?.polski) return;
+
   if (fiszki[indexFiszek].lista.length <= 5) {
     setIndexX(index);
     setWybranaFiszka(fiszki[indexFiszek].lista[index]);
@@ -32,7 +34,7 @@ export default function wybranieFiszkiNaPodstawieHistorii({
     });
     setIndexX(index);
     setWybranaFiszka(fiszki[indexFiszek].lista[index]);
-  } else if (sprHistorii == true) {
+  } else {
     setSwitchTaFiszkaJuzByla((prev) => !prev);
     return;
   }
