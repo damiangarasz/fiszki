@@ -4,8 +4,12 @@ import { Image, Pressable, Text, View } from "react-native";
 import Animated, { useAnimatedStyle, useSharedValue, withTiming } from "react-native-reanimated";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useFiszki } from "../context/FiszkiContext";
-import { dodawanieStat } from "./utilities/dodawanieStat";
-import zamianaZnamNieZnam from "./utilities/zmianaZnamNieZnam.tsx";
+import losowanieIndexuFiszki from "./utilities/helpers/losowanieIndexuFiszki.tsx";
+import sprawdzanieHistoriiFiszek from "./utilities/helpers/sprawdzanieHistoriiFiszek.tsx";
+import { dodawanieStat } from "./utilities/logic/dodawanieStat.tsx";
+import wybranieFiszkiNaPodstawieHistorii from "./utilities/logic/wybranieFiszkiNaPodstawieHistorii.tsx";
+import { wypelnianieKartSlowami } from "./utilities/logic/wypelnianieKartSlowami.tsx";
+import zamianaZnamNieZnam from "./utilities/logic/zmianaZnamNieZnam.tsx";
 
 export default function WyswietlanieKart() {
   const {
@@ -13,6 +17,7 @@ export default function WyswietlanieKart() {
     indexFiszek,
     jakiZestawDoWyswietlenia,
     setSwitchTaFiszkaJuzByla,
+    switchTaFiszkaJuzByla,
     indexX,
     setFiszki,
     setOpcjeJezyk,
@@ -30,91 +35,39 @@ export default function WyswietlanieKart() {
   } = useFiszki();
 
   const [historia, setHistoria] = useState<string[]>([]);
-  const [jeszczeRazLOL, setJeszczeRazLOL] = useState(false);
-
-  //funkcja losująca z tabliczki uwzględniająca wagę, sumuje każdą wagę a później wybiera losując między 0 a suma wszystkich wag i wypycha pierwsze zadanie które jest większe od wylosowanej liczby
-  function losowanieFiszki() {
-    //wybieranie fiszki na podstawie wagi:
-    if (fiszki[indexFiszek] == undefined) return;
-    let sum = 0;
-    let accumulatedArray = [];
-
-    for (let n of fiszki[indexFiszek].lista) {
-      sum += n.waga;
-      accumulatedArray.push(sum);
-    }
-
-    const rand = Math.random() * sum;
-    const index = accumulatedArray.findIndex((value) => rand < value);
-
-    //sprawdzanie historii
-    if (fiszki[indexFiszek].lista.length <= 5) {
-      //jeżeli fiszek jest mniej niż 5 zwracaj wylosowaną fiszkę
-      setIndexX(index);
-      setWybranaFiszka(fiszki[indexFiszek].lista[index]);
-    } else if (historia.includes(fiszki[indexFiszek].lista[index].polski)) {
-      //fiszka sie powtarza losowanie nowej fiszki:
-      setSwitchTaFiszkaJuzByla((prev) => !prev);
-      return;
-    } else {
-      //fiszki nie ma w historii:
-      //puszowanie wyboru do historii
-      setHistoria((prev) => {
-        const noMutable = [...prev];
-        if (noMutable.length >= 5) {
-          noMutable.shift();
-        }
-
-        const never = fiszki[indexFiszek].lista[index].polski;
-        noMutable.push(never);
-
-        return noMutable;
-      });
-      setIndexX(index);
-      setWybranaFiszka(fiszki[indexFiszek].lista[index]);
-    }
-
-    const konFlip = Math.floor(Math.random() * 2);
-
-    if (opcjeJezyj == "PL") {
-      setFront(() => {
-        return wybranaFiszka?.angielski;
-      });
-      setBack(() => {
-        return wybranaFiszka?.polski;
-      });
-    } else if (opcjeJezyj == "EN") {
-      setBack(() => {
-        return wybranaFiszka?.angielski;
-      });
-      setFront(() => {
-        return wybranaFiszka?.polski;
-      });
-    } else {
-      if (konFlip == 0) {
-        setFront(() => {
-          return wybranaFiszka?.angielski;
-        });
-        setBack(() => {
-          return wybranaFiszka?.polski;
-        });
-      } else {
-        setBack(() => {
-          return wybranaFiszka?.angielski;
-        });
-        setFront(() => {
-          return wybranaFiszka?.polski;
-        });
-      }
-    }
-    if (wybranaFiszka?.polski == "") {
-      setJeszczeRazLOL((prev) => !prev);
-    }
-  }
+  const [triggerReload, setTriggerReload] = useState(false);
 
   useEffect(() => {
-    losowanieFiszki();
-  }, [jeszczeRazLOL]);
+    const randomNum = Math.random();
+    wypelnianieKartSlowami({
+      randomNum,
+      opcjeJezyj,
+      setFront,
+      setBack,
+      wybranaFiszka,
+      setTriggerReload,
+    });
+  }, [wybranaFiszka]);
+
+  useEffect(() => {
+    const randomNum = Math.random();
+    const index = losowanieIndexuFiszki({ fiszki, indexFiszek, randomNum });
+
+    //sprawdzenia historii
+    const sprHistorii = sprawdzanieHistoriiFiszek({ historia, fiszki, indexFiszek, index });
+
+    //ustawia settery setIndexX setWybranaFiszka setSwitchTaFiszkaJuzByla setHistoria
+    wybranieFiszkiNaPodstawieHistorii({
+      fiszki,
+      indexFiszek,
+      setIndexX,
+      setWybranaFiszka,
+      setHistoria,
+      setSwitchTaFiszkaJuzByla,
+      sprHistorii,
+      index,
+    });
+  }, [triggerReload, switchTaFiszkaJuzByla]);
 
   //Rotownaie kart
   const rotation = useSharedValue(0);
@@ -316,7 +269,7 @@ export default function WyswietlanieKart() {
             onPress={() => {
               zamianaZnamNieZnam({ param: 2, setFiszki, fiszki, indexFiszek, indexX });
               dodawanieStat({ setOgolneStatystyki, angielskiText, num: 2 });
-              losowanieFiszki();
+              setTriggerReload((prev) => !prev);
               zmianaWagi("znam");
               if (flipped) {
                 rotation.value = 0;
@@ -331,7 +284,7 @@ export default function WyswietlanieKart() {
             onPress={() => {
               zamianaZnamNieZnam({ param: 1, setFiszki, fiszki, indexFiszek, indexX });
               dodawanieStat({ setOgolneStatystyki, angielskiText, num: 1 });
-              losowanieFiszki();
+              setTriggerReload((prev) => !prev);
               zmianaWagi("troche");
               if (flipped) {
                 rotation.value = 0;
@@ -348,7 +301,7 @@ export default function WyswietlanieKart() {
             onPress={() => {
               zamianaZnamNieZnam({ param: 0, setFiszki, fiszki, indexFiszek, indexX });
               dodawanieStat({ setOgolneStatystyki, angielskiText, num: 0 });
-              losowanieFiszki();
+              setTriggerReload((prev) => !prev);
               zmianaWagi("nieZnam");
               if (flipped) {
                 rotation.value = 0;

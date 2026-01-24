@@ -15,3 +15,41 @@ export type zmianaZnamNieZnamParam = {
   indexFiszek: number;
   indexX: number;
 };
+
+export type losowanieIndexuFiszkiProp = {
+  fiszki: fiszki;
+  indexFiszek: number;
+  randomNum: number;
+};
+
+export type sprawdzanieHistoriiFiszekProp = {
+  historia: string[];
+  fiszki: fiszki;
+  indexFiszek: number;
+  index: number;
+};
+
+export type wybranieFiszkiNaPodstawieHistoriiProp = {
+  fiszki: fiszki;
+  indexFiszek: number;
+  setIndexX: React.Dispatch<number>;
+  setWybranaFiszka: React.Dispatch<{
+    id: string;
+    polski: string;
+    angielski: string;
+    kontekst: string;
+  }>;
+  setHistoria: React.Dispatch<React.SetStateAction<string[]>>;
+  setSwitchTaFiszkaJuzByla: React.Dispatch<React.SetStateAction<boolean>>;
+  sprHistorii: boolean;
+  index: number;
+};
+
+export type wypelnianieKartSlowamiParam = {
+  randomNum: number;
+  opcjeJezyj: string;
+  setFront: React.Dispatch<React.SetStateAction<string>>;
+  setBack: React.Dispatch<React.SetStateAction<string>>;
+  wybranaFiszka: { id: string; polski: string; angielski: string; kontekst: string };
+  setTriggerReload: React.Dispatch<React.SetStateAction<boolean>>;
+};
