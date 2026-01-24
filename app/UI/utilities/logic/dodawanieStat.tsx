@@ -1,7 +1,7 @@
+import obliczNoweStatystyki from "../helpers/obliczNoweStatystyki.tsx";
 import { dodawanieStatArg } from "../utilitiesTypes.ts";
 
-//NOT PURE!!!
-export function dodawanieStat({ setOgolneStatystyki, angielskiText, num }: dodawanieStatArg) {
+export function dodawanieDaty() {
   const date = new Date();
   const day = date.getDay();
   const data = date.getDate();
@@ -9,30 +9,13 @@ export function dodawanieStat({ setOgolneStatystyki, angielskiText, num }: dodaw
   const year = date.getFullYear();
   const pelnaData = [data, month, year];
 
+  return { day, data, month, year, pelnaData };
+}
+
+export function dodawanieStat({ setOgolneStatystyki, angielskiText }: dodawanieStatArg) {
+  const dataTeraz = dodawanieDaty();
+
   setOgolneStatystyki((prev) => {
-    const findIndex = prev.findIndex(
-      (element) => element.data[0] == data && element.data[1] == month && element.data[2] == year
-    );
-
-    if (findIndex != -1) {
-      const arrOfObj = prev.map((obj, index) => {
-        if (findIndex == index) {
-          return { ...obj, slowka: [...obj.slowka, angielskiText] };
-        } else {
-          return obj;
-        }
-      });
-      return arrOfObj;
-    } else {
-      if (prev.length >= 30) {
-        const sliced = prev.slice(1);
-
-        return [...sliced, { data: pelnaData, dzienTygodnia: day, slowka: [angielskiText] }];
-      } else {
-        return [...prev, { data: pelnaData, dzienTygodnia: day, slowka: [angielskiText] }];
-      }
-    }
+    return obliczNoweStatystyki(prev, angielskiText, dataTeraz);
   });
-
-  console.log(date);
 }

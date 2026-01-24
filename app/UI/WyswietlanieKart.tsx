@@ -268,7 +268,7 @@ export default function WyswietlanieKart() {
             className="w-[30vw] h-16  bg-[#e1eed4] border-2 border-[#53985d] rounded-full shadow-xl"
             onPress={() => {
               zamianaZnamNieZnam({ param: 2, setFiszki, fiszki, indexFiszek, indexX });
-              dodawanieStat({ setOgolneStatystyki, angielskiText, num: 2 });
+              dodawanieStat({ setOgolneStatystyki, ogolneStatystyki, angielskiText, num: 2 });
               setTriggerReload((prev) => !prev);
               zmianaWagi("znam");
               if (flipped) {
@@ -283,7 +283,7 @@ export default function WyswietlanieKart() {
             className="w-[30vw] h-16 bg-[#d7e8f8] border-2 border-[#71a5d7] rounded-full shadow-xl"
             onPress={() => {
               zamianaZnamNieZnam({ param: 1, setFiszki, fiszki, indexFiszek, indexX });
-              dodawanieStat({ setOgolneStatystyki, angielskiText, num: 1 });
+              dodawanieStat({ setOgolneStatystyki, ogolneStatystyki, angielskiText, num: 1 });
               setTriggerReload((prev) => !prev);
               zmianaWagi("troche");
               if (flipped) {
@@ -300,7 +300,7 @@ export default function WyswietlanieKart() {
             className="w-[30vw] h-16 bg-[#f9d5d5] border-2 border-[#a82b2d] rounded-full shadow-xl"
             onPress={() => {
               zamianaZnamNieZnam({ param: 0, setFiszki, fiszki, indexFiszek, indexX });
-              dodawanieStat({ setOgolneStatystyki, angielskiText, num: 0 });
+              dodawanieStat({ setOgolneStatystyki, ogolneStatystyki, angielskiText, num: 0 });
               setTriggerReload((prev) => !prev);
               zmianaWagi("nieZnam");
               if (flipped) {
