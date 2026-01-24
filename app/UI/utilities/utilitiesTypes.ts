@@ -1,11 +1,11 @@
 import { fiszki, setFiszki } from "../../context/FiszkiContextTypes.ts";
 
-type Ogolne = { data: number[]; dzienTygodnia: number; slowka: string[] }[];
+export type Ogolne = { data: number[]; dzienTygodnia: number; slowka: string[] }[];
 
 export type dodawanieStatArg = {
   setOgolneStatystyki: React.Dispatch<React.SetStateAction<Ogolne>>;
   angielskiText: string;
-  num: number;
+  dataObj: { day: number; data: number; month: number; year: number; pelnaData: number[] };
 };
 
 export type zmianaZnamNieZnamParam = {
