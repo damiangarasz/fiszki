@@ -1,4 +1,4 @@
-import {wypelnianieKartSlowamiParam} from "../utilitiesTypes.ts"
+import { wypelnianieKartSlowamiParam } from "../utilitiesTypes.ts";
 
 export function wypelnianieKartSlowami({
   randomNum,
@@ -10,38 +10,24 @@ export function wypelnianieKartSlowami({
 }: wypelnianieKartSlowamiParam) {
   const konFlip = Math.floor(randomNum * 2);
 
+  if (!randomNum || !opcjeJezyj) return;
+  if (wybranaFiszka?.polski == "" || wybranaFiszka?.polski == undefined) {
+    setTriggerReload((prev: boolean) => !prev);
+  }
+
   if (opcjeJezyj == "PL") {
-    setFront(() => {
-      return wybranaFiszka?.angielski;
-    });
-    setBack(() => {
-      return wybranaFiszka?.polski;
-    });
+    setFront(wybranaFiszka?.angielski);
+    setBack(wybranaFiszka?.polski);
   } else if (opcjeJezyj == "EN") {
-    setBack(() => {
-      return wybranaFiszka?.angielski;
-    });
-    setFront(() => {
-      return wybranaFiszka?.polski;
-    });
+    setBack(wybranaFiszka?.angielski);
+    setFront(wybranaFiszka?.polski);
   } else {
     if (konFlip == 0) {
-      setFront(() => {
-        return wybranaFiszka?.angielski;
-      });
-      setBack(() => {
-        return wybranaFiszka?.polski;
-      });
+      setFront(wybranaFiszka?.angielski);
+      setBack(wybranaFiszka?.polski);
     } else {
-      setBack(() => {
-        return wybranaFiszka?.angielski;
-      });
-      setFront(() => {
-        return wybranaFiszka?.polski;
-      });
+      setBack(wybranaFiszka?.angielski);
+      setFront(wybranaFiszka?.polski);
     }
-  }
-  if (wybranaFiszka?.polski == "") {
-    setTriggerReload((prev: boolean) => !prev);
   }
 }
