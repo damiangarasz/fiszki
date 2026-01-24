@@ -1,7 +1,6 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { fiszki } from "../types";
-import { FiszkiContextType, Ogolne } from "./FiszkiContextTypes";
+import { FiszkiContextType, Ogolne, fiszki } from "./FiszkiContextTypes";
 
 const FiszkiContext = createContext<FiszkiContextType | undefined>(undefined);
 

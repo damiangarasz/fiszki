@@ -10,6 +10,18 @@ import { dodawanieStat } from "./utilities/logic/dodawanieStat.tsx";
 import wybranieFiszkiNaPodstawieHistorii from "./utilities/logic/wybranieFiszkiNaPodstawieHistorii.tsx";
 import { wypelnianieKartSlowami } from "./utilities/logic/wypelnianieKartSlowami.tsx";
 import zamianaZnamNieZnam from "./utilities/logic/zmianaZnamNieZnam.tsx";
+import { ObjType } from "./utilities/utilitiesTypes.ts";
+
+const pobierzDate = (): ObjType => {
+  const date = new Date();
+  return {
+    day: date.getDay(),
+    data: date.getDate(),
+    month: date.getMonth(),
+    year: date.getFullYear(),
+    pelnaData: [date.getDate(), date.getMonth(), date.getFullYear()],
+  };
+};
 
 export default function WyswietlanieKart() {
   const {
@@ -101,17 +113,7 @@ export default function WyswietlanieKart() {
     setFlipped(!flipped);
   };
 
-  const [dataObj, setDataObj] = useState({});
-  useEffect(() => {
-    const date = new Date();
-    const day = date.getDay();
-    const data = date.getDate();
-    const month = date.getMonth();
-    const year = date.getFullYear();
-    const pelnaData = [data, month, year];
-
-    setDataObj({ day, data, month, year, pelnaData });
-  }, []);
+  const [dataObj, setDataObj] = useState<ObjType>(pobierzDate);
 
   function zmianaWagi(arg: string) {
     const fiszkiArrCopy = [...fiszki];
