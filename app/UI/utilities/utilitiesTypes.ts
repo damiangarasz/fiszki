@@ -4,9 +4,8 @@ export type Ogolne = { data: number[]; dzienTygodnia: number; slowka: string[] }
 
 export type dodawanieStatArg = {
   setOgolneStatystyki: React.Dispatch<React.SetStateAction<Ogolne>>;
-  ogolneStatystyki: Ogolne;
   angielskiText: string;
-  num: number;
+  dataObj: { day: number; data: number; month: number; year: number; pelnaData: number[] };
 };
 
 export type zmianaZnamNieZnamParam = {
