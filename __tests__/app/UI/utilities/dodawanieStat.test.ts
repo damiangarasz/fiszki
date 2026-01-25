@@ -1,7 +1,6 @@
 import { dodawanieStat } from "@/app/UI/utilities/logic/dodawanieStat";
 
 describe("test funkcji dodawanieStat", () => {
-  const mockSetOgolneStatystyki = jest.fn();
   const mockAngielskiText = "cow";
   const mockDataObj = {
     day: 1,
@@ -12,6 +11,7 @@ describe("test funkcji dodawanieStat", () => {
   };
 
   it("testowanie settera", () => {
+    const mockSetOgolneStatystyki = jest.fn();
     dodawanieStat({
       setOgolneStatystyki: mockSetOgolneStatystyki,
       angielskiText: mockAngielskiText,
@@ -25,5 +25,16 @@ describe("test funkcji dodawanieStat", () => {
     expect(updateFunction(prev)).toEqual([
       { data: [2, 5, 2025], dzienTygodnia: 1, slowka: ["cat", "cow"] },
     ]);
+  });
+
+  it("testowanie guarda", () => {
+    const mockSetOgolneStatystyki = jest.fn();
+    dodawanieStat({
+      setOgolneStatystyki: mockSetOgolneStatystyki,
+      angielskiText: mockAngielskiText,
+      dataObj: undefined as any,
+    });
+
+    expect(mockSetOgolneStatystyki).not.toHaveBeenCalled();
   });
 });

@@ -247,7 +247,7 @@ export default function WyswietlanieKart() {
               zamianaZnamNieZnam({ param: 1, setFiszki, fiszki, indexFiszek, indexX });
               dodawanieStat({ setOgolneStatystyki, angielskiText, dataObj });
               setTriggerReload((prev) => !prev);
-              zmianaWagi("troche");
+              zmianaWagi(setFiszki, indexFiszek, indexX, "troche");
               if (flipped) {
                 rotation.value = 0;
                 setFlipped(!flipped);
@@ -264,7 +264,7 @@ export default function WyswietlanieKart() {
               zamianaZnamNieZnam({ param: 0, setFiszki, fiszki, indexFiszek, indexX });
               dodawanieStat({ setOgolneStatystyki, angielskiText, dataObj });
               setTriggerReload((prev) => !prev);
-              zmianaWagi("nieZnam");
+              zmianaWagi(setFiszki, indexFiszek, indexX, "nieZnam");
               if (flipped) {
                 rotation.value = 0;
                 setFlipped(!flipped);

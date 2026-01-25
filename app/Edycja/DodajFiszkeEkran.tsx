@@ -54,7 +54,7 @@ export default function DodajFiszkeEkran() {
                   polski: polskiText,
                   angielski: angielskiText,
                   kontekst: kontekstText,
-                  waga: 1,
+                  waga: 5,
                   znamNieZnam: 0,
                 },
               ],
