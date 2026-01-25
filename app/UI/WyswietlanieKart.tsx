@@ -9,6 +9,7 @@ import sprawdzanieHistoriiFiszek from "./utilities/helpers/sprawdzanieHistoriiFi
 import { dodawanieStat } from "./utilities/logic/dodawanieStat.tsx";
 import wybranieFiszkiNaPodstawieHistorii from "./utilities/logic/wybranieFiszkiNaPodstawieHistorii.tsx";
 import { wypelnianieKartSlowami } from "./utilities/logic/wypelnianieKartSlowami.tsx";
+import zmianaWagi from "./utilities/logic/zmianaWagi.tsx";
 import zamianaZnamNieZnam from "./utilities/logic/zmianaZnamNieZnam.tsx";
 import { ObjType } from "./utilities/utilitiesTypes.ts";
 
@@ -114,59 +115,6 @@ export default function WyswietlanieKart() {
   };
 
   const [dataObj, setDataObj] = useState<ObjType>(pobierzDate);
-
-  function zmianaWagi(arg: string) {
-    const fiszkiArrCopy = [...fiszki];
-    if (fiszkiArrCopy.length == 0) return;
-    if (arg == "znam") {
-      if (fiszkiArrCopy[indexFiszek].lista[indexX].waga > 0.5) {
-        setFiszki((prev) => {
-          const prevArr = [...prev];
-          prevArr[indexFiszek].lista[indexX].waga =
-            Math.round((prevArr[indexFiszek].lista[indexX].waga - 0.5) * 100) / 100;
-          return prevArr;
-        });
-      } else if (
-        fiszkiArrCopy[indexFiszek].lista[indexX].waga <= 0.5 &&
-        fiszkiArrCopy[indexFiszek].lista[indexX].waga > 0.1
-      ) {
-        setFiszki((prev) => {
-          const prevArr = [...prev];
-          prevArr[indexFiszek].lista[indexX].waga =
-            Math.round((prevArr[indexFiszek].lista[indexX].waga - 0.1) * 100) / 100;
-          return prevArr;
-        });
-      } else if (fiszkiArrCopy[indexFiszek].lista[indexX].waga <= 0.1) {
-      }
-    } else if (arg == "nieZnam") {
-      if (fiszkiArrCopy[indexFiszek].lista[indexX].waga < 1.5) {
-        setFiszki((prev) => {
-          const prevArr = [...prev];
-          prevArr[indexFiszek].lista[indexX].waga =
-            Math.round((prevArr[indexFiszek].lista[indexX].waga + 0.5) * 100) / 100;
-          return prevArr;
-        });
-      } else if (
-        fiszkiArrCopy[indexFiszek].lista[indexX].waga >= 1.5 &&
-        fiszkiArrCopy[indexFiszek].lista[indexX].waga < 1.9
-      ) {
-        setFiszki((prev) => {
-          const prevArr = [...prev];
-          prevArr[indexFiszek].lista[indexX].waga =
-            Math.round((prevArr[indexFiszek].lista[indexX].waga + 0.1) * 100) / 100;
-          return prevArr;
-        });
-      } else if (fiszkiArrCopy[indexFiszek].lista[indexX].waga >= 1.9) {
-      }
-    } else {
-      setFiszki((prev) => {
-        const prevArr = [...prev];
-        prevArr[indexFiszek].lista[indexX].waga = 1;
-
-        return prevArr;
-      });
-    }
-  }
 
   function OpcjeFiszki() {
     return (
@@ -284,7 +232,7 @@ export default function WyswietlanieKart() {
               zamianaZnamNieZnam({ param: 2, setFiszki, fiszki, indexFiszek, indexX });
               dodawanieStat({ setOgolneStatystyki, angielskiText, dataObj });
               setTriggerReload((prev) => !prev);
-              zmianaWagi("znam");
+              zmianaWagi(setFiszki, indexFiszek, indexX, "znam");
               if (flipped) {
                 rotation.value = 0;
                 setFlipped(!flipped);
@@ -299,7 +247,7 @@ export default function WyswietlanieKart() {
               zamianaZnamNieZnam({ param: 1, setFiszki, fiszki, indexFiszek, indexX });
               dodawanieStat({ setOgolneStatystyki, angielskiText, dataObj });
               setTriggerReload((prev) => !prev);
-              zmianaWagi("troche");
+              zmianaWagi(setFiszki, indexFiszek, indexX, "troche");
               if (flipped) {
                 rotation.value = 0;
                 setFlipped(!flipped);
@@ -316,7 +264,7 @@ export default function WyswietlanieKart() {
               zamianaZnamNieZnam({ param: 0, setFiszki, fiszki, indexFiszek, indexX });
               dodawanieStat({ setOgolneStatystyki, angielskiText, dataObj });
               setTriggerReload((prev) => !prev);
-              zmianaWagi("nieZnam");
+              zmianaWagi(setFiszki, indexFiszek, indexX, "nieZnam");
               if (flipped) {
                 rotation.value = 0;
                 setFlipped(!flipped);
