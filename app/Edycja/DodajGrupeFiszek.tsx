@@ -32,6 +32,7 @@ export default function DodajGrupeFiszek({ navigation }: MainScreenNavigationPro
         <Pressable
           className="w-[30vw] h-16  bg-[#e1eed4] border-2 border-[#53985d] rounded-full shadow-xl"
           onPress={() => {
+            if (nazwaFiszki.length < 1) return;
             dodajFiszke();
             navigation.navigate("edycja");
             setFiszkaDoEdycji(() => fiszki.length);
