@@ -39,7 +39,7 @@ export default function Edycja({ navigation }: MainScreenNavigationProp) {
       <View className="h-[100%] w-[100%] bg-[#faf4e8]">
         <View className="flex flex-row w-[100%] justify-evenly">
           <Pressable
-            className="w-[40vw] h-16 mt-3 bg-[#e1eed4] border-2 border-[#53985d] rounded-full shadow-xl"
+            className="w-[40vw] h-16 mt-3 bg-[#e1eed4] border-2 border-[#53985d] rounded-md shadow-xl"
             onPress={() => {
               setCzyUsunac(false);
               setDodajFiszke(true);
@@ -48,8 +48,9 @@ export default function Edycja({ navigation }: MainScreenNavigationProp) {
             <Text className="text-center m-auto text-2xl">Dodaj fiszkę</Text>
           </Pressable>
           <Pressable
-            className="w-[40vw] h-16 mt-3 bg-[#f9d5d5] border-2 border-[#a82b2d] rounded-full shadow-xl"
+            className="w-[40vw] h-16 mt-3 bg-[#f9d5d5] border-2 border-[#a82b2d] rounded-md shadow-xl"
             onPress={() => {
+              setDodajFiszke(false);
               setCzyUsunac(true);
             }}
           >
@@ -59,10 +60,10 @@ export default function Edycja({ navigation }: MainScreenNavigationProp) {
 
         {czyUsunac ? (
           <View className="w-[75%] h-[15vh] m-auto ">
-            <Text className="m-auto">Czy na pewno usunąć?</Text>
+            <Text className="m-auto text-xl">Czy na pewno usunąć?</Text>
             <View className="w-[100%] flex-row justify-evenly">
               <Pressable
-                className="w-[30vw] h-16 mt-3 bg-[#f9d5d5] border-2 border-[#a82b2d] rounded-full shadow-xl"
+                className="w-[30vw] h-16 mt-3 bg-[#f9d5d5] border-2 border-[#a82b2d] rounded-md shadow-xl"
                 onPress={() => {
                   setFiszki((prev) => {
                     const newArr = [...prev];
@@ -76,7 +77,7 @@ export default function Edycja({ navigation }: MainScreenNavigationProp) {
                 <Text className="m-auto">TAK</Text>
               </Pressable>
               <Pressable
-                className="w-[30vw] h-16 mt-3 bg-[#e1eed4] border-2 border-[#53985d] rounded-full shadow-xl"
+                className="w-[30vw] h-16 mt-3 bg-[#e1eed4] border-2 border-[#53985d] rounded-md shadow-xl"
                 onPress={() => {
                   setCzyUsunac(false);
                 }}

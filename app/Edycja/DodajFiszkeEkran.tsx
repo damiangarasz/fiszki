@@ -103,7 +103,7 @@ export default function DodajFiszkeEkran() {
       />
       <View className="flex-row justify-around my-1">
         <Pressable
-          className="w-[30vw] h-16  bg-[#e1eed4] border-2 border-[#53985d] rounded-full shadow-xl"
+          className="w-[30vw] h-16  bg-[#e1eed4] border-2 border-[#53985d] rounded-md shadow-xl"
           onPress={() => {
             if (polskiText.length >= 2 && angielskiText.length >= 2) dodawanieFiszki();
           }}
@@ -111,7 +111,7 @@ export default function DodajFiszkeEkran() {
           <Text className="text-center text-2xl m-auto">Dodaj</Text>
         </Pressable>
         <Pressable
-          className="w-[30vw] h-16 bg-[#f9d5d5] border-2 border-[#a82b2d] rounded-full shadow-xl"
+          className="w-[30vw] h-16 bg-[#f9d5d5] border-2 border-[#a82b2d] rounded-md shadow-xl"
           onPress={() => {
             setDodajFiszke(false);
             setPolskiText("");

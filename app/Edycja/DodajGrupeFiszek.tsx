@@ -18,7 +18,7 @@ export default function DodajGrupeFiszek({ navigation }: MainScreenNavigationPro
   }
 
   return (
-    <View className="rounded-xl w-[75%] h-[45%] my-3 mx-auto shadow-xl bg-[#faf4e8]">
+    <View className="rounded-xl w-[75%] h-[30%] my-3 mx-auto shadow-xl bg-[#faf4e8]">
       <Text className="mx-auto text-2xl text-center">Wpipsz swoją nazwę zestawu fiszek.</Text>
       <TextInput
         className="bg-white shadow-xl h-10 w-[75%] m-auto my-5 p-2"
@@ -30,7 +30,7 @@ export default function DodajGrupeFiszek({ navigation }: MainScreenNavigationPro
       />
       <View className="flex-row justify-around mb-5">
         <Pressable
-          className="w-[30vw] h-16  bg-[#e1eed4] border-2 border-[#53985d] rounded-full shadow-xl"
+          className="w-[30vw] h-16  bg-[#e1eed4] border-2 border-[#53985d] rounded-md shadow-xl"
           onPress={() => {
             if (nazwaFiszki.length < 1) return;
             dodajFiszke();
@@ -41,7 +41,7 @@ export default function DodajGrupeFiszek({ navigation }: MainScreenNavigationPro
           <Text className="text-center text-3xl m-auto">Dodaj</Text>
         </Pressable>
         <Pressable
-          className="w-[30vw] h-16 bg-[#f9d5d5] border-2 border-[#a82b2d] rounded-full shadow-xl"
+          className="w-[30vw] h-16 bg-[#f9d5d5] border-2 border-[#a82b2d] rounded-md shadow-xl"
           onPress={() => {
             setDodajGrupeFiszek(false);
           }}
