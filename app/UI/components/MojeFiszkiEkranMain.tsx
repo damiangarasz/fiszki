@@ -1,13 +1,9 @@
 import { Pressable, ScrollView, Text, View } from "react-native";
-import { useFiszki } from "../context/FiszkiContext";
-import { MojeFiszkiEkranMainProp } from "../types";
+import { useFiszki } from "../../context/FiszkiContext";
+import { MojeFiszkiEkranMainProp } from "../../types";
 
 export default function MojeFiszkiEkranMain({ navigation }: MojeFiszkiEkranMainProp) {
-  const {
-    fiszki,
-    setJakiZestawDoWyswietlenia,
-    setIndexFiszek,
-  } = useFiszki();
+  const { fiszki, setJakiZestawDoWyswietlenia, setIndexFiszek } = useFiszki();
 
   return (
     <View className="bg-[#faf4e8] w-[100%] h-[100%]">

@@ -1,6 +1,6 @@
 import { createStackNavigator } from "@react-navigation/stack";
-import Edycja from "./Edycja.tsx";
-import MainScreen from "./MainScreen.tsx";
+import Edycja from "./components/Edycja/Edycja.tsx";
+import MainScreen from "./components/MainScreen/MainScreen.tsx";
 
 export default function FiszkiEdycja() {
   const Stack = createStackNavigator();

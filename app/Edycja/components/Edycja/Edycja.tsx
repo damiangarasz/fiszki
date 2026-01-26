@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useState } from "react";
 import { FlatList, Keyboard, Pressable, Text, TouchableWithoutFeedback, View } from "react-native";
-import { useFiszki } from "../context/FiszkiContext.tsx";
+import { useFiszki } from "../../../context/FiszkiContext.tsx";
+import { FiszkaMemo, MainScreenNavigationProp } from "../../EdycjaTypes.ts";
 import DodajFiszkeEkran from "./DodajFiszkeEkran.tsx";
-import { FiszkaMemo, MainScreenNavigationProp } from "./EdycjaTypes.ts";
 import FiszkaItem from "./FiszkaItemMemo.tsx";
 
 export default function Edycja({ navigation }: MainScreenNavigationProp) {

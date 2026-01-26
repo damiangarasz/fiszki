@@ -1,7 +1,7 @@
 import { Keyboard, Pressable, Text, TouchableWithoutFeedback, View } from "react-native";
-import { useFiszki } from "../context/FiszkiContext.tsx";
+import { useFiszki } from "../../../context/FiszkiContext.tsx";
+import { MainScreenNavigationProp } from "../../EdycjaTypes.ts";
 import DodajGrupeFiszek from "./DodajGrupeFiszek.tsx";
-import { MainScreenNavigationProp } from "./EdycjaTypes.ts";
 
 export default function MainScreen({ navigation }: MainScreenNavigationProp) {
   const { fiszki, setFiszkaDoEdycji, setDodajGrupeFiszek, dadajGrupeFiszek } = useFiszki();

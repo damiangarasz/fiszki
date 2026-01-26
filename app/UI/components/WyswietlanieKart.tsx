@@ -3,15 +3,15 @@ import { useEffect, useState } from "react";
 import { Image, Pressable, Text, View } from "react-native";
 import Animated, { useAnimatedStyle, useSharedValue, withTiming } from "react-native-reanimated";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { useFiszki } from "../context/FiszkiContext";
-import losowanieIndexuFiszki from "./utilities/helpers/losowanieIndexuFiszki.tsx";
-import sprawdzanieHistoriiFiszek from "./utilities/helpers/sprawdzanieHistoriiFiszek.tsx";
-import { dodawanieStat } from "./utilities/logic/dodawanieStat.tsx";
-import wybranieFiszkiNaPodstawieHistorii from "./utilities/logic/wybranieFiszkiNaPodstawieHistorii.tsx";
-import { wypelnianieKartSlowami } from "./utilities/logic/wypelnianieKartSlowami.tsx";
-import zmianaWagi from "./utilities/logic/zmianaWagi.tsx";
-import zamianaZnamNieZnam from "./utilities/logic/zmianaZnamNieZnam.tsx";
-import { ObjType } from "./utilities/utilitiesTypes.ts";
+import { useFiszki } from "../../context/FiszkiContext.tsx";
+import losowanieIndexuFiszki from "../utilities/helpers/losowanieIndexuFiszki.tsx";
+import sprawdzanieHistoriiFiszek from "../utilities/helpers/sprawdzanieHistoriiFiszek.tsx";
+import { dodawanieStat } from "../utilities/logic/dodawanieStat.tsx";
+import wybranieFiszkiNaPodstawieHistorii from "../utilities/logic/wybranieFiszkiNaPodstawieHistorii.tsx";
+import { wypelnianieKartSlowami } from "../utilities/logic/wypelnianieKartSlowami.tsx";
+import zmianaWagi from "../utilities/logic/zmianaWagi.tsx";
+import zamianaZnamNieZnam from "../utilities/logic/zmianaZnamNieZnam.tsx";
+import { ObjType } from "../utilities/utilitiesTypes.ts";
 
 const pobierzDate = (): ObjType => {
   const date = new Date();
@@ -42,7 +42,6 @@ export default function WyswietlanieKart() {
     setBack,
     setFront,
     setWybranaFiszka,
-    ogolneStatystyki,
     setOgolneStatystyki,
     angielskiText,
   } = useFiszki();
@@ -163,7 +162,7 @@ export default function WyswietlanieKart() {
           }}
         >
           <Image
-            source={require("../../assets/images/opcje-bronze.png")}
+            source={require("../../../assets/images/opcje-bronze.png")}
             style={{ width: 45, height: 45 }}
           />
         </Pressable>

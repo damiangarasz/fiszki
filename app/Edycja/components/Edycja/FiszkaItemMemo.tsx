@@ -1,6 +1,6 @@
 import { memo } from "react";
 import { Pressable, Text, View } from "react-native";
-import { PropsMemo } from "./EdycjaTypes.ts";
+import { PropsMemo } from "../../EdycjaTypes.ts";
 
 const FiszkaItem = memo(function FiszkaItemComponent({
   id,
@@ -9,8 +9,6 @@ const FiszkaItem = memo(function FiszkaItemComponent({
   kontekst,
   handleEdit,
 }: PropsMemo) {
-  console.log("render");
-
   return (
     <View className="border-b border-gray-400 border-dotted">
       <Pressable

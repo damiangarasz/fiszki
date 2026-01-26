@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Pressable, Text, TextInput, View } from "react-native";
-import { useFiszki } from "../context/FiszkiContext";
-import { MainScreenNavigationProp } from "./EdycjaTypes.ts";
+import { useFiszki } from "../../../context/FiszkiContext.tsx";
+import { MainScreenNavigationProp } from "../../EdycjaTypes.ts";
 
 export default function DodajGrupeFiszek({ navigation }: MainScreenNavigationProp) {
   const [nazwaFiszki, setNazwaFiszki] = useState("");
