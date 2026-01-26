@@ -10,7 +10,7 @@ export default function GorneWykresy() {
   const [chartNajlepszyDzien, setChartNajlepszyDzien] = useState(false);
   const [chartMiesiac, setChartMiesiac] = useState(false);
 
-  const szerokoscChartu = width * 0.5;
+  const szerokoscChartu = width * 0.45;
   const szerkokoscSlota = szerokoscChartu / 7;
   const szorkokoscDniaWmc = szerokoscChartu / 30;
   const szerokoscSlupka = szerkokoscSlota * 0.7;

@@ -2,7 +2,7 @@ import { useFiszki } from "@/app/context/FiszkiContext";
 import { useFocusEffect } from "expo-router";
 import { useCallback, useState } from "react";
 import { statType } from "./useTypes.ts";
-const dayOfTheWeek = ["Ndz", "Pn", "Wt", "Sr", "Cz", "Pt", "So"];
+const dayOfTheWeek = ["Nd", "Pn", "Wt", "Sr", "Cz", "Pt", "So"];
 
 export default function useStatystyki() {
   const { ogolneStatystyki } = useFiszki();
