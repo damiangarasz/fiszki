@@ -35,8 +35,8 @@ export default function DolneWykresy() {
               </View>
               <View className="flex-row w-[100%]">
                 <View className={` bg-[#53985d] h-3`} style={{ width: `${wiem}%` }}></View>
-                <View className={`bg-[#71a5d7] h-3`} style={{ width: `${nieWiem}%` }}></View>
-                <View className={`bg-[#a82b2d] h-3`} style={{ width: `${trocheWiem}%` }}></View>
+                <View className={`bg-[#71a5d7] h-3`} style={{ width: `${trocheWiem}%` }}></View>
+                <View className={`bg-[#a82b2d] h-3`} style={{ width: `${nieWiem}%` }}></View>
               </View>
             </Pressable>
           );
