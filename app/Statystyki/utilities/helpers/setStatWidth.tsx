@@ -24,10 +24,8 @@ export function setStatWidth(
 
   const calc = wiem + nieWiem + trocheWiem;
 
-  wiem = Math.floor((wiem / calc) * 100);
-  nieWiem = Math.floor((nieWiem / calc) * 100);
-  trocheWiem = Math.floor((trocheWiem / calc) * 100);
+  wiem = (wiem / calc) * 100;
+  nieWiem = (nieWiem / calc) * 100;
+  trocheWiem = (trocheWiem / calc) * 100;
   return { wiem, nieWiem, trocheWiem };
 }
-
-//TODO tu jestem nie wyświetla danych albo sie gubi

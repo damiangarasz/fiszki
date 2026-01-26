@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { FlatList, Keyboard, Pressable, Text, TouchableWithoutFeedback, View } from "react-native";
 import { useFiszki } from "../context/FiszkiContext.tsx";
 import DodajFiszkeEkran from "./DodajFiszkeEkran.tsx";
@@ -34,12 +34,25 @@ export default function Edycja({ navigation }: MainScreenNavigationProp) {
     return <FiszkaItem {...item} handleEdit={handleEdit} />;
   }, []);
 
+  const [border, setBorder] = useState("#53985d");
+  const [background, setBackground] = useState("#e1eed4");
+  useEffect(() => {
+    if (dodajFiszke) {
+      setBorder("#253828");
+      setBackground("#aaada6");
+    } else {
+      setBorder("#53985d");
+      setBackground("#e1eed4");
+    }
+  }, [dodajFiszke]);
+
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <View className="h-[100%] w-[100%] bg-[#faf4e8]">
         <View className="flex flex-row w-[100%] justify-evenly">
           <Pressable
-            className="w-[40vw] h-16 mt-3 bg-[#e1eed4] border-2 border-[#53985d] rounded-md shadow-xl"
+            className="w-[40vw] h-16 mt-3 border-2 rounded-md shadow-xl"
+            style={{ backgroundColor: `${background}`, borderColor: `${border}` }}
             onPress={() => {
               setCzyUsunac(false);
               setDodajFiszke(true);

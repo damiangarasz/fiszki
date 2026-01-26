@@ -58,6 +58,9 @@ export default function GorneWykresy() {
           <LineChart
             data={month}
             spacing={szorkokoscDniaWmc}
+            yAxisColor={"#9b6b46"}
+            xAxisColor={"#9b6b46"}
+            color={"#9b6b46"}
             hideDataPoints
             hideRules
             hideYAxisText
