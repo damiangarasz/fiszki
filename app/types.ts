@@ -1,4 +1,5 @@
 import { StackNavigationProp } from "@react-navigation/stack";
+import { BottomTabNavigationProp } from "@react-navigation/bottom-tabs";
 import { fiszki, setFiszki } from "./context/FiszkiContextTypes";
 
 export type propFiszkiEdycja = {
@@ -24,6 +25,14 @@ type StackParamListMojeFiszki = {
   wyswietlanie: undefined;
 };
 
+export type RootTabParamList = {
+  "Moje Fiszki": undefined;
+  Edycja: undefined;
+  Statsy: undefined;
+};
+
+
+export type BottomTabNavigation = BottomTabNavigationProp<RootTabParamList>;
 export type MainScreenNavigationProp = StackNavigationProp<StackParamList, "main">;
 export type MojeFiszkiEkranProp = StackNavigationProp<StackParamListMojeFiszki, "wyswietlanie">;
 
