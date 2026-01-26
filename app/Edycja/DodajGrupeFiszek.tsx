@@ -30,7 +30,7 @@ export default function DodajGrupeFiszek({ navigation }: MainScreenNavigationPro
       />
       <View className="flex-row justify-around mb-5">
         <Pressable
-          className="w-[30vw] h-16  bg-[#e1eed4] border-2 border-[#53985d] rounded-md shadow-xl"
+          className="w-[30vw] h-16  bg-[#e1eed4] border-2 border-[#53985d] rounded-md shadow-md"
           onPress={() => {
             if (nazwaFiszki.length < 1) return;
             dodajFiszke();
@@ -41,7 +41,7 @@ export default function DodajGrupeFiszek({ navigation }: MainScreenNavigationPro
           <Text className="text-center text-3xl m-auto">Dodaj</Text>
         </Pressable>
         <Pressable
-          className="w-[30vw] h-16 bg-[#f9d5d5] border-2 border-[#a82b2d] rounded-md shadow-xl"
+          className="w-[30vw] h-16 bg-[#f9d5d5] border-2 border-[#a82b2d] rounded-md shadow-md"
           onPress={() => {
             setDodajGrupeFiszek(false);
           }}

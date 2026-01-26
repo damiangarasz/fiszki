@@ -15,7 +15,9 @@ export default function MainScreen({ navigation }: MainScreenNavigationProp) {
             setDodajGrupeFiszek(true);
           }}
         >
-          <Text className="text-[#9b6b46] text-center m-auto text-5xl">Dodaj nowe</Text>
+          <Text className="text-[#9b6b46] bg-[#faf4e8] text-center m-auto text-5xl">
+            Dodaj nowe
+          </Text>
         </Pressable>
         {dadajGrupeFiszek ? <DodajGrupeFiszek navigation={navigation} /> : <></>}
         <View className="bg-[#faf4e8] w-[75%] h-[75%] shadow-2xl m-auto rounded-xl">
