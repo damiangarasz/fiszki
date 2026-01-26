@@ -14,6 +14,8 @@ Aplikacja mobilna do nauki języków obcych i zarządzania własną bazą fiszek
   <img src="./screeny/2.PNG" width="30%" />
   <img src="./screeny/3.PNG" width="30%" />
   <img src="./screeny/4.PNG" width="30%" />
+  <img src="./screeny/5.PNG" width="30%" />
+
 </p>
 
 ## 🚀 Główne funkcjonalności
