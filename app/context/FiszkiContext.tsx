@@ -63,14 +63,12 @@ export const FiszkiProvider = ({ children }: { children: React.ReactNode }) => {
   //EDYCJA
   const [dadajGrupeFiszek, setDodajGrupeFiszek] = useState(false);
   const [dodajFiszke, setDodajFiszke] = useState(false);
-  const [polskiText, setPolskiText] = useState("");
-  const [angielskiText, setAngielskiText] = useState("");
-  const [kontekstText, setKontekstText] = useState("");
 
   //KONIEC EDYCJA
 
   //MEMO EDYTOWANIE FISZKI
-  const [idEdytowaniejFiszki, setIdEdytowanejFiszki] = useState("");
+  const [idEdytowanejFiszki, setIdEdytowanejFiszki] = useState("");
+
   //KONIEC MEMO
 
   //STATYSTYKI
@@ -119,12 +117,6 @@ export const FiszkiProvider = ({ children }: { children: React.ReactNode }) => {
   return (
     <FiszkiContext.Provider
       value={{
-        polskiText,
-        setPolskiText,
-        angielskiText,
-        setAngielskiText,
-        kontekstText,
-        setKontekstText,
         indexFiszek,
         jakiZestawDoWyswietlenia,
         fiszki,
@@ -149,7 +141,7 @@ export const FiszkiProvider = ({ children }: { children: React.ReactNode }) => {
         setDodajGrupeFiszek,
         dodajFiszke,
         setDodajFiszke,
-        idEdytowaniejFiszki,
+        idEdytowanejFiszki,
         setIdEdytowanejFiszki,
         ogolneStatystyki,
         setOgolneStatystyki,
