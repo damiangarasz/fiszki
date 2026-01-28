@@ -127,10 +127,10 @@ export default function DodajFiszke({ objdoedycji }: DodajFiszkeProps) {
         <Pressable
           className="w-[30vw] h-16 bg-[#f9d5d5] border-2 border-[#a82b2d] rounded-md shadow-xl"
           onPress={() => {
-            setDodajFiszke(false);
             setPolskiText("");
             setAngielskiText("");
             setKontekstText("");
+            setDodajFiszke(false);
           }}
         >
           <Text className="text-center text-2xl m-auto">Odrzuć</Text>
