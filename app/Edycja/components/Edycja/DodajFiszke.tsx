@@ -2,7 +2,7 @@ import * as Crypto from "expo-crypto";
 import { Pressable, Text, TextInput, View } from "react-native";
 import { useFiszki } from "../../../context/FiszkiContext.tsx";
 
-export default function DodajFiszkeEkran() {
+export default function DodajFiszke() {
   const {
     setFiszki,
     fiszkaDoEdycji,

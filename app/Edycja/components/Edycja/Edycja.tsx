@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import { FlatList, Keyboard, Pressable, Text, TouchableWithoutFeedback, View } from "react-native";
 import { useFiszki } from "../../../context/FiszkiContext.tsx";
 import { FiszkaMemo, MainScreenNavigationProp } from "../../EdycjaTypes.ts";
-import DodajFiszkeEkran from "./DodajFiszkeEkran.tsx";
+import DodajFiszke from "./DodajFiszke.tsx";
 import FiszkaItem from "./FiszkaItemMemo.tsx";
 
 export default function Edycja({ navigation }: MainScreenNavigationProp) {
@@ -103,7 +103,7 @@ export default function Edycja({ navigation }: MainScreenNavigationProp) {
           <></>
         )}
 
-        {dodajFiszke ? <DodajFiszkeEkran /> : <></>}
+        {dodajFiszke ? <DodajFiszke /> : <></>}
         <View className="w-[75%] h-[40] m-auto ">
           <Text className="text-center text-3xl">{fiszki[fiszkaDoEdycji]?.key}</Text>
         </View>
