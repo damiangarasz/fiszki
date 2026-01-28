@@ -1,30 +1,37 @@
 import * as Crypto from "expo-crypto";
+import { useState, useEffect } from "react";
 import { Pressable, Text, TextInput, View } from "react-native";
 import { useFiszki } from "../../../context/FiszkiContext.tsx";
+import { DodajFiszkeProps } from "../../EdycjaTypes.ts";
 
-export default function DodajFiszke() {
-  const {
-    setFiszki,
-    fiszkaDoEdycji,
-    setDodajFiszke,
-    polskiText,
-    angielskiText,
-    kontekstText,
-    setPolskiText,
-    setAngielskiText,
-    setKontekstText,
-    idEdytowaniejFiszki,
-    setIdEdytowanejFiszki,
-  } = useFiszki();
+export default function DodajFiszke({ objdoedycji }: DodajFiszkeProps) {
+  //CONTEXT
+  const { setFiszki, fiszkaDoEdycji, setDodajFiszke, idEdytowanejFiszki, setIdEdytowanejFiszki } =
+    useFiszki();
+  //CONTEXT
+
+  const [polskiText, setPolskiText] = useState("");
+  const [angielskiText, setAngielskiText] = useState("");
+  const [kontekstText, setKontekstText] = useState("");
+
+  useEffect(() => {
+    if (!objdoedycji) return;
+    if ("polski" in objdoedycji) {
+      const { polski, angielski, kontekst } = objdoedycji;
+      setPolskiText(polski);
+      setAngielskiText(angielski);
+      setKontekstText(kontekst);
+    }
+  }, [objdoedycji]);
 
   function dodawanieFiszki() {
     setFiszki((prev) => {
       //Głęboka kopia żeby react odświeżył stan
-      if (idEdytowaniejFiszki) {
+      if (idEdytowanejFiszki) {
         const calyZestaw = prev.map((zestaw, index) => {
           if (index == fiszkaDoEdycji) {
             const mapaPoFiszkach = zestaw.lista.map((fiszka) => {
-              if (fiszka.id == idEdytowaniejFiszki) {
+              if (fiszka.id == idEdytowanejFiszki) {
                 return {
                   ...fiszka,
                   polski: polskiText,

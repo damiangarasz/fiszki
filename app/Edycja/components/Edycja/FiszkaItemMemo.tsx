@@ -8,12 +8,13 @@ const FiszkaItem = memo(function FiszkaItemComponent({
   angielski,
   kontekst,
   handleEdit,
+  index,
 }: PropsMemo) {
   return (
     <View className="border-b border-gray-400 border-dotted">
       <Pressable
         onPress={() => {
-          handleEdit(polski, angielski, kontekst, id);
+          handleEdit(id, index, polski, angielski, kontekst);
         }}
         className="flex flex-row justify-around h-8"
       >

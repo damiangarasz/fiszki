@@ -21,5 +21,22 @@ export type PropsMemo = {
   polski: string;
   angielski: string;
   kontekst: string;
-  handleEdit: (polski: string, angielski: string, kontekst: string, id: string) => void;
+  handleEdit: (
+    id: string,
+    index: number,
+    polski: string,
+    angielski: string,
+    kontekst: string
+  ) => void;
+  index: number;
+};
+
+export type DaneFiszki = {
+  polski: string;
+  angielski: string;
+  kontekst: string;
+};
+
+export type DodajFiszkeProps = {
+  objdoedycji: DaneFiszki | {};
 };

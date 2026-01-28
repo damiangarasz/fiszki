@@ -1,37 +1,31 @@
 import { useCallback, useEffect, useState } from "react";
 import { FlatList, Keyboard, Pressable, Text, TouchableWithoutFeedback, View } from "react-native";
 import { useFiszki } from "../../../context/FiszkiContext.tsx";
-import { FiszkaMemo, MainScreenNavigationProp } from "../../EdycjaTypes.ts";
+import { FiszkaMemo, MainScreenNavigationProp, DaneFiszki } from "../../EdycjaTypes.ts";
 import DodajFiszke from "./DodajFiszke.tsx";
 import FiszkaItem from "./FiszkaItemMemo.tsx";
 
 export default function Edycja({ navigation }: MainScreenNavigationProp) {
-  const {
-    setFiszki,
-    fiszkaDoEdycji,
-    fiszki,
-    setDodajFiszke,
-    dodajFiszke,
-    setPolskiText,
-    setAngielskiText,
-    setKontekstText,
-    setIdEdytowanejFiszki,
-  } = useFiszki();
+  //CONTEXT
+  const { setFiszki, fiszkaDoEdycji, fiszki, setDodajFiszke, dodajFiszke, setIdEdytowanejFiszki } =
+    useFiszki();
+  //CONTEXT
+
   const [czyUsunac, setCzyUsunac] = useState(false);
 
+  const [objDoEdycji, setObjDoEdycji] = useState<DaneFiszki | {}>({});
+
   const handleEdit = useCallback(
-    (polski: string, angielski: string, kontekst: string, id: string) => {
-      setPolskiText(polski);
-      setAngielskiText(angielski);
-      setKontekstText(kontekst);
+    (id: string, index: number, polski: string, angielski: string, kontekst: string) => {
       setDodajFiszke(true);
       setIdEdytowanejFiszki(id);
+      setObjDoEdycji({ polski, angielski, kontekst, index });
     },
     []
   );
 
-  const renderItem = useCallback(({ item }: { item: FiszkaMemo }) => {
-    return <FiszkaItem {...item} handleEdit={handleEdit} />;
+  const renderItem = useCallback(({ item, index }: { item: FiszkaMemo; index: number }) => {
+    return <FiszkaItem {...item} index={index} handleEdit={handleEdit} />;
   }, []);
 
   const [border, setBorder] = useState("#53985d");
@@ -103,7 +97,7 @@ export default function Edycja({ navigation }: MainScreenNavigationProp) {
           <></>
         )}
 
-        {dodajFiszke ? <DodajFiszke /> : <></>}
+        {dodajFiszke ? <DodajFiszke objdoedycji={objDoEdycji} /> : <></>}
         <View className="w-[75%] h-[40] m-auto ">
           <Text className="text-center text-3xl">{fiszki[fiszkaDoEdycji]?.key}</Text>
         </View>
