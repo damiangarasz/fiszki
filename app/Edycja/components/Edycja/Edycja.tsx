@@ -42,11 +42,12 @@ export default function Edycja({ navigation }: MainScreenNavigationProp) {
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-      <View className="h-[100%] w-[100%] bg-[#faf4e8]">
+      <View className="h-[100%] w-[100%] bg-bg">
         <View className="flex flex-row w-[100%] justify-evenly">
           <Pressable
-            className="w-[40vw] h-16 mt-3 border-2 rounded-md shadow-xl"
-            style={{ backgroundColor: `${background}`, borderColor: `${border}` }}
+            className={`w-[40vw] h-16 mt-3 border-2 rounded-md shadow-xl ${
+              dodajFiszke ? "bg-btn-add-dis border-border-dis" : "bg-btn-add border-border-add"
+            }`}
             onPress={() => {
               setCzyUsunac(false);
               setDodajFiszke(true);
