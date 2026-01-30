@@ -2,6 +2,7 @@ export const THEMES = {
   default: {
     "--bg": "#faf4e8",
     "--bg-primary": "#9b6b46",
+    "--bg-secondary": "#fefefe",
     "--text-color-primary": "#9b6b46",
     "--font-primary": "Roboto",
     "--font-buttons": "Roboto",

@@ -2,6 +2,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { StatusBar } from "expo-status-bar";
 import FiszkiEdycja from "./Edycja/FiszkiEdycjaEkran.tsx";
+import Opcje from "./Opcje/Opcje.tsx";
 import FiszkiStatystyki from "./Statystyki/FiszkiStatystykiEkran.tsx";
 import MojeFiszkiEkran from "./UI/MojeFiszkiEkran.tsx";
 import { RootTabParamList } from "./types.ts";
@@ -21,12 +22,14 @@ export default function Index() {
           tabBarIcon: ({ focused, color, size }) => {
             let iconName: keyof typeof Ionicons.glyphMap = "home";
 
-            if (route.name === "Moje Fiszki") {
+            if (route.name == "Moje Fiszki") {
               iconName = focused ? "albums" : "albums-outline";
-            } else if (route.name === "Edycja") {
+            } else if (route.name == "Edycja") {
               iconName = focused ? "create" : "create-outline";
-            } else if (route.name === "Statsy") {
+            } else if (route.name == "Statsy") {
               iconName = focused ? "stats-chart" : "stats-chart-outline";
+            } else if (route.name == "Opcje") {
+              iconName = focused ? "options" : "options-outline";
             }
 
             return <Ionicons name={iconName} size={size} color={color} />;
@@ -36,6 +39,7 @@ export default function Index() {
         <Tab.Screen name="Moje Fiszki" component={MojeFiszkiEkran} />
         <Tab.Screen name="Edycja" component={FiszkiEdycja} />
         <Tab.Screen name="Statsy" component={FiszkiStatystyki} />
+        <Tab.Screen name="Opcje" component={Opcje} />
       </Tab.Navigator>
     </>
   );

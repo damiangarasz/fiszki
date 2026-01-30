@@ -28,10 +28,12 @@ export default function MojeFiszkiEkranMain({ navigation }: MojeFiszkiEkranMainP
                       }
                     }}
                   >
-                    <Text className="w-[50%] text-center m-auto text-2xl font-primary">
+                    <Text className="w-[50%] text-center m-auto text-2xl font-primary text-text-primary">
                       {param.key}
                     </Text>
-                    <Text className="font-primary">Ilość fiszek: {fiszki[index].lista.length}</Text>
+                    <Text className="font-primary text-text-primary">
+                      Ilość fiszek: {fiszki[index].lista.length}
+                    </Text>
                   </Pressable>
                 </View>
               );
