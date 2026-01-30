@@ -12,7 +12,7 @@ export type ObjType = {
 
 export type dodawanieStatArg = {
   setOgolneStatystyki: React.Dispatch<React.SetStateAction<Ogolne>>;
-  angielskiText: string;
+  ang: string;
   dataObj: ObjType;
 };
 

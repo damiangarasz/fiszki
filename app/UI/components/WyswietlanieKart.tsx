@@ -43,7 +43,6 @@ export default function WyswietlanieKart() {
     setFront,
     setWybranaFiszka,
     setOgolneStatystyki,
-    angielskiText,
   } = useFiszki();
 
   const [historia, setHistoria] = useState<string[]>([]);
@@ -228,8 +227,9 @@ export default function WyswietlanieKart() {
           <Pressable
             className="w-[30vw] h-16  bg-btn-know border-2 border-border-know rounded-full shadow-xl"
             onPress={() => {
+              const ang = wybranaFiszka?.angielski;
               zamianaZnamNieZnam({ param: 2, setFiszki, fiszki, indexFiszek, indexX });
-              dodawanieStat({ setOgolneStatystyki, angielskiText, dataObj });
+              dodawanieStat({ setOgolneStatystyki, ang, dataObj });
               setTriggerReload((prev) => !prev);
               zmianaWagi(setFiszki, indexFiszek, indexX, "znam");
               if (flipped) {
@@ -243,8 +243,9 @@ export default function WyswietlanieKart() {
           <Pressable
             className="w-[30vw] h-16 bg-btn-maybe border-2 border-border-maybe rounded-full shadow-xl"
             onPress={() => {
+              const ang = wybranaFiszka?.angielski;
               zamianaZnamNieZnam({ param: 1, setFiszki, fiszki, indexFiszek, indexX });
-              dodawanieStat({ setOgolneStatystyki, angielskiText, dataObj });
+              dodawanieStat({ setOgolneStatystyki, ang, dataObj });
               setTriggerReload((prev) => !prev);
               zmianaWagi(setFiszki, indexFiszek, indexX, "troche");
               if (flipped) {
@@ -260,8 +261,9 @@ export default function WyswietlanieKart() {
           <Pressable
             className="w-[30vw] h-16 bg-btn-dontKnow border-2 border-border-dontKnow rounded-full shadow-xl"
             onPress={() => {
+              const ang = wybranaFiszka?.angielski;
               zamianaZnamNieZnam({ param: 0, setFiszki, fiszki, indexFiszek, indexX });
-              dodawanieStat({ setOgolneStatystyki, angielskiText, dataObj });
+              dodawanieStat({ setOgolneStatystyki, ang, dataObj });
               setTriggerReload((prev) => !prev);
               zmianaWagi(setFiszki, indexFiszek, indexX, "nieZnam");
               if (flipped) {
