@@ -1,6 +1,5 @@
 import { Ionicons } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { useFonts } from "expo-font";
 import { StatusBar } from "expo-status-bar";
 import FiszkiEdycja from "./Edycja/FiszkiEdycjaEkran.tsx";
 import FiszkiStatystyki from "./Statystyki/FiszkiStatystykiEkran.tsx";
@@ -8,11 +7,6 @@ import MojeFiszkiEkran from "./UI/MojeFiszkiEkran.tsx";
 import { RootTabParamList } from "./types.ts";
 
 export default function Index() {
-  //Ładowanie fonta
-  const [fontsLoaded] = useFonts({
-    SourGummy: require("../assets/fonts/SourGummy_Expanded-Light.ttf"),
-  });
-
   const Tab = createBottomTabNavigator<RootTabParamList>();
 
   return (

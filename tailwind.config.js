@@ -1,7 +1,3 @@
-// const {
-//   default: keyframes,
-// } = require("react-native-reanimated/lib/typescript/css/stylesheet/keyframes");
-
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["./app/**/*.{js,jsx,ts,tsx}"],
@@ -10,13 +6,16 @@ module.exports = {
     extend: {
       fontFamily: {
         primary: ["var(--font-primary)"],
-        buttons: ["var()"],//TODO
+        buttons: ["var(--font-buttons)"],
+        card: ["var(--font-card)"],
         SourGummy: ["SourGummy"],
       },
       colors: {
         //Main colors
         bg: "var(--bg)",
         "bg-primary": "var(--bg-primary)",
+        "text-primary": "var(--text-color-primary)",
+
         // MOJE FISZKI
         "btn-know": "var(--btn-bg-know)",
         "btn-maybe": "var(--btn-bg-maybe)",
@@ -25,7 +24,7 @@ module.exports = {
         "border-maybe": "var(--btn-border-maybe)",
         "border-dontKnow": "var(--btn-border-dontKnow)",
         "text-card": "var(--text-card)",
-        "text-name": "var()",//TODO
+        "text-name-moje-fiszki": "var(--text-color-primary)",
 
         // Języki
         "btn-lang": "var(--btn-lang-bg)",
@@ -55,7 +54,7 @@ module.exports = {
         "text-stat-main": "var(--text-stat)",
 
         //INPUT
-        "in-bg": "var()" //TODO
+        "in-bg": "var(--bg-input)",
       },
     },
   },

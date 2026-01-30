@@ -22,7 +22,7 @@ export default function FiszkiWyswietlanie() {
         options={{
           headerTitle: "",
           headerTransparent: true,
-          headerTintColor: "#9b6b46",
+          headerTintColor: "white",
           headerStyle: {
             backgroundColor: "#9b6b46",
           },

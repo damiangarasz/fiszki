@@ -125,7 +125,7 @@ export default function WyswietlanieKart() {
             setOpcjeToggle((prev) => !prev);
           }}
         >
-          <Text className="text-center m-auto font-SourGummy">Polski</Text>
+          <Text className="text-center m-auto font-buttons">Polski</Text>
         </Pressable>
         <Pressable
           className="w-[30%] border-2 rounded-full shadow-xl h-16 m-auto bg-btn-lang border-border-lang"
@@ -134,7 +134,7 @@ export default function WyswietlanieKart() {
             setOpcjeToggle((prev) => !prev);
           }}
         >
-          <Text className="text-center m-auto font-SourGummy">Angielski</Text>
+          <Text className="text-center m-auto font-buttons">Angielski</Text>
         </Pressable>
         <Pressable
           className="w-[30%] border-2 rounded-full shadow-xl h-16 m-auto bg-btn-lang border-border-lang"
@@ -143,7 +143,7 @@ export default function WyswietlanieKart() {
             setOpcjeToggle((prev) => !prev);
           }}
         >
-          <Text className="text-center m-auto font-SourGummy">Polsko/Angielski</Text>
+          <Text className="text-center m-auto font-buttons">Polsko/Angielski</Text>
         </Pressable>
       </View>
     );
@@ -152,7 +152,7 @@ export default function WyswietlanieKart() {
   return (
     <SafeAreaView>
       <View className="h-[100vh] w-[100%] flex relative bg-bg">
-        <Text className="absolute m-auto text-2xl color-text-card font-SourGummy h-[5vh] top-16">
+        <Text className="absolute m-auto text-2xl color-text-primary font-primary h-[5vh] top-[8vh]">
           {jakiZestawDoWyswietlenia}
         </Text>
         <Pressable
@@ -187,7 +187,7 @@ export default function WyswietlanieKart() {
                     padding: 20,
                   }}
                 >
-                  <Text className="text-center m-auto font-SourGummy text-6xl color-text-card">
+                  <Text className="text-center m-auto font-card text-6xl color-text-card">
                     {back}
                   </Text>
                 </LinearGradient>
@@ -210,12 +210,12 @@ export default function WyswietlanieKart() {
                 >
                   <View className="h-[33%]"></View>
                   <View className="h-[33%] m-auto w-[90%]">
-                    <Text className="text-center m-auto text-6xl font-SourGummy color-text-card">
+                    <Text className="text-center m-auto text-6xl font-card color-text-card">
                       {front}
                     </Text>
                   </View>
                   <View className="h-[33%]">
-                    <Text className="m-auto text-center text-2xl color-[#9b6b46]">
+                    <Text className="m-auto text-center text-2xl color-[#9b6b46] font-card">
                       {wybranaFiszka?.kontekst}
                     </Text>
                   </View>
@@ -238,7 +238,7 @@ export default function WyswietlanieKart() {
               }
             }}
           >
-            <Text className="m-auto text-3xl color-border-know">Znam</Text>
+            <Text className="m-auto text-3xl color-border-know font-buttons">Znam</Text>
           </Pressable>
           <Pressable
             className="w-[30vw] h-16 bg-btn-maybe border-2 border-border-maybe rounded-full shadow-xl"
@@ -253,7 +253,7 @@ export default function WyswietlanieKart() {
               }
             }}
           >
-            <Text className="m-auto text-center text-1xl color-border-maybe ">
+            <Text className="m-auto text-center text-1xl color-border-maybe font-buttons">
               Troche znam, a troche nie znam
             </Text>
           </Pressable>
@@ -270,7 +270,7 @@ export default function WyswietlanieKart() {
               }
             }}
           >
-            <Text className="m-auto text-3xl color-border-dontKnow">Nie znam</Text>
+            <Text className="m-auto text-3xl color-border-dontKnow font-buttons">Nie znam</Text>
           </Pressable>
         </View>
       </View>

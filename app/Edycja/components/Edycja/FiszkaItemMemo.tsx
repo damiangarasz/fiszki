@@ -18,12 +18,14 @@ const FiszkaItem = memo(function FiszkaItemComponent({
         }}
         className="flex flex-row justify-around h-8"
       >
-        <Text className="w-[50%] text-center m-auto">{polski}</Text>
-        <Text className="w-[50%] text-center m-auto">{angielski}</Text>
+        <Text className="w-[50%] text-center m-auto font-primary text-text-primary">{polski}</Text>
+        <Text className="w-[50%] text-center m-auto font-primary text-text-primary">
+          {angielski}
+        </Text>
       </Pressable>
 
       <Pressable>
-        <Text className="text-center">{kontekst}</Text>
+        <Text className="text-center font-primary text-text-primary">{kontekst}</Text>
       </Pressable>
     </View>
   );
