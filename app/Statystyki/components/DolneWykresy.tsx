@@ -30,13 +30,13 @@ export default function DolneWykresy() {
               }}
             >
               <View className="flex-row justify-between h-7 items-end">
-                <Text className="text-[#9b6b46] ml-2">{item.item.key}</Text>
-                <Text className="text-[#9b6b46] mr-2">{`Ilość fiszek: ${item.item.lista.length}`}</Text>
+                <Text className="text-text-primary ml-2">{item.item.key}</Text>
+                <Text className="text-text-primary mr-2">{`Ilość fiszek: ${item.item.lista.length}`}</Text>
               </View>
               <View className="flex-row w-[100%]">
-                <View className={` bg-[#53985d] h-3`} style={{ width: `${wiem}%` }}></View>
-                <View className={`bg-[#71a5d7] h-3`} style={{ width: `${trocheWiem}%` }}></View>
-                <View className={`bg-[#a82b2d] h-3`} style={{ width: `${nieWiem}%` }}></View>
+                <View className={` bg-border-know h-3`} style={{ width: `${wiem}%` }}></View>
+                <View className={`bg-border-maybe h-3`} style={{ width: `${trocheWiem}%` }}></View>
+                <View className={`bg-border-dontKnow h-3`} style={{ width: `${nieWiem}%` }}></View>
               </View>
             </Pressable>
           );

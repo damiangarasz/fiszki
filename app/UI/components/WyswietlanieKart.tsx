@@ -117,33 +117,33 @@ export default function WyswietlanieKart() {
 
   function OpcjeFiszki() {
     return (
-      <View className="flex-row bg-[#9b6b4651] m-auto absolute z-10 w-[100vw] top-16 h-[15vh] justify-evenly">
+      <View className="flex-row bg-bg-lang m-auto absolute z-10 w-[100vw] top-16 h-[15vh] justify-evenly">
         <Pressable
-          className="w-[30%] border-2 rounded-full shadow-xl h-16 m-auto bg-[#9b6b46]"
+          className="w-[30%] border-2 rounded-full shadow-xl h-16 m-auto bg-btn-lang border-border-lang"
           onPress={() => {
             setOpcjeJezyk("PL");
             setOpcjeToggle((prev) => !prev);
           }}
         >
-          <Text className="text-center m-auto font-SourGummy">Polski</Text>
+          <Text className="text-center m-auto font-buttons">Polski</Text>
         </Pressable>
         <Pressable
-          className="w-[30%] border-2 rounded-full shadow-xl h-16 m-auto bg-[#9b6b46]"
+          className="w-[30%] border-2 rounded-full shadow-xl h-16 m-auto bg-btn-lang border-border-lang"
           onPress={() => {
             setOpcjeJezyk("EN");
             setOpcjeToggle((prev) => !prev);
           }}
         >
-          <Text className="text-center m-auto font-SourGummy">Angielski</Text>
+          <Text className="text-center m-auto font-buttons">Angielski</Text>
         </Pressable>
         <Pressable
-          className="w-[30%] border-2 rounded-full shadow-xl h-16 m-auto bg-[#9b6b46]"
+          className="w-[30%] border-2 rounded-full shadow-xl h-16 m-auto bg-btn-lang border-border-lang"
           onPress={() => {
             setOpcjeJezyk("PL/EN");
             setOpcjeToggle((prev) => !prev);
           }}
         >
-          <Text className="text-center m-auto font-SourGummy">Polsko/Angielski</Text>
+          <Text className="text-center m-auto font-buttons">Polsko/Angielski</Text>
         </Pressable>
       </View>
     );
@@ -151,8 +151,8 @@ export default function WyswietlanieKart() {
 
   return (
     <SafeAreaView>
-      <View className="h-[100vh] w-[100%] flex relative bg-[#faf4e8]">
-        <Text className="absolute m-auto text-2xl color-[#9b6b46] font-SourGummy h-[5vh] top-16">
+      <View className="h-[100vh] w-[100%] flex relative bg-bg">
+        <Text className="absolute m-auto text-2xl color-text-primary font-primary h-[5vh] top-[8vh]">
           {jakiZestawDoWyswietlenia}
         </Text>
         <Pressable
@@ -187,7 +187,7 @@ export default function WyswietlanieKart() {
                     padding: 20,
                   }}
                 >
-                  <Text className="text-center m-auto font-SourGummy text-6xl color-[#9b6b46]">
+                  <Text className="text-center m-auto font-card text-6xl color-text-card">
                     {back}
                   </Text>
                 </LinearGradient>
@@ -210,12 +210,12 @@ export default function WyswietlanieKart() {
                 >
                   <View className="h-[33%]"></View>
                   <View className="h-[33%] m-auto w-[90%]">
-                    <Text className="text-center m-auto text-6xl font-SourGummy color-[#9b6b46]">
+                    <Text className="text-center m-auto text-6xl font-card color-text-card">
                       {front}
                     </Text>
                   </View>
                   <View className="h-[33%]">
-                    <Text className="m-auto text-center text-2xl color-[#9b6b46]">
+                    <Text className="m-auto text-center text-2xl color-[#9b6b46] font-card">
                       {wybranaFiszka?.kontekst}
                     </Text>
                   </View>
@@ -226,7 +226,7 @@ export default function WyswietlanieKart() {
         </View>
         <View className="absolute bottom-40 flex flex-row h-[56px] w-[100%] justify-evenly">
           <Pressable
-            className="w-[30vw] h-16  bg-[#e1eed4] border-2 border-[#53985d] rounded-full shadow-xl"
+            className="w-[30vw] h-16  bg-btn-know border-2 border-border-know rounded-full shadow-xl"
             onPress={() => {
               zamianaZnamNieZnam({ param: 2, setFiszki, fiszki, indexFiszek, indexX });
               dodawanieStat({ setOgolneStatystyki, angielskiText, dataObj });
@@ -238,10 +238,10 @@ export default function WyswietlanieKart() {
               }
             }}
           >
-            <Text className="m-auto text-3xl color-[#53985d]">Znam</Text>
+            <Text className="m-auto text-3xl color-border-know font-buttons">Znam</Text>
           </Pressable>
           <Pressable
-            className="w-[30vw] h-16 bg-[#d7e8f8] border-2 border-[#71a5d7] rounded-full shadow-xl"
+            className="w-[30vw] h-16 bg-btn-maybe border-2 border-border-maybe rounded-full shadow-xl"
             onPress={() => {
               zamianaZnamNieZnam({ param: 1, setFiszki, fiszki, indexFiszek, indexX });
               dodawanieStat({ setOgolneStatystyki, angielskiText, dataObj });
@@ -253,12 +253,12 @@ export default function WyswietlanieKart() {
               }
             }}
           >
-            <Text className="m-auto text-center text-1xl color-[#71a5d7] ">
+            <Text className="m-auto text-center text-1xl color-border-maybe font-buttons">
               Troche znam, a troche nie znam
             </Text>
           </Pressable>
           <Pressable
-            className="w-[30vw] h-16 bg-[#f9d5d5] border-2 border-[#a82b2d] rounded-full shadow-xl"
+            className="w-[30vw] h-16 bg-btn-dontKnow border-2 border-border-dontKnow rounded-full shadow-xl"
             onPress={() => {
               zamianaZnamNieZnam({ param: 0, setFiszki, fiszki, indexFiszek, indexX });
               dodawanieStat({ setOgolneStatystyki, angielskiText, dataObj });
@@ -270,7 +270,7 @@ export default function WyswietlanieKart() {
               }
             }}
           >
-            <Text className="m-auto text-3xl color-[#a82b2d]">Nie znam</Text>
+            <Text className="m-auto text-3xl color-border-dontKnow font-buttons">Nie znam</Text>
           </Pressable>
         </View>
       </View>

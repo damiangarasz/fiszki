@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { FlatList, Keyboard, Pressable, Text, TouchableWithoutFeedback, View } from "react-native";
 import { useFiszki } from "../../../context/FiszkiContext.tsx";
-import { FiszkaMemo, MainScreenNavigationProp, DaneFiszki } from "../../EdycjaTypes.ts";
+import { DaneFiszki, FiszkaMemo, MainScreenNavigationProp } from "../../EdycjaTypes.ts";
 import DodajFiszke from "./DodajFiszke.tsx";
 import FiszkaItem from "./FiszkaItemMemo.tsx";
 
@@ -42,17 +42,18 @@ export default function Edycja({ navigation }: MainScreenNavigationProp) {
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-      <View className="h-[100%] w-[100%] bg-[#faf4e8]">
+      <View className="h-[100%] w-[100%] bg-bg">
         <View className="flex flex-row w-[100%] justify-evenly">
           <Pressable
-            className="w-[40vw] h-16 mt-3 border-2 rounded-md shadow-xl"
-            style={{ backgroundColor: `${background}`, borderColor: `${border}` }}
+            className={`w-[40vw] h-16 mt-3 border-2 rounded-md shadow-xl ${
+              dodajFiszke ? "bg-btn-add-dis border-border-dis" : "bg-btn-add border-border-add"
+            }`}
             onPress={() => {
               setCzyUsunac(false);
               setDodajFiszke(true);
             }}
           >
-            <Text className="text-center m-auto text-2xl">Dodaj fiszkę</Text>
+            <Text className="text-center m-auto text-2xl font-buttons">Dodaj fiszkę</Text>
           </Pressable>
           <Pressable
             className="w-[40vw] h-16 mt-3 bg-[#f9d5d5] border-2 border-[#a82b2d] rounded-md shadow-xl"
@@ -61,13 +62,13 @@ export default function Edycja({ navigation }: MainScreenNavigationProp) {
               setCzyUsunac(true);
             }}
           >
-            <Text className="text-center m-auto text-2xl">Usuń wszystkie</Text>
+            <Text className="text-center m-auto text-2xl font-buttons">Usuń wszystkie</Text>
           </Pressable>
         </View>
 
         {czyUsunac ? (
           <View className="w-[75%] h-[15vh] m-auto ">
-            <Text className="m-auto text-xl">Czy na pewno usunąć?</Text>
+            <Text className="m-auto text-xl font-primary">Czy na pewno usunąć?</Text>
             <View className="w-[100%] flex-row justify-evenly">
               <Pressable
                 className="w-[30vw] h-16 mt-3 bg-[#f9d5d5] border-2 border-[#a82b2d] rounded-md shadow-xl"
@@ -81,7 +82,7 @@ export default function Edycja({ navigation }: MainScreenNavigationProp) {
                   navigation.navigate("Edycja");
                 }}
               >
-                <Text className="m-auto">TAK</Text>
+                <Text className="m-auto font-buttons">TAK</Text>
               </Pressable>
               <Pressable
                 className="w-[30vw] h-16 mt-3 bg-[#e1eed4] border-2 border-[#53985d] rounded-md shadow-xl"
@@ -89,7 +90,7 @@ export default function Edycja({ navigation }: MainScreenNavigationProp) {
                   setCzyUsunac(false);
                 }}
               >
-                <Text className="m-auto">NIE</Text>
+                <Text className="m-auto font-buttons">NIE</Text>
               </Pressable>
             </View>
           </View>
@@ -99,7 +100,9 @@ export default function Edycja({ navigation }: MainScreenNavigationProp) {
 
         {dodajFiszke ? <DodajFiszke objdoedycji={objDoEdycji} /> : <></>}
         <View className="w-[75%] h-[40] m-auto ">
-          <Text className="text-center text-3xl">{fiszki[fiszkaDoEdycji]?.key}</Text>
+          <Text className="text-center text-3xl font-primary text-text-primary">
+            {fiszki[fiszkaDoEdycji]?.key}
+          </Text>
         </View>
         <View className="bg-[#faf4e8] w-[75%] h-[75%] m-auto shadow-2xl rounded-2xl">
           <FlatList

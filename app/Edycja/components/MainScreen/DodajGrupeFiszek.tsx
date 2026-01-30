@@ -18,10 +18,12 @@ export default function DodajGrupeFiszek({ navigation }: MainScreenNavigationPro
   }
 
   return (
-    <View className="rounded-xl w-[75%] h-[30%] my-3 mx-auto shadow-xl bg-[#faf4e8]">
-      <Text className="mx-auto text-2xl text-center">Wpisz swoją nazwę zestawu fiszek.</Text>
+    <View className="rounded-xl w-[75%] h-[30%] my-3 mx-auto shadow-xl text-primary bg-[#faf4e8]">
+      <Text className="mx-auto text-2xl text-center font-primary text-text-primary">
+        Wpisz swoją nazwę zestawu fiszek.
+      </Text>
       <TextInput
-        className="bg-white shadow-xl h-10 w-[75%] m-auto my-5 p-2"
+        className="bg-in-bg shadow-xl h-10 w-[75%] m-auto my-5 p-2"
         placeholder="Twoja nazwa"
         placeholderTextColor="#9ca3af"
         style={{ color: "black" }}
@@ -30,7 +32,7 @@ export default function DodajGrupeFiszek({ navigation }: MainScreenNavigationPro
       />
       <View className="flex-row justify-around mb-5">
         <Pressable
-          className="w-[30vw] h-16  bg-[#e1eed4] border-2 border-[#53985d] rounded-md shadow-md"
+          className="w-[30vw] h-16  bg-btn-add border-2 border-border-add rounded-md shadow-md"
           onPress={() => {
             if (nazwaFiszki.length < 1) return;
             dodajFiszke();
@@ -38,15 +40,15 @@ export default function DodajGrupeFiszek({ navigation }: MainScreenNavigationPro
             setFiszkaDoEdycji(() => fiszki.length);
           }}
         >
-          <Text className="text-center text-3xl m-auto">Dodaj</Text>
+          <Text className="text-center text-3xl m-auto font-buttons">Dodaj</Text>
         </Pressable>
         <Pressable
-          className="w-[30vw] h-16 bg-[#f9d5d5] border-2 border-[#a82b2d] rounded-md shadow-md"
+          className="w-[30vw] h-16 bg-btn-cancel border-2 border-border-cancel rounded-md shadow-md"
           onPress={() => {
             setDodajGrupeFiszek(false);
           }}
         >
-          <Text className="text-center text-3xl m-auto">Anuluj</Text>
+          <Text className="text-center text-3xl m-auto font-buttons">Anuluj</Text>
         </Pressable>
       </View>
     </View>

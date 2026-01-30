@@ -8,23 +8,23 @@ export default function MainScreen({ navigation }: MainScreenNavigationProp) {
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-      <View className="w-[100%] h-[100%] bg-[#faf4e8]">
+      <View className="w-[100%] h-[100%] bg-bg">
         <Pressable
-          className="w-[90vw] h-16 mt-4 mx-auto bg-[#faf4e8] border-2 border-[#9b6b46] rounded-md shadow-xl"
+          className="w-[90vw] h-16 mt-4 mx-auto bg-btn-addNew border-2 border-border-addNew rounded-md shadow-xl"
           onPress={() => {
             setDodajGrupeFiszek(true);
           }}
         >
-          <Text className="text-[#9b6b46] bg-[#faf4e8] text-center m-auto text-5xl">
+          <Text className="text-text-addNew bg-btn-addNew text-center m-auto text-5xl font-buttons">
             Dodaj nowe
           </Text>
         </Pressable>
         {dadajGrupeFiszek ? <DodajGrupeFiszek navigation={navigation} /> : <></>}
-        <View className="bg-[#faf4e8] w-[75%] h-[75%] shadow-2xl m-auto rounded-xl">
+        <View className="bg-bg w-[75%] h-[75%] shadow-2xl m-auto rounded-xl">
           {fiszki.map((element, index) => {
             const key = Object.keys(element)[0] + index;
             return (
-              <View key={key} className="border-b border-gray-400 border-dotted">
+              <View key={key} className="border-b border-gray-400 border-dotted py-2">
                 <Pressable
                   className="flex flex-row justify-around h-8"
                   onPress={() => {
@@ -32,7 +32,9 @@ export default function MainScreen({ navigation }: MainScreenNavigationProp) {
                     setFiszkaDoEdycji(index);
                   }}
                 >
-                  <Text className="w-[50%] text-center m-auto text-2xl">{element.key}</Text>
+                  <Text className="w-[50%] text-center m-auto text-2xl font-primary text-text-primary">
+                    {element.key}
+                  </Text>
                 </Pressable>
               </View>
             );

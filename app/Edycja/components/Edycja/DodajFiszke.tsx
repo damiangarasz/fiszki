@@ -1,5 +1,5 @@
 import * as Crypto from "expo-crypto";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Pressable, Text, TextInput, View } from "react-native";
 import { useFiszki } from "../../../context/FiszkiContext.tsx";
 import { DodajFiszkeProps } from "../../EdycjaTypes.ts";
@@ -122,7 +122,7 @@ export default function DodajFiszke({ objdoedycji }: DodajFiszkeProps) {
             if (polskiText.length >= 2 && angielskiText.length >= 2) dodawanieFiszki();
           }}
         >
-          <Text className="text-center text-2xl m-auto">Dodaj</Text>
+          <Text className="text-center text-2xl m-auto font-buttons">Dodaj</Text>
         </Pressable>
         <Pressable
           className="w-[30vw] h-16 bg-[#f9d5d5] border-2 border-[#a82b2d] rounded-md shadow-xl"
@@ -133,7 +133,7 @@ export default function DodajFiszke({ objdoedycji }: DodajFiszkeProps) {
             setDodajFiszke(false);
           }}
         >
-          <Text className="text-center text-2xl m-auto">Odrzuć</Text>
+          <Text className="text-center text-2xl m-auto font-buttons">Odrzuć</Text>
         </Pressable>
       </View>
     </View>

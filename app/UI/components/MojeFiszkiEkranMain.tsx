@@ -11,7 +11,7 @@ export default function MojeFiszkiEkranMain({ navigation }: MojeFiszkiEkranMainP
         <ScrollView>
           {fiszki.length == 0 ? (
             <View>
-              <Text className="text-center text-2xl font-SourGummy">
+              <Text className="text-center text-2xl font-primary">
                 Brak fiszek! Dodaj pierwszą w &#34;Edycja&#34;
               </Text>
             </View>
@@ -28,10 +28,10 @@ export default function MojeFiszkiEkranMain({ navigation }: MojeFiszkiEkranMainP
                       }
                     }}
                   >
-                    <Text className="w-[50%] text-center m-auto text-2xl font-SourGummy">
+                    <Text className="w-[50%] text-center m-auto text-2xl font-primary">
                       {param.key}
                     </Text>
-                    <Text>Ilość fiszek: {fiszki[index].lista.length}</Text>
+                    <Text className="font-primary">Ilość fiszek: {fiszki[index].lista.length}</Text>
                   </Pressable>
                 </View>
               );
