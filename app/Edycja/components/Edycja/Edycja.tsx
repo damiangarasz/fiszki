@@ -104,7 +104,7 @@ export default function Edycja({ navigation }: MainScreenNavigationProp) {
             {fiszki[fiszkaDoEdycji]?.key}
           </Text>
         </View>
-        <View className="bg-[#faf4e8] w-[75%] h-[75%] m-auto shadow-2xl rounded-2xl">
+        <View className="bg-bg w-[75%] h-[75%] m-auto shadow-2xl rounded-2xl">
           <FlatList
             data={fiszki[fiszkaDoEdycji]?.lista ?? []}
             keyExtractor={(_, index) => index.toString()}

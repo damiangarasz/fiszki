@@ -1,12 +1,18 @@
+import { LinearGradient } from "expo-linear-gradient";
 import { Image, Pressable, Text, View } from "react-native";
 
 export default function OpcjeMain() {
   return (
     <View className="h-[100%] w-[100%] bg-bg flex gap-5 justify-evenly">
-      <Pressable className="h-[7vh]">
-        <View className="w-[80%] h-[100%] bg-[#eed0ae] bg-[radial-gradient(circle,_#eed0ae_0%,_#f5ea98_100%)] radious-sm mx-auto rounded-md shadow-xl">
-          <Text className="font-card m-auto text-4xl">👑 Przejdź na PRO 👑</Text>
-        </View>
+      <Pressable className="h-[8vh] w-[80%] mx-auto shadow-xl rounded-md overflow-hidden">
+        <LinearGradient
+          colors={["#eed0ae", "#f5ea98", "#eed0ae"]}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 0 }}
+          style={{ flex: 1, width: "100%", justifyContent: "center", alignItems: "center" }}
+        >
+          <Text className="font-card text-4xl text-center">👑 Przejdź na PRO 👑</Text>
+        </LinearGradient>
       </Pressable>
       <View className="w-[80%] h-[25vh] bg-bg-secondary rounded-md mx-auto shadow-xl flex-row p-4 gap-4">
         <View className="flex-[3]">
@@ -35,7 +41,10 @@ export default function OpcjeMain() {
               <Text className="font-primary text-text-primary">2 min temu</Text>
             </View>
           </View>
-          <Pressable className="w-[80%] h-[60%] bg-bg shadow-[inset_4px_4px_10px_rgba(0,0,0,0.25)] rounded-md">
+          <Pressable
+            className="w-[80%] h-[60%] bg-bg border-t-4 border-l-4 border-t-black/10 border-l-black/10 
+             border-b-0 border-r-0 rounded-md"
+          >
             <View className="m-auto">
               <Image
                 className="m-auto"
