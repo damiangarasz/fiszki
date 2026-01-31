@@ -14,6 +14,7 @@ module.exports = {
         //Main colors
         bg: "var(--bg)",
         "bg-primary": "var(--bg-primary)",
+        "bg-secondary": "var(--bg-secondary)",
         "text-primary": "var(--text-color-primary)",
 
         // MOJE FISZKI
