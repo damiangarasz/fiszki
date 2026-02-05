@@ -2,6 +2,7 @@ import { OpcjeProp } from "@/app/types";
 import { FirebaseAuthTypes, getAuth, onAuthStateChanged } from "@react-native-firebase/auth";
 import { useEffect, useState } from "react";
 import { Image, Pressable, Text, View } from "react-native";
+import { handleLogOut } from "../../utilities/helpers/handleLogOut";
 
 export default function Konto({ navigation }: OpcjeProp) {
   const [initializing, setInitializing] = useState(true);
@@ -37,7 +38,12 @@ export default function Konto({ navigation }: OpcjeProp) {
           </View>
         </View>
         {user ? (
-          <Pressable className="w-[60%] h-[4vh] my-auto bg-bg-primary shadow-xl">
+          <Pressable
+            className="w-[60%] h-[4vh] my-auto bg-bg-primary shadow-xl"
+            onPress={() => {
+              handleLogOut();
+            }}
+          >
             <Text className="font-primary text-white rounded-md text-center m-auto">Wyloguj</Text>
           </Pressable>
         ) : (
