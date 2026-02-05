@@ -1,5 +1,5 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import Logowanie from "./components/Logowanie";
+import Logowanie from "./components/Konto/Logowanie";
 import Motyw from "./components/Motyw";
 import OpcjeMain from "./components/OpcjeMain";
 import PrzejdzNaPro from "./components/PrzejdzNaPro";
