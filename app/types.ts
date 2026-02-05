@@ -70,3 +70,17 @@ export type FiszkiWyswietlanieProp = {
 };
 
 export type MojeFiszkiEkranMainProp = { navigation: MojeFiszkiEkranProp };
+
+type StackParamListOpcje = {
+  "Opcje Main": undefined;
+  "Przejdź na PRO": undefined;
+  Logowanie: undefined;
+  Motyw: undefined;
+  Udostepnianie: undefined;
+};
+
+type OpcjeEkranProp = StackNavigationProp<StackParamListOpcje>;
+
+export type OpcjeProp = {
+  navigation: OpcjeEkranProp;
+};

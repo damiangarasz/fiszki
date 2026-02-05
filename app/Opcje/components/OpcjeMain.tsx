@@ -1,7 +1,8 @@
+import { OpcjeProp } from "@/app/types";
 import { LinearGradient } from "expo-linear-gradient";
 import { Image, Pressable, Text, View } from "react-native";
 
-export default function OpcjeMain() {
+export default function OpcjeMain({ navigation }: OpcjeProp) {
   return (
     <View className="h-[100%] w-[100%] bg-bg flex gap-5 justify-evenly">
       <Pressable className="h-[8vh] w-[80%] mx-auto shadow-xl rounded-md overflow-hidden">
@@ -23,7 +24,12 @@ export default function OpcjeMain() {
               <Text className="font-primary text-text-primary">Niezalogowany</Text>
             </View>
           </View>
-          <Pressable className="w-[60%] h-[4vh] my-auto bg-bg-primary shadow-xl">
+          <Pressable
+            onPress={() => {
+              navigation.navigate("Logowanie");
+            }}
+            className="w-[60%] h-[4vh] my-auto bg-bg-primary shadow-xl"
+          >
             <Text className="font-primary text-white rounded-md text-center m-auto">Zaloguj</Text>
           </Pressable>
         </View>

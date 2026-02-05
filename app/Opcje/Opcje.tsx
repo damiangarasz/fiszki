@@ -20,7 +20,7 @@ export default function Opcje() {
         component={OpcjeMain}
       />
       <Stack.Screen
-        name="Pzrejdź na PRO"
+        name="Przejdź na PRO"
         options={{
           headerTintColor: "white",
           headerStyle: {
