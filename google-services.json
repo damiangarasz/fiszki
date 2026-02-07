@@ -1,0 +1,62 @@
+{
+  "project_info": {
+    "project_number": "493135918988",
+    "project_id": "fiszki-9f134",
+    "storage_bucket": "fiszki-9f134.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:493135918988:android:5e78793750ac6acf99c8a9",
+        "android_client_info": {
+          "package_name": "com.damiangarasz.fiszki"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "493135918988-p9kkhc13ag6hf2ektud2ps8d1pvk77vu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.damiangarasz.fiszki",
+            "certificate_hash": "6ac8a75708fd5fde44f497b8a093f2fe312b55d1"
+          }
+        },
+        {
+          "client_id": "493135918988-pva6kfgbpfh5fmph42u1ma4ee7p294qq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.damiangarasz.fiszki",
+            "certificate_hash": "59f92b8873259f5c9339ae89a9836331417c8b85"
+          }
+        },
+        {
+          "client_id": "493135918988-721bkccbcoitr5jtpa72ejrb0jri5mhu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAC4ko0ZZnb9B8HZ6bwYnKL7XOxYMmWmgY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "493135918988-721bkccbcoitr5jtpa72ejrb0jri5mhu.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "493135918988-vm9rnrb6bj2kn7qs1ufgcsc353ah5jlu.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.damiangarasz.fiszki"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
