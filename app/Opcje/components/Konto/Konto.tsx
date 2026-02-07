@@ -16,7 +16,7 @@ export default function Konto({ navigation }: OpcjeProp) {
 
   useEffect(() => {
     const subscriber = onAuthStateChanged(getAuth(), handleAuthStateChanged);
-    return subscriber; // unsubscribe on unmount
+    return subscriber; 
   }, []);
 
   if (initializing) return null;
